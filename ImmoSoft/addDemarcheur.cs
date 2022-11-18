@@ -76,6 +76,7 @@ namespace ImmoSoft
                         prenom.Text.TrimStart().TrimEnd().ToUpper(),
                         piece.Text,
                         numero.Text.TrimStart().TrimEnd().ToUpper(),
+                        delivrance.Text, profession.Text,
                         contact.Text.Trim().ToUpper(),
                         addresse.Text.TrimStart().TrimEnd().ToUpper()))
                     {
@@ -103,6 +104,7 @@ namespace ImmoSoft
                         prenom.Text.TrimStart().TrimEnd().ToUpper(),
                         piece.Text,
                         numero.Text.TrimStart().TrimEnd().ToUpper(),
+                        delivrance.Text, profession.Text,
                         contact.Text.Trim().ToUpper(),
                         addresse.Text.TrimStart().TrimEnd().ToUpper()))
                     {

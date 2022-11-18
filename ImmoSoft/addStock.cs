@@ -47,24 +47,26 @@ namespace ImmoSoft
 
         private void button1_Click(object sender, EventArgs e)
         {
-            common com = new common();
-            if (!String.IsNullOrEmpty(lot.Text) &&
-                !String.IsNullOrEmpty(site.Text) &&
-                !String.IsNullOrEmpty(prcle.Text) &&
-                !String.IsNullOrEmpty(spf.Text))
-                if (com.isNumber(lot.Text.Trim())
-                        && com.isNumber(spf.Text.Trim()))
-                {
-                    DB.site ste = new site();
-                    DB.stock stock = new stock();
+            if (site.SelectedIndex!=0)
+            {
+                common com = new common();
+                if (!String.IsNullOrEmpty(lot.Text) &&
+                    !String.IsNullOrEmpty(site.Text) &&
+                    !String.IsNullOrEmpty(prcle.Text) &&
+                    !String.IsNullOrEmpty(spf.Text))
+                    if (com.isNumber(lot.Text.Trim())
+                            && com.isNumber(spf.Text.Trim()))
+                    {
+                        DB.site ste = new site();
+                        DB.stock stock = new stock();
 
-                    if(stockid==null)
-                        stock.add(ste.add(site.Text), lot.Text, prcle.Text, spf.Text, "Disponible");
-                    else
-                        stock.update(stockid,ste.add(site.Text), lot.Text, prcle.Text, spf.Text);
-                    this.Close();
-                }
-
+                        if (stockid==null)
+                            stock.add(siteid, section.Text, lot.Text, prcle.Text, spf.Text, "Disponible");
+                        else
+                            stock.update(stockid, siteid, section.Text, lot.Text, prcle.Text, spf.Text);
+                        this.Close();
+                    }
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -74,7 +76,16 @@ namespace ImmoSoft
 
         private void site_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+            if (dtsite.Rows.Count>0)
+                foreach (DataRow row in dtsite.Rows)
+                {
+                    if (row["nom"].ToString()==site.Text)
+
+                    {
+                        siteid=row["id"].ToString();
+                        break;
+                    }
+                }
         }
     }
 }

@@ -112,6 +112,7 @@ namespace ImmoSoft
 
                 string etat = "";
                 string action = "";
+                //gerer le rang des versement
                 if (decimal.Parse(rest.Text)>0)
                 {
                     etat= "En cours de vente";
@@ -123,8 +124,19 @@ namespace ImmoSoft
                     action="Versement et aquisition";
                 }
 
-                if (stock.vente(pid, cid, did, prix.Text.Trim(), vsmt.Text.Trim(), rest.Text,usage.Text, etat))
+                if (stock.vente(pid, cid, did, prix.Text.Trim(), vsmt.Text.Trim(), rest.Text, usage.Text, etat))
+                {
                     hist.add(action, pid, cid, did, prix.Text.Trim(), vsmt.Text.Trim(), rest.Text, usage.Text);
+                    DB.printer printer = new DB.printer();
+                    printer.versement(
+                        dgvC.Rows[0].Cells["nom"].Value.ToString()+" "+dgvC.Rows[0].Cells["prenom"].Value.ToString(),
+                        dgvC.Rows[0].Cells["piece"].Value.ToString()+" N° "+dgvC.Rows[0].Cells["numero"].Value.ToString()+" du "+dgvC.Rows[0].Cells["delivrance"].Value.ToString(),
+                        dgvC.Rows[0].Cells["contact"].Value.ToString(), dgvP.Rows[0].Cells["lot"].Value.ToString(), dgvP.Rows[0].Cells["parcelle"].Value.ToString(),
+                         dgvP.Rows[0].Cells["superficie"].Value.ToString(), action,
+                         vsmt.Text, prix.Text,
+                         (decimal.Parse(prix.Text)-decimal.Parse(rest.Text)).ToString(),
+                         rest.Text,hist.getLast().ToString());
+                }
             }
 
         }

@@ -57,7 +57,7 @@ namespace ImmoSoft.DB
         public DataTable refresh(string etat,string action)
         {
             con.Open();
-            string aa = "select stock.id,stock.lot,stock.parcelle,stock.superficie,client.nom, client.prenom," +
+            string aa = "select stock.id,stock.section,stock.lot,stock.parcelle,stock.superficie,client.nom, client.prenom," +
                 " demarcheur.nom,demarcheur.prenom, idclient, iddemarcheur" +
                 " from stock join demarcheur on demarcheur.id = stock.iddemarcheur" +
                 " join client on client.id=stock.idclient"+
@@ -70,13 +70,13 @@ namespace ImmoSoft.DB
             DataTable ds = new DataTable();
             ds.BeginLoadData();
             da.Fill(ds);
-            ds.Columns[4].ColumnName="Client";
-            ds.Columns[6].ColumnName="Demarcheur";
+            ds.Columns[5].ColumnName="Client";
+            ds.Columns[7].ColumnName="Demarcheur";
             if(ds.Rows.Count>0)
                 foreach(DataRow row in ds.Rows)
                 {
-                    row[4]=row[4]+" "+row[5];
-                    row[6]=row[6]+" "+row[7];
+                    row[5]=row[5]+" "+row[6];
+                    row[7]=row[7]+" "+row[8];
                 }
             ds.Columns.RemoveAt(7);
             ds.Columns.RemoveAt(5);
@@ -89,7 +89,7 @@ namespace ImmoSoft.DB
         {
             con.Open();
             MySqlDataAdapter da = new MySqlDataAdapter(
-                "select stock.id,stock.lot,stock.parcelle,stock.superficie,client.nom,client.prenom," +
+                "select stock.id,stock.section,stock.lot,stock.parcelle,stock.superficie,client.nom,client.prenom," +
                 " demarcheur.nom, demarcheur.prenom, stock.idclient, stock.iddemarcheur" +
                 " from stock join client on client.id = stock.idclient" +
                 " join demarcheur on demarcheur.id = stock.iddemarcheur"+
@@ -104,8 +104,8 @@ namespace ImmoSoft.DB
             if (ds.Rows.Count>0)
                 foreach (DataRow row in ds.Rows)
                 {
-                    row[4]=row[4]+" "+row[5];
-                    row[6]=row[6]+" "+row[7];
+                    row[5]=row[5]+" "+row[6];
+                    row[7]=row[7]+" "+row[8];
                 }
             ds.Columns.RemoveAt(7);
             ds.Columns.RemoveAt(5);
@@ -114,17 +114,18 @@ namespace ImmoSoft.DB
             con.Close();
             return ds;
         }
-        public bool add(string siteid,string lot, string prcle, string spf, 
+        public bool add(string siteid,string section, string lot, string prcle, string spf, 
             string prix, string mnt, string rest,string client,  string etat)
         {
             try
             {
                 con.Open();
-                cmd = new MySqlCommand("insert into stock (siteid,lot, parcelle, superficie, prix, montant,reste," +
-                    "idclient, etat) Values (@siteid,@lot,@prcle,@spf,@prix,@mnt,@rest,@client,@etat)", con);
+                cmd = new MySqlCommand("insert into stock (siteid,section,lot, parcelle, superficie, prix, montant,reste," +
+                    "idclient, etat) Values (@siteid,@section,@lot,@prcle,@spf,@prix,@mnt,@rest,@client,@etat)", con);
                 cmd.Parameters.Add("@siteid", MySqlDbType.Int32).Value = siteid;
+                cmd.Parameters.Add("@section", MySqlDbType.VarChar).Value = section;
                 cmd.Parameters.Add("@lot",MySqlDbType.Int32).Value = lot;
-                cmd.Parameters.Add("@prcle", MySqlDbType.Int32).Value = prcle;
+                cmd.Parameters.Add("@prcle", MySqlDbType.VarChar).Value = prcle;
                 cmd.Parameters.Add("@spf", MySqlDbType.Decimal).Value = spf;
                 cmd.Parameters.Add("@prix", MySqlDbType.Decimal).Value = prix;
                 cmd.Parameters.Add("@mnt", MySqlDbType.Decimal).Value = mnt;
@@ -141,17 +142,18 @@ namespace ImmoSoft.DB
                 return false;
             }
         }
-        public bool add(string siteid, string lot, string prcle, string spf, string etat)
+        public bool add(string siteid,string section, string lot, string prcle, string spf, string etat)
         {
             try
             {
                 con.Open();
-                cmd = new MySqlCommand("insert into stock (siteid,lot, parcelle,superficie, etat) " +
-                    "Values (@siteid,@lot,@prcle,@spf,@etat)", con);
+                cmd = new MySqlCommand("insert into stock (siteid,section,lot, parcelle,superficie, etat) " +
+                    "Values (@siteid,@section,@lot,@prcle,@spf,@etat)", con);
 
                 cmd.Parameters.Add("@siteid", MySqlDbType.Int32).Value = siteid;
+                cmd.Parameters.Add("@section", MySqlDbType.VarChar).Value = section;
                 cmd.Parameters.Add("@lot", MySqlDbType.Int32).Value = lot;
-                cmd.Parameters.Add("@prcle", MySqlDbType.Int32).Value = prcle;
+                cmd.Parameters.Add("@prcle", MySqlDbType.VarChar).Value = prcle;
                 cmd.Parameters.Add("@spf", MySqlDbType.Decimal).Value = spf;
                 cmd.Parameters.Add("@etat", MySqlDbType.VarChar).Value = etat;
                 cmd.ExecuteNonQuery();
@@ -190,14 +192,15 @@ namespace ImmoSoft.DB
                 return false;
             }
         }
-        public bool update(string id, string site, string lot, string prcle, string spfc)
+        public bool update(string id, string site,string section, string lot, string prcle, string spfc)
         {
             try
             {
                 con.Open();
                 cmd = new MySqlCommand("update stock set site=@site,lot=@lot, parcelle=@prcle," +
-                    "superficie=@spfc where id=@id", con);
+                    "superficie=@spfc, section=@section where id=@id", con);
                 cmd.Parameters.Add("@id", MySqlDbType.Int32).Value=id;
+                cmd.Parameters.Add("@section", MySqlDbType.VarChar).Value=section;
                 cmd.Parameters.Add("@site", MySqlDbType.Int32).Value=site;
                 cmd.Parameters.Add("@lot", MySqlDbType.Int32).Value=lot;
                 cmd.Parameters.Add("@prcle", MySqlDbType.VarChar).Value=prcle;

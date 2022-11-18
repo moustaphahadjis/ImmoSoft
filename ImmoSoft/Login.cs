@@ -24,9 +24,22 @@ namespace ImmoSoft
             //user.insert("nom", "prenom", "admin", "admin", "admin");
             DataTable dt = user.checkUser(username.Text, password.Text);
             if(dt!= null)
+                if(dt.Rows.Count>0)
             {
-                Properties.Settings.Default. = 
+                Properties.Settings.Default.nom=dt.Rows[0]["nom"].ToString();
+                Properties.Settings.Default.prenom=dt.Rows[0]["prenom"].ToString();
+                Properties.Settings.Default.admin=dt.Rows[0]["admin"].ToString();
+
+                Form1 form1 = new Form1();
+                form1.FormClosed+=(s, a) => { this.Close(); };
+                this.Hide();
+                form1.ShowDialog();
             }
+        }
+
+        private void Login_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

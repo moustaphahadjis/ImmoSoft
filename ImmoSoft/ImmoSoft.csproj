@@ -69,6 +69,12 @@
     <Compile Include="addDemarcheur.Designer.cs">
       <DependentUpon>addDemarcheur.cs</DependentUpon>
     </Compile>
+    <Compile Include="addSite.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="addSite.Designer.cs">
+      <DependentUpon>addSite.cs</DependentUpon>
+    </Compile>
     <Compile Include="addStock.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -172,6 +178,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="addDemarcheur.resx">
       <DependentUpon>addDemarcheur.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="addSite.resx">
+      <DependentUpon>addSite.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="addStock.resx">
       <DependentUpon>addStock.cs</DependentUpon>

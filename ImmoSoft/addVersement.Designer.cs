@@ -57,6 +57,10 @@
             this.label4 = new System.Windows.Forms.Label();
             this.button3 = new System.Windows.Forms.Button();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvD)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -197,6 +201,8 @@
             // 
             // groupBox4
             // 
+            this.groupBox4.Controls.Add(this.label6);
+            this.groupBox4.Controls.Add(this.label5);
             this.groupBox4.Controls.Add(this.label2);
             this.groupBox4.Controls.Add(this.montant);
             this.groupBox4.Controls.Add(this.label1);
@@ -206,7 +212,7 @@
             this.groupBox4.Size = new System.Drawing.Size(469, 117);
             this.groupBox4.TabIndex = 4;
             this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "groupBox4";
+            this.groupBox4.Text = "Espace parcelle";
             this.groupBox4.Enter += new System.EventHandler(this.groupBox4_Enter);
             // 
             // label2
@@ -221,10 +227,11 @@
             // 
             // montant
             // 
+            this.montant.Enabled = false;
             this.montant.Font = new System.Drawing.Font("Cambria", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.montant.Location = new System.Drawing.Point(163, 70);
             this.montant.Name = "montant";
-            this.montant.Size = new System.Drawing.Size(217, 29);
+            this.montant.Size = new System.Drawing.Size(244, 29);
             this.montant.TabIndex = 0;
             // 
             // label1
@@ -242,7 +249,7 @@
             this.prix.Font = new System.Drawing.Font("Cambria", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.prix.Location = new System.Drawing.Point(163, 27);
             this.prix.Name = "prix";
-            this.prix.Size = new System.Drawing.Size(217, 29);
+            this.prix.Size = new System.Drawing.Size(244, 29);
             this.prix.TabIndex = 0;
             // 
             // versement
@@ -250,7 +257,7 @@
             this.versement.Font = new System.Drawing.Font("Cambria", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.versement.Location = new System.Drawing.Point(164, 27);
             this.versement.Name = "versement";
-            this.versement.Size = new System.Drawing.Size(217, 29);
+            this.versement.Size = new System.Drawing.Size(235, 29);
             this.versement.TabIndex = 0;
             this.versement.TextChanged += new System.EventHandler(this.versement_TextChanged);
             // 
@@ -270,7 +277,7 @@
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(212, 589);
+            this.button1.Location = new System.Drawing.Point(212, 606);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(173, 44);
             this.button1.TabIndex = 2;
@@ -284,7 +291,7 @@
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(407, 589);
+            this.button2.Location = new System.Drawing.Point(407, 606);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(173, 44);
             this.button2.TabIndex = 2;
@@ -335,10 +342,11 @@
             // 
             // reste
             // 
+            this.reste.Enabled = false;
             this.reste.Font = new System.Drawing.Font("Cambria", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.reste.Location = new System.Drawing.Point(164, 70);
             this.reste.Name = "reste";
-            this.reste.Size = new System.Drawing.Size(217, 29);
+            this.reste.Size = new System.Drawing.Size(235, 29);
             this.reste.TabIndex = 0;
             // 
             // label4
@@ -357,7 +365,7 @@
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button3.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button3.ForeColor = System.Drawing.Color.White;
-            this.button3.Location = new System.Drawing.Point(602, 590);
+            this.button3.Location = new System.Drawing.Point(602, 607);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(173, 44);
             this.button3.TabIndex = 2;
@@ -366,7 +374,9 @@
             // 
             // groupBox6
             // 
+            this.groupBox6.Controls.Add(this.label8);
             this.groupBox6.Controls.Add(this.label3);
+            this.groupBox6.Controls.Add(this.label7);
             this.groupBox6.Controls.Add(this.label4);
             this.groupBox6.Controls.Add(this.versement);
             this.groupBox6.Controls.Add(this.reste);
@@ -375,13 +385,53 @@
             this.groupBox6.Size = new System.Drawing.Size(461, 120);
             this.groupBox6.TabIndex = 5;
             this.groupBox6.TabStop = false;
-            this.groupBox6.Text = "groupBox6";
+            this.groupBox6.Text = "Espace client";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Cambria", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(413, 30);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(50, 21);
+            this.label5.TabIndex = 1;
+            this.label5.Text = "FCFA";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Cambria", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(413, 75);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(50, 21);
+            this.label6.TabIndex = 1;
+            this.label6.Text = "FCFA";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Cambria", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(405, 31);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(50, 21);
+            this.label7.TabIndex = 1;
+            this.label7.Text = "FCFA";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Cambria", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(405, 76);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(50, 21);
+            this.label8.TabIndex = 1;
+            this.label8.Text = "FCFA";
             // 
             // addVersement
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(982, 653);
+            this.ClientSize = new System.Drawing.Size(982, 678);
             this.Controls.Add(this.groupBox6);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
@@ -433,5 +483,9 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.GroupBox groupBox6;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label7;
     }
 }

@@ -17,11 +17,15 @@ namespace ImmoSoft
         public addClient()
         {
             InitializeComponent();
+            delivrance.Format = DateTimePickerFormat.Custom;
+            delivrance.CustomFormat = "dd/MM/yyyy";
             modify = false;
         }
         public addClient(string ID)
         {
             InitializeComponent();
+            delivrance.Format = DateTimePickerFormat.Custom;
+            delivrance.CustomFormat = "dd/MM/yyyy";
             modify = true;
             id=ID;
             DB.client client = new DB.client();
@@ -32,10 +36,16 @@ namespace ImmoSoft
             numero.Text=row["numero"].ToString();
             contact.Text=row["contact"].ToString();
             addresse.Text=row["addresse"].ToString();
+            profession.Text=row["profession"].ToString();
+            string[] date = row["delivrance"].ToString().Split('/');
+            delivrance.Value=new DateTime(Int32.Parse(
+                date[2]), Int32.Parse(date[1]), Int32.Parse(date[0]));
         }
         public addClient(string ID, bool check)
         {
             InitializeComponent();
+            delivrance.Format = DateTimePickerFormat.Custom;
+            delivrance.CustomFormat = "dd/MM/yyyy";
             modify = true;
             id=ID;
             DB.client client = new DB.client();
@@ -46,6 +56,11 @@ namespace ImmoSoft
             numero.Text=row["numero"].ToString();
             contact.Text=row["contact"].ToString();
             addresse.Text=row["addresse"].ToString();
+            profession.Text=row["profession"].ToString();
+            matrimonial.Text=row["matrimonial"].ToString();
+            string[] date = row["delivrance"].ToString().Split('/');
+            delivrance.Value=new DateTime(Int32.Parse(
+                date[2]), Int32.Parse(date[1]), Int32.Parse(date[0]));
 
             nom.Enabled=false;
             prenom.Enabled=false;
@@ -53,6 +68,8 @@ namespace ImmoSoft
             numero.Enabled=false;
             contact.Enabled=false;
             addresse.Enabled=false;
+            profession.Enabled=false;
+            delivrance.Enabled=false;
             button1.Enabled=false;
             button3.Enabled=false;
 
@@ -73,6 +90,9 @@ namespace ImmoSoft
                         prenom.Text.TrimStart().TrimEnd().ToUpper(),
                         piece.Text,
                         numero.Text.TrimStart().TrimEnd().ToUpper(),
+                        delivrance.Value.ToString("dd/MM/yyyy"),
+                        profession.Text.TrimStart().TrimEnd().ToUpper(),
+                        matrimonial.Text.TrimStart().TrimEnd().ToUpper(),
                         contact.Text.Trim().ToUpper(),
                         addresse.Text.TrimStart().TrimEnd().ToUpper()))
                     {
@@ -100,6 +120,9 @@ namespace ImmoSoft
                         prenom.Text.TrimStart().TrimEnd().ToUpper(),
                         piece.Text,
                         numero.Text.TrimStart().TrimEnd().ToUpper(),
+                        delivrance.Value.ToString("dd/MM/yyyy"),
+                        profession.Text.TrimStart().TrimEnd().ToUpper(),
+                        matrimonial.Text.TrimStart().TrimEnd().ToUpper(),
                         contact.Text.Trim().ToUpper(),
                         addresse.Text.TrimStart().TrimEnd().ToUpper()))
                     {
@@ -122,6 +145,56 @@ namespace ImmoSoft
         }
 
         private void addClient_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void delivrance_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void piece_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label7_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void profession_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void numero_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label10_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label9_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label8_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label6_Click(object sender, EventArgs e)
         {
 
         }

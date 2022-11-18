@@ -21,7 +21,6 @@ namespace ImmoSoft
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
         }
         void changeForm(Form newForm)
         {

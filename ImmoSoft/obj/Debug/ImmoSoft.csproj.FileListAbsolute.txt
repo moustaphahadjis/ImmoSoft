@@ -32,3 +32,4 @@ C:\Work\Software\ImmoSoft\ImmoSoft\obj\Debug\ImmoSoft.Export.resources
 C:\Work\Software\ImmoSoft\ImmoSoft\bin\Debug\Krypton.Toolkit.dll
 C:\Work\Software\ImmoSoft\ImmoSoft\bin\Debug\Krypton.Toolkit.xml
 C:\Work\Software\ImmoSoft\ImmoSoft\obj\Debug\ImmoSoft.Login.resources
+C:\Work\Software\ImmoSoft\ImmoSoft\obj\Debug\ImmoSoft.addSite.resources

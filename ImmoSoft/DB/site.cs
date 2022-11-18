@@ -34,7 +34,22 @@ namespace ImmoSoft.DB
             con.Close();
             return ds;
         }
-        public string add(string nom)
+        public DataTable refresh(string id)
+        {
+            con.Open();
+
+
+            MySqlDataAdapter da = new MySqlDataAdapter("select * from site where id=@id deleted=0", con);
+            da.SelectCommand.Parameters.Add("@id", MySqlDbType.Int32).Value=id;
+            DataTable ds = new DataTable();
+            ds.BeginLoadData();
+            da.Fill(ds);
+            ds.EndLoadData();
+
+            con.Close();
+            return ds;
+        }
+        public string add(string nom, string ville, string taille)
         {
             try
             {
@@ -45,8 +60,10 @@ namespace ImmoSoft.DB
                 da.Fill(dt);
                 if (dt.Rows.Count==0)
                 {
-                    cmd = new MySqlCommand("insert into site (nom) Values (@nom)", con);
+                    cmd = new MySqlCommand("insert into site (nom,ville,taille) Values (@nom,@ville,@taille)", con);
                     cmd.Parameters.Add("@nom", MySqlDbType.VarChar).Value = nom;
+                    cmd.Parameters.Add("@ville", MySqlDbType.VarChar).Value = ville;
+                    cmd.Parameters.Add("@taille", MySqlDbType.VarChar).Value = taille;
                     cmd.ExecuteNonQuery();
                     da= new MySqlDataAdapter("select id from site Order By id Desc Limit 1", con);
                     DataTable dt2 = new DataTable();
@@ -64,6 +81,39 @@ namespace ImmoSoft.DB
             {
                 MessageBox.Show(e.ToString());
                 return "0";
+            }
+        }
+        public bool update(string id, string nom, string ville, string taille)
+        {
+            try
+            {
+                con.Open();
+                DataTable dt = new DataTable();
+                MySqlDataAdapter da = new MySqlDataAdapter("Select * from site where nom=@nom and deleted=0", con);
+                da.SelectCommand.Parameters.Add("@nom", MySqlDbType.VarChar).Value = nom;
+                da.Fill(dt);
+                if (dt.Rows.Count==0)
+                {
+                    cmd = new MySqlCommand("update site set nom=@nom, ville=@ville, taille=@taille where id=@id)", con);
+                    cmd.Parameters.Add("@id", MySqlDbType.Int32).Value = id;
+                    cmd.Parameters.Add("@nom", MySqlDbType.VarChar).Value = nom;
+                    cmd.Parameters.Add("@ville", MySqlDbType.VarChar).Value = ville;
+                    cmd.Parameters.Add("@taille", MySqlDbType.VarChar).Value = taille;
+                    cmd.ExecuteNonQuery();
+                    return true;
+                }
+                else
+                {
+                    con.Close();
+                    MessageBox.Show("Un autre site existe avec ce nom!");
+                    return false;
+                }
+
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.ToString());
+                return false;
             }
         }
     }
