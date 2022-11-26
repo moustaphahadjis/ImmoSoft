@@ -2,6 +2,7 @@
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Globalization;
@@ -47,38 +48,41 @@ namespace ImmoSoft.DB
                 app.Selection.Find.Execute(FindText: "@date", ReplaceWith: DateTime.Now.ToString("dd-MM-yyyy"), Replace: Word.WdReplace.wdReplaceAll);
 
                 string lot = "";
-                int last = 0;
+                int last = 0, pos=2;
                 for(int i=0; i < data.Rows.Count; i++)
                 {
                     DataGridViewRow row = data.Rows[i];
-                    doc.Tables[1].Rows.Add(doc.Tables[1].Rows[i+2]);
+                    doc.Tables[1].Rows.Add(doc.Tables[1].Rows[pos]);
 
-                    doc.Tables[1].Rows[i+2].Cells[1].Range.Text = (i+1).ToString();
                     if (lot!=row.Cells["lot"].Value.ToString())
                     {
+                        doc.Tables[1].Rows.Add(doc.Tables[1].Rows[pos]);
+                        pos++;
                         lot=row.Cells["lot"].Value.ToString();
-                        doc.Tables[1].Rows[i+2].Cells[2].Range.Text = lot;
+                        doc.Tables[1].Rows[pos].Cells[2].Range.Text = lot;
                     }
-                    doc.Tables[1].Rows[i+2].Cells[3].Range.Text = row.Cells["Parcelle"].Value.ToString();
-                    doc.Tables[1].Rows[i+2].Cells[4].Range.Text = row.Cells["Superficie"].Value.ToString();
+                    doc.Tables[1].Rows[pos].Cells[1].Range.Text = (i+1).ToString();
+                    doc.Tables[1].Rows[pos].Cells[3].Range.Text = row.Cells["Parcelle"].Value.ToString();
+                    doc.Tables[1].Rows[pos].Cells[4].Range.Text = row.Cells["Superficie"].Value.ToString()+"㎡";
                     if (data.Columns.Contains("Montant"))
-                    doc.Tables[1].Rows[i+2].Cells[5].Range.Text = row.Cells["Montant"].Value.ToString();
+                    doc.Tables[1].Rows[pos].Cells[5].Range.Text = row.Cells["Montant"].Value.ToString();
                     if(data.Columns.Contains("Reste"))
-                    doc.Tables[1].Rows[i+2].Cells[6].Range.Text = row.Cells["Reste"].Value.ToString();
-                    last=i;
+                    doc.Tables[1].Rows[pos].Cells[6].Range.Text = row.Cells["Reste"].Value.ToString();
+                    last=pos;
+                    pos++;
                 }
-                doc.Tables[1].Rows[last+3].Delete();
+                doc.Tables[1].Rows[2].Delete();
                 doc.SaveAs2(filepath);
                 Object oMissing = System.Reflection.Missing.Value;
                 doc.ExportAsFixedFormat(filepath.Replace("docx","pdf"), Word.WdExportFormat.wdExportFormatPDF, false,
-                    Word.WdExportOptimizeFor.wdExportOptimizeForOnScreen,
+                    Word.WdExportOptimizeFor.wdExportOptimizeForPrint,
                     Word.WdExportRange.wdExportAllDocument, 1, 1, Word.WdExportItem.wdExportDocumentContent, true, true,
                     Word.WdExportCreateBookmarks.wdExportCreateHeadingBookmarks, true, true, false, ref oMissing);
                 doc.Close();
                 app.Quit();
 
-                save(filenum,filename.Replace("docx", "pdf"),
-                    new FileStream(filepath, FileMode.Open, FileAccess.Read),"0");
+                save("export",filenum,filename.Replace("docx", "pdf"),
+                    new FileStream(filepath.Replace("docx", "pdf"), FileMode.Open, FileAccess.Read),"0");
 
                 Process.Start(filepath.Replace("docx", "pdf"));
                 return true;
@@ -90,10 +94,10 @@ namespace ImmoSoft.DB
                 return false;
             }
         }
-        public bool versement(string nom, string identity, string contact,
+        public bool versement(string objet, string nom, string identity, string contact,
             string lot, string parcelle, string superficie,
             string motif, string montant,
-            string prix, string total, string reste, string idHistorique)
+            string prix, string total, string reste, string idstock)
         {
             Word.Application app = new Word.Application();
             convertir con = new convertir();
@@ -107,6 +111,7 @@ namespace ImmoSoft.DB
                 Word.Document doc = app.Documents.Open(path+@"Versement.docx");
 
                 app.Selection.Find.Execute(FindText: "@num", ReplaceWith: filenum, Replace: Word.WdReplace.wdReplaceAll);
+                app.Selection.Find.Execute(FindText: "@objet", ReplaceWith: objet, Replace: Word.WdReplace.wdReplaceAll);
                 app.Selection.Find.Execute(FindText: "@nom", ReplaceWith: nom, Replace: Word.WdReplace.wdReplaceAll);
                 app.Selection.Find.Execute(FindText: "@identity", ReplaceWith: identity, Replace: Word.WdReplace.wdReplaceAll);
                 app.Selection.Find.Execute(FindText: "@contact", ReplaceWith: contact, Replace: Word.WdReplace.wdReplaceAll);
@@ -126,14 +131,14 @@ namespace ImmoSoft.DB
 
                 Object oMissing = System.Reflection.Missing.Value;
                 doc.ExportAsFixedFormat(filepath.Replace("docx", "pdf"), Word.WdExportFormat.wdExportFormatPDF, false,
-                    Word.WdExportOptimizeFor.wdExportOptimizeForOnScreen,
+                    Word.WdExportOptimizeFor.wdExportOptimizeForPrint,
                     Word.WdExportRange.wdExportAllDocument, 1, 1, Word.WdExportItem.wdExportDocumentContent, true, true,
                     Word.WdExportCreateBookmarks.wdExportCreateHeadingBookmarks, true, true, false, ref oMissing);
                 doc.Close();
                 app.Quit();
 
-                save(filenum, filename.Replace("docx", "pdf"), 
-                    new FileStream(filepath, FileMode.Open, FileAccess.Read), idHistorique);
+                save("recu",filenum, filename.Replace("docx", "pdf"), 
+                    new FileStream(filepath.Replace("docx", "pdf"), FileMode.Open, FileAccess.Read), idstock);
 
                 Process.Start(filepath.Replace("docx", "pdf"));
                 return true;
@@ -149,12 +154,10 @@ namespace ImmoSoft.DB
         }
 
 
-        public bool attestation(string nom, string identity, string contact, 
-            string matrimonial, string adresse, string profession,
-            string ville, string site, string section, string usage,
-           string lot, string parcelle, string superficie,
-           string motif, string montant,
-           string prix, string total, string reste, string idHistorique)
+        public bool attestation(string nom,string prenom, string matrimonial,
+            string identity,string adresse, string profession, string contact, 
+            string ville, string site, string section,string lot, string parcelle,
+            string usage, string superficie, string idstock)
         {
             Word.Application app = new Word.Application();
             convertir con = new convertir();
@@ -169,6 +172,7 @@ namespace ImmoSoft.DB
 
                 app.Selection.Find.Execute(FindText: "@num", ReplaceWith: filenum, Replace: Word.WdReplace.wdReplaceAll);
                 app.Selection.Find.Execute(FindText: "@nom", ReplaceWith: nom, Replace: Word.WdReplace.wdReplaceAll);
+                app.Selection.Find.Execute(FindText: "@prenom", ReplaceWith: prenom, Replace: Word.WdReplace.wdReplaceAll);
                 app.Selection.Find.Execute(FindText: "@matrimonial", ReplaceWith: matrimonial, Replace: Word.WdReplace.wdReplaceAll);
                 app.Selection.Find.Execute(FindText: "@adresse", ReplaceWith: adresse, Replace: Word.WdReplace.wdReplaceAll);
                 app.Selection.Find.Execute(FindText: "@profession", ReplaceWith: profession, Replace: Word.WdReplace.wdReplaceAll);
@@ -181,12 +185,6 @@ namespace ImmoSoft.DB
                 app.Selection.Find.Execute(FindText: "@lot", ReplaceWith: lot, Replace: Word.WdReplace.wdReplaceAll);
                 app.Selection.Find.Execute(FindText: "@parcelle", ReplaceWith: parcelle, Replace: Word.WdReplace.wdReplaceAll);
                 app.Selection.Find.Execute(FindText: "@superficie", ReplaceWith: superficie, Replace: Word.WdReplace.wdReplaceAll);
-                app.Selection.Find.Execute(FindText: "@motif", ReplaceWith: motif, Replace: Word.WdReplace.wdReplaceAll);
-                app.Selection.Find.Execute(FindText: "@montant", ReplaceWith: montant, Replace: Word.WdReplace.wdReplaceAll);
-                app.Selection.Find.Execute(FindText: "@lettre", ReplaceWith: con.enLettre(montant), Replace: Word.WdReplace.wdReplaceAll);
-                app.Selection.Find.Execute(FindText: "@prix", ReplaceWith: prix+" FCFA", Replace: Word.WdReplace.wdReplaceAll);
-                app.Selection.Find.Execute(FindText: "@total", ReplaceWith: total+" FCFA", Replace: Word.WdReplace.wdReplaceAll);
-                app.Selection.Find.Execute(FindText: "@reste", ReplaceWith: reste+" FCFA", Replace: Word.WdReplace.wdReplaceAll);
                 app.Selection.Find.Execute(FindText: "@date", ReplaceWith: DateTime.Now.ToString("dd-MM-yyyy"), Replace: Word.WdReplace.wdReplaceAll);
 
 
@@ -194,14 +192,14 @@ namespace ImmoSoft.DB
 
                 Object oMissing = System.Reflection.Missing.Value;
                 doc.ExportAsFixedFormat(filepath.Replace("docx", "pdf"), Word.WdExportFormat.wdExportFormatPDF, false,
-                    Word.WdExportOptimizeFor.wdExportOptimizeForOnScreen,
+                    Word.WdExportOptimizeFor.wdExportOptimizeForPrint,
                     Word.WdExportRange.wdExportAllDocument, 1, 1, Word.WdExportItem.wdExportDocumentContent, true, true,
                     Word.WdExportCreateBookmarks.wdExportCreateHeadingBookmarks, true, true, false, ref oMissing);
                 doc.Close();
                 app.Quit();
 
-                save(filenum, filename.Replace("docx", "pdf"),
-                    new FileStream(filepath, FileMode.Open, FileAccess.Read), idHistorique);
+                save("attestation",filenum, filename.Replace("docx", "pdf"),
+                    new FileStream(filepath.Replace("docx", "pdf"), FileMode.Open, FileAccess.Read), idstock);
 
                 Process.Start(filepath.Replace("docx", "pdf"));
                 return true;
@@ -214,7 +212,65 @@ namespace ImmoSoft.DB
             }
         }
 
-        public bool save(string num, string nom, FileStream file, string idhistorique)
+        public bool fiche(string nom, string prenom, string matrimonial,
+            string identity, string adresse, string profession, string contact,
+            string ville, string site, string section, string lot, string parcelle,
+            string usage, string superficie, string idstock)
+        {
+            Word.Application app = new Word.Application();
+            convertir con = new convertir();
+            try
+            {
+                app.ShowAnimation = false;
+                app.Visible=false;
+                string filenum = (getLast("Fiche")+1).ToString();
+                string filename = @"Fiche n"+filenum+".docx";
+                string filepath = path + filename;
+                Word.Document doc = app.Documents.Open(path+@"Fiche.docx");
+
+                app.Selection.Find.Execute(FindText: "@num", ReplaceWith: filenum, Replace: Word.WdReplace.wdReplaceAll);
+                app.Selection.Find.Execute(FindText: "@nom", ReplaceWith: nom, Replace: Word.WdReplace.wdReplaceAll);
+                app.Selection.Find.Execute(FindText: "@prenom", ReplaceWith: prenom, Replace: Word.WdReplace.wdReplaceAll);
+                app.Selection.Find.Execute(FindText: "@matrimonial", ReplaceWith: matrimonial, Replace: Word.WdReplace.wdReplaceAll);
+                app.Selection.Find.Execute(FindText: "@adresse", ReplaceWith: adresse, Replace: Word.WdReplace.wdReplaceAll);
+                app.Selection.Find.Execute(FindText: "@profession", ReplaceWith: profession, Replace: Word.WdReplace.wdReplaceAll);
+                app.Selection.Find.Execute(FindText: "@ville", ReplaceWith: ville, Replace: Word.WdReplace.wdReplaceAll);
+                app.Selection.Find.Execute(FindText: "@site", ReplaceWith: site, Replace: Word.WdReplace.wdReplaceAll);
+                app.Selection.Find.Execute(FindText: "@section", ReplaceWith: section, Replace: Word.WdReplace.wdReplaceAll);
+                app.Selection.Find.Execute(FindText: "@usage", ReplaceWith: usage, Replace: Word.WdReplace.wdReplaceAll);
+                app.Selection.Find.Execute(FindText: "@identity", ReplaceWith: identity, Replace: Word.WdReplace.wdReplaceAll);
+                app.Selection.Find.Execute(FindText: "@contact", ReplaceWith: contact, Replace: Word.WdReplace.wdReplaceAll);
+                app.Selection.Find.Execute(FindText: "@lot", ReplaceWith: lot, Replace: Word.WdReplace.wdReplaceAll);
+                app.Selection.Find.Execute(FindText: "@parcelle", ReplaceWith: parcelle, Replace: Word.WdReplace.wdReplaceAll);
+                app.Selection.Find.Execute(FindText: "@superficie", ReplaceWith: superficie, Replace: Word.WdReplace.wdReplaceAll);
+                app.Selection.Find.Execute(FindText: "@date", ReplaceWith: DateTime.Now.ToString("dd-MM-yyyy"), Replace: Word.WdReplace.wdReplaceAll);
+
+
+                doc.SaveAs2(filepath);
+
+                Object oMissing = System.Reflection.Missing.Value;
+                doc.ExportAsFixedFormat(filepath.Replace("docx", "pdf"), Word.WdExportFormat.wdExportFormatPDF, false,
+                    Word.WdExportOptimizeFor.wdExportOptimizeForPrint,
+                    Word.WdExportRange.wdExportAllDocument, 1, 1, Word.WdExportItem.wdExportDocumentContent, true, true,
+                    Word.WdExportCreateBookmarks.wdExportCreateHeadingBookmarks, true, true, false, ref oMissing);
+                doc.Close();
+                app.Quit();
+
+                save("fiche", filenum, filename.Replace("docx", "pdf"),
+                    new FileStream(filepath.Replace("docx", "pdf"), FileMode.Open, FileAccess.Read), idstock);
+
+                Process.Start(filepath.Replace("docx", "pdf"));
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                MessageBox.Show("Erreur lors de l'exportation");
+                return false;
+            }
+        }
+
+        public bool save(string type,string num, string nom, FileStream file, string idstock)
         {
             try
             {
@@ -226,8 +282,9 @@ namespace ImmoSoft.DB
                 if (con.State==ConnectionState.Open)
                     con.Close();
                 con.Open();
-                cmd= new MySqlCommand("Insert into fichier (num,nom,file,size,idlink) values(@num,@nom,@file,@size,@id)", con);
-                cmd.Parameters.Add("@id", MySqlDbType.Int32).Value=idhistorique;
+                cmd= new MySqlCommand("Insert into fichier (type,num,nom,file,size,idstock) values(@type,@num,@nom,@file,@size,@id)", con);
+                cmd.Parameters.Add("@type", MySqlDbType.VarChar).Value=type;
+                cmd.Parameters.Add("@id", MySqlDbType.Int32).Value=idstock;
                 cmd.Parameters.Add("@num", MySqlDbType.Int32).Value=num;
                 cmd.Parameters.Add("@nom", MySqlDbType.VarChar).Value=nom;
                 cmd.Parameters.Add("@file", MySqlDbType.LongBlob).Value=data;
@@ -243,15 +300,16 @@ namespace ImmoSoft.DB
                 return false;
             }
         }
+
         public string open(string id)
         {
             try
             {
                 con.Open();
                 cmd= new MySqlCommand(
-                    "Select size,file from files where id=@id", con);
+                    "Select nom,size,file from fichier where id=@id", con);
                 cmd.Parameters.Add("@id", MySqlDbType.Int32).Value=id;
-
+                string nom;
                 UInt32 FileSize;
                 byte[] rawData;
                 FileStream fs;
@@ -260,11 +318,12 @@ namespace ImmoSoft.DB
                 if (!myData.HasRows)
                     throw new Exception("There are no BLOBs to save");
                 myData.Read();
+                nom=myData.GetString(myData.GetOrdinal("nom"));
                 FileSize = myData.GetUInt32(myData.GetOrdinal("size"));
                 rawData = new byte[FileSize];
                 myData.GetBytes(myData.GetOrdinal("file"), 0, rawData, 0, (int)FileSize);
-
-                string filepath = path + @"DB-"+DateTime.Now.ToString("dd-MM-yyyy HH-mm")+".docx";
+                
+                string filepath = System.IO.Path.GetTempPath()+ DateTime.Now.ToString("HH-mm")+" "+nom;
                 fs = new FileStream(filepath, FileMode.OpenOrCreate, FileAccess.Write);
                 fs.Write(rawData, 0, (int)FileSize);
                 fs.Close();
@@ -277,13 +336,26 @@ namespace ImmoSoft.DB
                 return null;
             }
         }
-        public DataTable refreshExport()
+        public DataTable refresh(string type, string idstock, string idchamps)
         {
             con.Open();
+            MySqlDataAdapter da;
+            if (idstock!=null)
+            {
+                 da= new MySqlDataAdapter(
+                    "select id,nom,date from fichier " +
+                "where idstock=@idstock and type=@type and deleted=0", con);
+                da.SelectCommand.Parameters.Add("@idstock", MySqlDbType.VarChar).Value=idstock;
+            }
+            else
+            {
+                da= new MySqlDataAdapter(
+                   "select id,nom,date from fichier " +
+               "where idchamps=@idchamps and type=@type and deleted=0", con);
+                da.SelectCommand.Parameters.Add("@idchamps", MySqlDbType.VarChar).Value=idchamps;
+            }
 
-
-            MySqlDataAdapter da = new MySqlDataAdapter(
-                "select id,type,date from files where deleted=0", con);
+            da.SelectCommand.Parameters.Add("@type", MySqlDbType.VarChar).Value=type;
             DataTable ds = new DataTable();
             ds.BeginLoadData();
             da.Fill(ds);
@@ -292,25 +364,30 @@ namespace ImmoSoft.DB
             con.Close();
             return ds;
         }
-        public int getLast(string nom)
+        public void delete(string id)
         {
             try
             {
                 con.Open();
-                string type = "";
+                cmd= new MySqlCommand("update fichier set deleted=1 where id=@id", con);
+                cmd.Parameters.Add("@id", MySqlDbType.Int32).Value=id;
+                cmd.ExecuteNonQuery();
+                con.Close();
+            }
+            catch(Exception)
+            {
+                MessageBox.Show("Erreur lors de la suppression");
+            }
 
-                if (nom.Contains("Export"))
-                    type="Export";
-                else if (nom.Contains("Recu"))
-                    type="Recu";
-                else if (nom.Contains("Attestation"))
-                    type="attestation";
-                else if (nom.Contains("Fiche"))
-                    type="Fiche";
+        }
+        public int getLast(string type)
+        {
+            try
+            {
+                con.Open();
 
                 cmd=new MySqlCommand(
-                        "select num from fichier order by id Desc limit 1 " +
-                        "where nom Like %@type%", con);
+                        "select num from fichier where type=@type order by id Desc limit 1 ", con);
                 cmd.Parameters.Add("@type", MySqlDbType.VarChar).Value=type;
                 var reader = cmd.ExecuteReader();
                 int r = 0;

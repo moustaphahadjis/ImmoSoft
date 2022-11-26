@@ -26,7 +26,7 @@ namespace ImmoSoft.DB
             {
                 con.Open();
                 MySqlDataAdapter da = new MySqlDataAdapter(
-                    "select * from user where id=@id and delete=0", con);
+                    "select * from user where id=@id and deleted=0", con);
                 da.SelectCommand.Parameters.Add("@id", MySqlDbType.Int32).Value=id;
 
                 DataTable ds = new DataTable();
@@ -67,25 +67,130 @@ namespace ImmoSoft.DB
                 return null;
             }
         }
-        public bool insert(string nom, string prenom,
-            string username, string password, string admin)
+        public bool usernameExist(string username)
+        {
+            try
+            {
+                con.Open();
+                MySqlDataAdapter da = new MySqlDataAdapter(
+                    "select * from user where username=@username and deleted=0", con);
+                da.SelectCommand.Parameters.Add("@username", MySqlDbType.VarChar).Value=username;
+                DataTable ds = new DataTable();
+                ds.BeginLoadData();
+                da.Fill(ds);
+                ds.EndLoadData();
+                con.Close();
+                if (ds.Rows.Count>0)
+                    return true;
+                else
+                    return false;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erreur server");
+                return false;
+            }
+        }
+        public bool usernameExist(string username,string id)
+        {
+            try
+            {
+                con.Open();
+                MySqlDataAdapter da = new MySqlDataAdapter(
+                    "select * from user where username=@username and deleted=0", con);
+                da.SelectCommand.Parameters.Add("@username", MySqlDbType.VarChar).Value=username;
+                DataTable ds = new DataTable();
+                ds.BeginLoadData();
+                da.Fill(ds);
+                ds.EndLoadData();
+                con.Close();
+                bool r = false;
+                if (ds.Rows.Count>0)
+                {
+                    foreach (DataRow row in ds.Rows)
+                        if (row["id"].ToString()!=id)
+                            r=true;
+                }
+                return r;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erreur server");
+                return false;
+            }
+        }
+        public bool checkPassword(string id, string password)
+        {
+            try
+            {
+                con.Open();
+                 cmd = new MySqlCommand(
+                    "select password from user where id=@id and deleted=0", con);
+                cmd.Parameters.Add("@id", MySqlDbType.Int32).Value=id;
+                var reader = cmd.ExecuteReader();
+                bool r=false;
+                if (reader.Read())
+                    if (reader.GetString(0)==encode(password))
+                        r=true;
+                reader.Close();
+                con.Close();
+                return r;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erreur server");
+                return false;
+            }
+        }
+        public bool insert(string nom, string prenom, string address,
+            string contact, string username, string password, string admin)
         {
             try
             {
                 con.Open();
                 cmd = new MySqlCommand("insert into user " +
-                    "(nom, prenom, username, password, admin) values" +
-                    "(@nom, @prenom, @username, @password, @admin)",con);
-                cmd.Parameters.Add("nom",MySqlDbType.VarChar).Value=nom;
-                cmd.Parameters.Add("prenom", MySqlDbType.VarChar).Value=prenom;
-                cmd.Parameters.Add("username", MySqlDbType.VarChar).Value=username;
-                cmd.Parameters.Add("password", MySqlDbType.VarChar).Value=encode(password);
-                cmd.Parameters.Add("admin", MySqlDbType.VarChar).Value=admin;
+                    "(nom, prenom, username, password, admin,adresse,contact) values" +
+                    "(@nom, @prenom, @username, @password, @admin, @address, @contact)",con);
+                cmd.Parameters.Add("@nom",MySqlDbType.VarChar).Value=nom;
+                cmd.Parameters.Add("@address",MySqlDbType.VarChar).Value=address;
+                cmd.Parameters.Add("@contact",MySqlDbType.VarChar).Value=contact;
+                cmd.Parameters.Add("@prenom", MySqlDbType.VarChar).Value=prenom;
+                cmd.Parameters.Add("@username", MySqlDbType.VarChar).Value=username;
+                cmd.Parameters.Add("@password", MySqlDbType.VarChar).Value=encode(password);
+                cmd.Parameters.Add("@admin", MySqlDbType.VarChar).Value=admin;
                 cmd.ExecuteNonQuery();
                 con.Close();
                 return true;
             }
             catch(Exception ex)
+            {
+                MessageBox.Show("Erreur lors de l'insertion");
+                return false;
+            }
+        }
+        public bool update(string id, string nom, string prenom, string address,
+            string contact, string username, string password, string admin)
+        {
+            try
+            {
+                con.Open();
+                cmd = new MySqlCommand(
+                    "update user set nom=@nom, prenom=@prenom, adresse=@address," +
+                    "contact=@contact, username=@username, password=@password,admin=@admin" +
+                    " where id=@id", con);
+                cmd.Parameters.Add("@id", MySqlDbType.Int32).Value=id;
+                cmd.Parameters.Add("@nom", MySqlDbType.VarChar).Value=nom;
+                cmd.Parameters.Add("@address", MySqlDbType.VarChar).Value=address;
+                cmd.Parameters.Add("@contact", MySqlDbType.VarChar).Value=contact;
+                cmd.Parameters.Add("@prenom", MySqlDbType.VarChar).Value=prenom;
+                cmd.Parameters.Add("@username", MySqlDbType.VarChar).Value=username;
+                cmd.Parameters.Add("@password", MySqlDbType.VarChar).Value=encode(password);
+                cmd.Parameters.Add("@admin", MySqlDbType.VarChar).Value=admin;
+                cmd.ExecuteNonQuery();
+                con.Close();
+                return true;
+            }
+            catch (Exception ex)
             {
                 MessageBox.Show("Erreur lors de l'insertion");
                 return false;

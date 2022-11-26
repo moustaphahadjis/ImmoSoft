@@ -1,0 +1,138 @@
+{
+  "version": 3,
+  "targets": {
+    "net5.0": {
+      "Microsoft.Office.Interop.Excel/15.0.4795.1001": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/Microsoft.Office.Interop.Excel.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.Office.Interop.Excel.dll": {}
+        }
+      },
+      "Midoliy.Office.Interop.Excel/0.0.6.42": {
+        "type": "package",
+        "compile": {
+          "lib/net5.0/Midoliy.Office.Interop.dll": {}
+        },
+        "runtime": {
+          "lib/net5.0/Midoliy.Office.Interop.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Microsoft.Office.Interop.Excel/15.0.4795.1001": {
+      "sha512": "cuvqi/U5MYSM0gvR2l90q0m/urRgmg69EiwP5VWp1RcaJ0YT5G26Va5LaOZ3KJFc22FNihS5CUjeePUp2YpGQA==",
+      "type": "package",
+      "path": "microsoft.office.interop.excel/15.0.4795.1001",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net20/Microsoft.Office.Interop.Excel.dll",
+        "lib/netstandard2.0/Microsoft.Office.Interop.Excel.dll",
+        "microsoft.office.interop.excel.15.0.4795.1001.nupkg.sha512",
+        "microsoft.office.interop.excel.nuspec"
+      ]
+    },
+    "Midoliy.Office.Interop.Excel/0.0.6.42": {
+      "sha512": "KVY9qv6peJrPpkFZMGtmKTIIe5wRK3aePzleabc8QXAtnkaj3hS+s8qJldUo+8xlAu9Xlexkj6z8oP0bNZu2Bw==",
+      "type": "package",
+      "path": "midoliy.office.interop.excel/0.0.6.42",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net40/Midoliy.Office.Interop.dll",
+        "lib/net452/Midoliy.Office.Interop.dll",
+        "lib/net461/Midoliy.Office.Interop.dll",
+        "lib/net472/Midoliy.Office.Interop.dll",
+        "lib/net48/Midoliy.Office.Interop.dll",
+        "lib/net5.0/Midoliy.Office.Interop.dll",
+        "midoliy.office.interop.excel.0.0.6.42.nupkg.sha512",
+        "midoliy.office.interop.excel.nuspec",
+        "midoliy_logo.png"
+      ]
+    }
+  },
+  "projectFileDependencyGroups": {
+    "net5.0": [
+      "Microsoft.Office.Interop.Excel >= 15.0.4795.1001",
+      "Midoliy.Office.Interop.Excel >= 0.0.6.42"
+    ]
+  },
+  "packageFolders": {
+    "C:\\Users\\moust\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "C:\\Work\\Software\\ImmoSoft\\ImmoSoftDB\\ImmoSoftDB.csproj",
+      "projectName": "ImmoSoftDB",
+      "projectPath": "C:\\Work\\Software\\ImmoSoft\\ImmoSoftDB\\ImmoSoftDB.csproj",
+      "packagesPath": "C:\\Users\\moust\\.nuget\\packages\\",
+      "outputPath": "C:\\Work\\Software\\ImmoSoft\\ImmoSoftDB\\obj\\",
+      "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
+      "configFilePaths": [
+        "C:\\Users\\moust\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+      ],
+      "originalTargetFrameworks": [
+        "net5.0"
+      ],
+      "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "projectReferences": {}
+        }
+      },
+      "warningProperties": {
+        "warnAsError": [
+          "NU1605"
+        ]
+      }
+    },
+    "frameworks": {
+      "net5.0": {
+        "targetAlias": "net5.0",
+        "dependencies": {
+          "Microsoft.Office.Interop.Excel": {
+            "target": "Package",
+            "version": "[15.0.4795.1001, )"
+          },
+          "Midoliy.Office.Interop.Excel": {
+            "target": "Package",
+            "version": "[0.0.6.42, )"
+          }
+        },
+        "imports": [
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48",
+          "net481"
+        ],
+        "assetTargetFallback": true,
+        "warn": true,
+        "frameworkReferences": {
+          "Microsoft.NETCore.App": {
+            "privateAssets": "all"
+          }
+        },
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
+      }
+    }
+  }
+}

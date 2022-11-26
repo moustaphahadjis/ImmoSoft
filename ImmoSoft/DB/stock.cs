@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
 using System.Windows.Forms;
+using System.Security.Policy;
 
 namespace ImmoSoft.DB
 {
@@ -54,19 +55,25 @@ namespace ImmoSoft.DB
             con.Close();
             return ds;
         }
-        public DataTable refresh(string etat,string action)
+        public DataTable refreshStock(string etat, string siteid)
         {
             con.Open();
+            MySqlDataAdapter da;
             string aa = "select stock.id,stock.section,stock.lot,stock.parcelle,stock.superficie,client.nom, client.prenom," +
                 " demarcheur.nom,demarcheur.prenom, idclient, iddemarcheur" +
                 " from stock join demarcheur on demarcheur.id = stock.iddemarcheur" +
                 " join client on client.id=stock.idclient"+
                 " where stock.etat=@etat and stock.deleted=0";
-
-            MySqlDataAdapter da = new MySqlDataAdapter(
-               aa , con);
+            if (siteid!="0")
+            {
+                aa+= " and stock.siteid=@siteid";
+            }
+            da = new MySqlDataAdapter(aa , con);
             da.SelectCommand.Parameters.Add("@etat", MySqlDbType.VarChar).Value=etat;
-
+            if (siteid!="0")
+            {
+                da.SelectCommand.Parameters.Add("@siteid", MySqlDbType.Int32).Value=siteid;
+            }
             DataTable ds = new DataTable();
             ds.BeginLoadData();
             da.Fill(ds);
@@ -78,37 +85,47 @@ namespace ImmoSoft.DB
                     row[5]=row[5]+" "+row[6];
                     row[7]=row[7]+" "+row[8];
                 }
-            ds.Columns.RemoveAt(7);
-            ds.Columns.RemoveAt(5);
+            ds.Columns.RemoveAt(8);
+            ds.Columns.RemoveAt(6);
             ds.EndLoadData();
 
             con.Close();
             return ds;
         }
-        public DataTable refresh(string etat, int vendue)
+        public DataTable refreshVendue(string etat, string siteid)
         {
             con.Open();
-            MySqlDataAdapter da = new MySqlDataAdapter(
+            string aa =
                 "select stock.id,stock.section,stock.lot,stock.parcelle,stock.superficie,client.nom,client.prenom," +
                 " demarcheur.nom, demarcheur.prenom, stock.idclient, stock.iddemarcheur" +
                 " from stock join client on client.id = stock.idclient" +
                 " join demarcheur on demarcheur.id = stock.iddemarcheur"+
-                " where stock.etat=@etat and stock.deleted=0", con);
+                " where stock.etat=@etat and stock.deleted=0";
+
+            if (siteid!="0")
+            {
+                aa+= " and stock.siteid=@siteid";
+            }
+            MySqlDataAdapter da = new MySqlDataAdapter(aa, con);
             da.SelectCommand.Parameters.Add("@etat", MySqlDbType.VarChar).Value=etat;
+            if (siteid!="0")
+            {
+                da.SelectCommand.Parameters.Add("@siteid", MySqlDbType.Int32).Value=siteid;
+            }
 
             DataTable ds = new DataTable();
             ds.BeginLoadData();
             da.Fill(ds);
-            ds.Columns[4].ColumnName="Client";
-            ds.Columns[6].ColumnName="Demarcheur";
+            ds.Columns[5].ColumnName="Client";
+            ds.Columns[7].ColumnName="Demarcheur";
             if (ds.Rows.Count>0)
                 foreach (DataRow row in ds.Rows)
                 {
                     row[5]=row[5]+" "+row[6];
                     row[7]=row[7]+" "+row[8];
                 }
-            ds.Columns.RemoveAt(7);
-            ds.Columns.RemoveAt(5);
+            ds.Columns.RemoveAt(8);
+            ds.Columns.RemoveAt(6);
             ds.EndLoadData();
 
             con.Close();
@@ -121,7 +138,7 @@ namespace ImmoSoft.DB
             {
                 con.Open();
                 cmd = new MySqlCommand("insert into stock (siteid,section,lot, parcelle, superficie, prix, montant,reste," +
-                    "idclient, etat) Values (@siteid,@section,@lot,@prcle,@spf,@prix,@mnt,@rest,@client,@etat)", con);
+                    "idclient, etat,proprietaire) Values (@siteid,@section,@lot,@prcle,@spf,@prix,@mnt,@rest,@client,@etat,@proprietaire)", con);
                 cmd.Parameters.Add("@siteid", MySqlDbType.Int32).Value = siteid;
                 cmd.Parameters.Add("@section", MySqlDbType.VarChar).Value = section;
                 cmd.Parameters.Add("@lot",MySqlDbType.Int32).Value = lot;

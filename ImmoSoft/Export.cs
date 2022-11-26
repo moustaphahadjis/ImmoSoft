@@ -19,7 +19,7 @@ namespace ImmoSoft
         void refresh()
         {
             DB.stock stock = new DB.stock();
-            dgv1.DataSource = stock.refresh("Disponible", 0);
+            dgv1.DataSource = stock.refreshStock("Disponible", "0");
             dgv1.Columns[4].HeaderText="Client nom";
             dgv1.Columns[5].HeaderText="Client prenom";
             dgv1.Columns[6].HeaderText="Demarcheur nom";

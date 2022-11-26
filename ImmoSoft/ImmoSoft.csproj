@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\OpenCvSharp4.runtime.win.4.6.0.20220608\build\netstandard\OpenCvSharp4.runtime.win.props" Condition="Exists('..\packages\OpenCvSharp4.runtime.win.4.6.0.20220608\build\netstandard\OpenCvSharp4.runtime.win.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -12,6 +13,8 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -33,8 +36,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Krypton.Toolkit, Version=70.22.11.312, Culture=neutral, PublicKeyToken=a87e673e9ecb6e8e, processorArchitecture=MSIL">
-      <HintPath>..\packages\Krypton.Toolkit.70.22.11.312\lib\net472\Krypton.Toolkit.dll</HintPath>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Office.Interop.Excel.15.0.4795.1001\lib\net20\Microsoft.Office.Interop.Excel.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="Microsoft.Office.Interop.Word, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Office.Interop.Word.15.0.4797.1004\lib\net20\Microsoft.Office.Interop.Word.dll</HintPath>
@@ -43,9 +47,32 @@
     <Reference Include="MySql.Data">
       <HintPath>..\..\Gestock Islamiya\Yelemani\bin\Debug\MySql.Data.dll</HintPath>
     </Reference>
+    <Reference Include="OpenCvSharp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=6adad1e807fea099, processorArchitecture=MSIL">
+      <HintPath>..\packages\OpenCvSharp4.4.6.0.20220608\lib\netstandard2.0\OpenCvSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="OpenCvSharp.Extensions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=6adad1e807fea099, processorArchitecture=MSIL">
+      <HintPath>..\packages\OpenCvSharp4.Extensions.4.6.0.20220608\lib\netstandard2.0\OpenCvSharp.Extensions.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
     <Reference Include="System.Core" />
     <Reference Include="System.Design" />
+    <Reference Include="System.Drawing.Common, Version=4.0.0.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Drawing.Common.5.0.3\lib\net461\System.Drawing.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Management" />
+    <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.4\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.6.0.0\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -57,40 +84,85 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="addClient.cs">
+    <Compile Include="Attribution.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="addClient.Designer.cs">
+    <Compile Include="Attribution.Designer.cs">
+      <DependentUpon>Attribution.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Camera.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Camera.Designer.cs">
+      <DependentUpon>Camera.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DB\attribution.cs" />
+    <Compile Include="DB\ayant.cs" />
+    <Compile Include="DB\ayantdroit.cs" />
+    <Compile Include="FillDB.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FillDB.Designer.cs">
+      <DependentUpon>FillDB.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Prive\addChamps.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Prive\addChamps.Designer.cs">
+      <DependentUpon>addChamps.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Partenaire\addClient.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Partenaire\addClient.Designer.cs">
       <DependentUpon>addClient.cs</DependentUpon>
     </Compile>
-    <Compile Include="addDemarcheur.cs">
+    <Compile Include="Partenaire\addDemarcheur.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="addDemarcheur.Designer.cs">
+    <Compile Include="Partenaire\addDemarcheur.Designer.cs">
       <DependentUpon>addDemarcheur.cs</DependentUpon>
     </Compile>
-    <Compile Include="addSite.cs">
+    <Compile Include="Site\addSite.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="addSite.Designer.cs">
+    <Compile Include="Site\addSite.Designer.cs">
       <DependentUpon>addSite.cs</DependentUpon>
     </Compile>
-    <Compile Include="addStock.cs">
+    <Compile Include="Stock\addStock.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="addStock.Designer.cs">
+    <Compile Include="Stock\addStock.Designer.cs">
       <DependentUpon>addStock.cs</DependentUpon>
     </Compile>
-    <Compile Include="addVersement.cs">
+    <Compile Include="Partenaire\addUser.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="addVersement.Designer.cs">
+    <Compile Include="Partenaire\addUser.Designer.cs">
+      <DependentUpon>addUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Partenaire\addVersement.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Partenaire\addVersement.Designer.cs">
       <DependentUpon>addVersement.cs</DependentUpon>
     </Compile>
-    <Compile Include="Clients.cs">
+    <Compile Include="Prive\Champs.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Clients.Designer.cs">
+    <Compile Include="Prive\Champs.Designer.cs">
+      <DependentUpon>Champs.cs</DependentUpon>
+    </Compile>
+    <Compile Include="checkPassword.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="checkPassword.Designer.cs">
+      <DependentUpon>checkPassword.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Partenaire\Clients.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Partenaire\Clients.Designer.cs">
       <DependentUpon>Clients.cs</DependentUpon>
     </Compile>
     <Compile Include="Comptabilite.cs">
@@ -100,28 +172,36 @@
       <DependentUpon>Comptabilite.cs</DependentUpon>
     </Compile>
     <Compile Include="DB\address.cs" />
+    <Compile Include="DB\champs.cs" />
     <Compile Include="DB\client.cs" />
     <Compile Include="DB\common.cs" />
     <Compile Include="DB\convertir.cs" />
     <Compile Include="DB\demarcheur.cs" />
     <Compile Include="DB\historique.cs" />
+    <Compile Include="DB\historiqueChamps.cs" />
     <Compile Include="DB\printer.cs" />
     <Compile Include="DB\site.cs" />
     <Compile Include="DB\stock.cs" />
     <Compile Include="DB\user.cs" />
-    <Compile Include="Demarcheurs.cs">
+    <Compile Include="Partenaire\Demarcheurs.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Demarcheurs.Designer.cs">
+    <Compile Include="Partenaire\Demarcheurs.Designer.cs">
       <DependentUpon>Demarcheurs.cs</DependentUpon>
     </Compile>
     <Compile Include="DGV.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="enVente.cs">
+    <Compile Include="Prive\enMutation.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="enVente.Designer.cs">
+    <Compile Include="Prive\enMutation.Designer.cs">
+      <DependentUpon>enMutation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Stock\enVente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Stock\enVente.Designer.cs">
       <DependentUpon>enVente.cs</DependentUpon>
     </Compile>
     <Compile Include="Export.cs">
@@ -130,23 +210,47 @@
     <Compile Include="Export.Designer.cs">
       <DependentUpon>Export.cs</DependentUpon>
     </Compile>
+    <Compile Include="Partenaire\Files.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Partenaire\Files.Designer.cs">
+      <DependentUpon>Files.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="historique.cs">
+    <Compile Include="Stock\historique.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="historique.Designer.cs">
+    <Compile Include="Stock\historique.Designer.cs">
       <DependentUpon>historique.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Prive\historiqueChamps.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Prive\historiqueChamps.Designer.cs">
+      <DependentUpon>historiqueChamps.cs</DependentUpon>
     </Compile>
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Prive\Mutation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Prive\Mutation.Designer.cs">
+      <DependentUpon>Mutation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Prive\Mutees.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Prive\Mutees.Designer.cs">
+      <DependentUpon>Mutees.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -155,76 +259,134 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Stock.cs">
+    <Compile Include="Site\Site.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Stock.Designer.cs">
+    <Compile Include="Site\Site.Designer.cs">
+      <DependentUpon>Site.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Stock\Stock.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Stock\Stock.Designer.cs">
       <DependentUpon>Stock.cs</DependentUpon>
     </Compile>
-    <Compile Include="Vendues.cs">
+    <Compile Include="Stock\Vendues.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Vendues.Designer.cs">
+    <Compile Include="Stock\Vendues.Designer.cs">
       <DependentUpon>Vendues.cs</DependentUpon>
     </Compile>
-    <Compile Include="Vente.cs">
+    <Compile Include="Stock\Vente.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Vente.Designer.cs">
+    <Compile Include="Stock\Vente.Designer.cs">
       <DependentUpon>Vente.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="addClient.resx">
+    <Compile Include="UsbCamera.cs" />
+    <Compile Include="Waiting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Waiting.Designer.cs">
+      <DependentUpon>Waiting.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Attribution.resx">
+      <DependentUpon>Attribution.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Camera.resx">
+      <DependentUpon>Camera.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FillDB.resx">
+      <DependentUpon>FillDB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Prive\addChamps.resx">
+      <DependentUpon>addChamps.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Partenaire\addClient.resx">
       <DependentUpon>addClient.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="addDemarcheur.resx">
+    <EmbeddedResource Include="Partenaire\addDemarcheur.resx">
       <DependentUpon>addDemarcheur.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="addSite.resx">
+    <EmbeddedResource Include="Site\addSite.resx">
       <DependentUpon>addSite.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="addStock.resx">
+    <EmbeddedResource Include="Stock\addStock.resx">
       <DependentUpon>addStock.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="addVersement.resx">
+    <EmbeddedResource Include="Partenaire\addUser.resx">
+      <DependentUpon>addUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Partenaire\addVersement.resx">
       <DependentUpon>addVersement.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Clients.resx">
+    <EmbeddedResource Include="Prive\Champs.resx">
+      <DependentUpon>Champs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="checkPassword.resx">
+      <DependentUpon>checkPassword.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Partenaire\Clients.resx">
       <DependentUpon>Clients.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Comptabilite.resx">
       <DependentUpon>Comptabilite.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Demarcheurs.resx">
+    <EmbeddedResource Include="Partenaire\Demarcheurs.resx">
       <DependentUpon>Demarcheurs.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="enVente.resx">
+    <EmbeddedResource Include="DGV.resx">
+      <DependentUpon>DGV.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Prive\enMutation.resx">
+      <DependentUpon>enMutation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Stock\enVente.resx">
       <DependentUpon>enVente.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Export.resx">
       <DependentUpon>Export.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Partenaire\Files.resx">
+      <DependentUpon>Files.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="historique.resx">
+    <EmbeddedResource Include="Stock\historique.resx">
       <DependentUpon>historique.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Prive\historiqueChamps.resx">
+      <DependentUpon>historiqueChamps.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Prive\Mutation.resx">
+      <DependentUpon>Mutation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Prive\Mutees.resx">
+      <DependentUpon>Mutees.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Stock.resx">
+    <EmbeddedResource Include="Site\Site.resx">
+      <DependentUpon>Site.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Stock\Stock.resx">
       <DependentUpon>Stock.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Vendues.resx">
+    <EmbeddedResource Include="Stock\Vendues.resx">
       <DependentUpon>Vendues.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Vente.resx">
+    <EmbeddedResource Include="Stock\Vente.resx">
       <DependentUpon>Vente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Waiting.resx">
+      <DependentUpon>Waiting.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -243,5 +405,128 @@
   <ItemGroup>
     <Folder Include="Template\" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add-button-12003.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add-button-120031.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\check-7091%281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\close-cancel-10383%281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\contract-1943%281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\delete-10399%281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\exit-2855%281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\financial-calculating-14752%281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\handshake-1939%281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\home-2504%281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\manager-9646.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\maps-location-pointer-11107%281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\money-withdrawal-14740%283%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pie-chart-and-bar-chart-black-outline-16731.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\signing-document-14756%281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\timer-gear-9663%281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user-6778%281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pdf-download-3388.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cash-money-6382.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\search-2911.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\maps-location-11097.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\home-199.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\handshake-3312.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\businessman-309.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\store-2017.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\close-cancel-10393.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\check-mark-5757.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user-6800.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\team-management-9842.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user-group-296.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\history-7615.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\convert-3220.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sold-2035.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folder-1486.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\turn-off-4779.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pngegg%287%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\fasocheval.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PVtR.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ZKZx.gif" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\OpenCvSharp4.runtime.win.4.6.0.20220608\build\netstandard\OpenCvSharp4.runtime.win.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\OpenCvSharp4.runtime.win.4.6.0.20220608\build\netstandard\OpenCvSharp4.runtime.win.props'))" />
+  </Target>
 </Project>

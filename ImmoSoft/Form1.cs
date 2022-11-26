@@ -39,6 +39,7 @@ namespace ImmoSoft
         void showTitle(Button btn)
         {
             title.Text = btn.Text;
+            title.Image=btn.Image;
         }
         private void button1_Click(object sender, EventArgs e)
         {
@@ -80,6 +81,77 @@ namespace ImmoSoft
             Form tmp = new Demarcheurs();
             changeForm(tmp);
             showTitle(button6);
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            checkPassword check = new checkPassword(Properties.Settings.Default.id);
+            bool r = false;
+            DataRow row;
+            check.FormClosing+=(s, a) => 
+            {
+                r=check.isPassword;
+            };
+            check.ShowDialog();
+            if (r)
+            {
+                addUser user = new addUser(Properties.Settings.Default.id);
+                user.ShowDialog();
+            }
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Voules-vous vraiment quitter l'application?", "Fermer la fenetre",
+                MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                this.Close();
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            Form tmp = new Site();
+            changeForm(tmp);
+            showTitle(button9);
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button13_Click(object sender, EventArgs e)
+        {
+            Form tmp = new Champs();
+            changeForm(tmp);
+            showTitle(button13);
+        }
+
+        private void button11_Click(object sender, EventArgs e)
+        {
+            Form tmp = new enMutation();
+            changeForm(tmp);
+            showTitle(button11);
+        }
+
+        private void button12_Click(object sender, EventArgs e)
+        {
+            Form tmp = new Mutees();
+            changeForm(tmp);
+            showTitle(button12);
+        }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+            Form tmp = new historiqueChamps();
+            changeForm(tmp);
+            showTitle(button10);
+        }
+
+        private void button14_Click(object sender, EventArgs e)
+        {
+            Form tmp = new Attribution();
+            changeForm(tmp);
+            showTitle(button14);
         }
     }
 }

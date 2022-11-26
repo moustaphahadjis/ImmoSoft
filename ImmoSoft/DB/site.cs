@@ -39,7 +39,7 @@ namespace ImmoSoft.DB
             con.Open();
 
 
-            MySqlDataAdapter da = new MySqlDataAdapter("select * from site where id=@id deleted=0", con);
+            MySqlDataAdapter da = new MySqlDataAdapter("select * from site where id=@id and deleted=0", con);
             da.SelectCommand.Parameters.Add("@id", MySqlDbType.Int32).Value=id;
             DataTable ds = new DataTable();
             ds.BeginLoadData();
@@ -92,14 +92,22 @@ namespace ImmoSoft.DB
                 MySqlDataAdapter da = new MySqlDataAdapter("Select * from site where nom=@nom and deleted=0", con);
                 da.SelectCommand.Parameters.Add("@nom", MySqlDbType.VarChar).Value = nom;
                 da.Fill(dt);
-                if (dt.Rows.Count==0)
+                bool r = true;
+                if (dt.Rows.Count>0)
                 {
-                    cmd = new MySqlCommand("update site set nom=@nom, ville=@ville, taille=@taille where id=@id)", con);
+                    foreach (DataRow row in dt.Rows)
+                        if (id!=row["id"].ToString())
+                            r=false;
+                }
+                if (r)
+                {
+                    cmd = new MySqlCommand("update site set nom=@nom, ville=@ville, taille=@taille where id=@id", con);
                     cmd.Parameters.Add("@id", MySqlDbType.Int32).Value = id;
                     cmd.Parameters.Add("@nom", MySqlDbType.VarChar).Value = nom;
                     cmd.Parameters.Add("@ville", MySqlDbType.VarChar).Value = ville;
-                    cmd.Parameters.Add("@taille", MySqlDbType.VarChar).Value = taille;
+                    cmd.Parameters.Add("@taille", MySqlDbType.Int32).Value = taille;
                     cmd.ExecuteNonQuery();
+                    con.Close();
                     return true;
                 }
                 else

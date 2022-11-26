@@ -10,6 +10,7 @@ using System.Windows.Forms;
 
 namespace ImmoSoft.DB
 {
+
     internal class historique
     {
         MySqlConnection con;
