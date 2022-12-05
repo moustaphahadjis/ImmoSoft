@@ -68,7 +68,7 @@
             this.spf.Location = new System.Drawing.Point(447, 185);
             this.spf.Name = "spf";
             this.spf.Size = new System.Drawing.Size(125, 29);
-            this.spf.TabIndex = 1;
+            this.spf.TabIndex = 4;
             // 
             // combobox
             // 
@@ -77,7 +77,7 @@
             this.combobox.Location = new System.Drawing.Point(237, 61);
             this.combobox.Name = "combobox";
             this.combobox.Size = new System.Drawing.Size(335, 29);
-            this.combobox.TabIndex = 3;
+            this.combobox.TabIndex = 0;
             this.combobox.SelectedIndexChanged += new System.EventHandler(this.combobox_SelectedIndexChanged);
             // 
             // label2
@@ -116,7 +116,7 @@
             this.prcle.Location = new System.Drawing.Point(240, 185);
             this.prcle.Name = "prcle";
             this.prcle.Size = new System.Drawing.Size(97, 29);
-            this.prcle.TabIndex = 1;
+            this.prcle.TabIndex = 3;
             // 
             // label1
             // 
@@ -134,7 +134,7 @@
             this.lot.Location = new System.Drawing.Point(447, 124);
             this.lot.Name = "lot";
             this.lot.Size = new System.Drawing.Size(125, 29);
-            this.lot.TabIndex = 1;
+            this.lot.TabIndex = 2;
             // 
             // section
             // 
@@ -166,7 +166,7 @@
             this.button1.Location = new System.Drawing.Point(200, 414);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(169, 49);
-            this.button1.TabIndex = 8;
+            this.button1.TabIndex = 6;
             this.button1.Text = "Confirmer";
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
@@ -213,7 +213,7 @@
             this.selectP.Location = new System.Drawing.Point(188, 92);
             this.selectP.Name = "selectP";
             this.selectP.Size = new System.Drawing.Size(250, 48);
-            this.selectP.TabIndex = 10;
+            this.selectP.TabIndex = 0;
             this.selectP.Text = "Choisir Proprietaire";
             this.selectP.UseVisualStyleBackColor = false;
             this.selectP.Click += new System.EventHandler(this.selectP_Click);
@@ -225,7 +225,7 @@
             this.groupBox1.Location = new System.Drawing.Point(91, 235);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(630, 147);
-            this.groupBox1.TabIndex = 12;
+            this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Details Proprietaire";
             // 
@@ -271,6 +271,7 @@
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "addChamps";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "addChamps";
             this.Load += new System.EventHandler(this.addChamps_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvC)).EndInit();

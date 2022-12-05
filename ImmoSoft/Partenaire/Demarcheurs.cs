@@ -23,6 +23,22 @@ namespace ImmoSoft
         {
             choix=true;
             InitializeComponent();
+            dgv1.DataSourceChanged+=(e, s) =>
+            {
+                dgv1.CellDoubleClick+=(a, sv) =>
+                {
+                    if (dgv1.Rows.Count>0)
+                        if (dgv1.SelectedRows.Count>0)
+                        {
+                            id=dgv1.SelectedRows[0].Cells["id"].Value.ToString();
+                            this.Close();
+                        }
+                        else
+                            MessageBox.Show("Aucun element selectionné");
+                    else
+                        MessageBox.Show("Aucun element selectionné");
+                };
+            };
         }
 
         void refresh()
@@ -35,7 +51,7 @@ namespace ImmoSoft
             choisir.Enabled=choix;
             option2.Enabled=!choix;
             option2.Visible=!choix;
-
+            /*
             search.AutoCompleteSource= AutoCompleteSource.CustomSource;
             search.AutoCompleteCustomSource = new AutoCompleteStringCollection();
             search.AutoCompleteMode= AutoCompleteMode.Suggest;
@@ -43,9 +59,11 @@ namespace ImmoSoft
             string[] nom = dt.AsEnumerable().Select<DataRow, string>(x => x.Field<string>("nom")).ToArray();
             string[] prenom = dt.AsEnumerable().Select<DataRow, string>(x => x.Field<string>("prenom")).ToArray();
             string[] contact = dt.AsEnumerable().Select<DataRow, string>(x => x.Field<string>("contact")).ToArray();
+            
             search.AutoCompleteCustomSource.AddRange(nom);
             search.AutoCompleteCustomSource.AddRange(prenom);
             search.AutoCompleteCustomSource.AddRange(contact);
+            */
         }
         private void Demarcheurs_Load(object sender, EventArgs e)
         {
@@ -123,6 +141,12 @@ namespace ImmoSoft
             else
                 MessageBox.Show("Aucun element selectionné");
 
+        }
+
+        private void search_TextChanged(object sender, EventArgs e)
+        {
+            CurrencyManager man = (CurrencyManager)BindingContext[dgv1.DataSource];
+            dgv1=com.searchPerson(search.Text, dgv1, man);
         }
     }
 }

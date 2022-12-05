@@ -61,5 +61,26 @@ namespace ImmoSoft
                 MessageBox.Show("La liste est vide");
             }
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            if (dgv1.Rows.Count>0)
+                if (dgv1.SelectedRows.Count>0)
+                    if (MessageBox.Show("Voulez vous vraiment supprimer ce site", "Supprimer",
+                        MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    {
+                        bool go = false;
+                        checkPassword check = new checkPassword(Properties.Settings.Default.id);
+                        check.FormClosed+=(a, s) => { go=check.isPassword; };
+                        check.ShowDialog();
+                        if (go)
+                        {
+                            DB.site site = new DB.site();
+                            site.delete(dgv1.SelectedRows[0].Cells["id"].Value.ToString());
+                            refresh();
+                        }
+
+                    }
+        }
     }
 }

@@ -21,6 +21,7 @@ namespace ImmoSoft
         public Stock()
         {
             InitializeComponent();
+            choix=false;
         }
         public Stock(bool Choix)
         {
@@ -33,14 +34,33 @@ namespace ImmoSoft
             DB.stock stock = new DB.stock();
             DataTable dt = new DataTable();
             dt=stock.refreshStock("Disponible", selectedSite);
+            
             DataView view = dt.DefaultView;
             view.Sort = "lot ASC, parcelle ASC";
             dgv1.DataSource = view;
+            /*
+             dt.Columns.Add(new DataColumn("sort",));
+             foreach (DataRow row in dt.Rows)
+                 row["sort"]=row["lot"].ToString()+row["parcelle"].ToString();
+             dgv1.DataSource=dt;
+             dgv1.Sort(dgv1.Columns["sort"], ListSortDirection.Ascending);
+              */
+            if (choix)
+            {
+                choisir.Visible=true;
+                choisir.Enabled=true;
+                groupBox2.Enabled=false;
+                button7.Enabled=false;
+                groupBox2.Visible=false;
+                button7.Visible=false;
+            }
+            else
+            {
+                choisir.Visible=false;
+                choisir.Enabled=false;
+            }
 
-            choisir.Visible=choix;
-            choisir.Enabled=choix;
-
-           
+            calculate();
         }
         void refreshSite()
         {
@@ -52,11 +72,33 @@ namespace ImmoSoft
             //string[] noms = dt.AsEnumerable().Select<DataRow, string>(x => x.Field<string>("site")).ToArray();
             search.Items.AddRange(sites);
         }
+        void calculate()
+        {
+            if(dgv1.Rows.Count>0)
+            {
+                List<string> lots= new List<string>();  
+                foreach(DataGridViewRow row in dgv1.Rows)
+                    if (!lots.Contains(row.Cells["lot"].Value.ToString()))
+                        lots.Add(row.Cells["lot"].Value.ToString());
+                nblot.Text=lots.Count.ToString();
+                nbpar.Text=dgv1.Rows.Count.ToString();
+            }
+            else
+            {
+                nblot.Text="0";
+                nbpar.Text="0";
+            }
+            
+        }
         private void Stock_Load(object sender, EventArgs e)
         {
-            refresh();
             refreshSite();
-            
+            if (search.Items.Count>0)
+                if (!String.IsNullOrEmpty(Properties.Settings.Default.site))
+                    search.Text = Properties.Settings.Default.site;
+                else
+                    search.SelectedItem=search.Items[0];
+            refresh();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -97,52 +139,6 @@ namespace ImmoSoft
                 MessageBox.Show("Aucun element selectionné");
         }
 
-        private void button5_Click(object sender, EventArgs e)
-        {
-            if (dgv1.Rows.Count>0)
-                if (dgv1.SelectedRows.Count>0)
-                {
-                    Demarcheurs tmp = new Demarcheurs(true);
-                    tmp.FormClosing+=(s, args) =>
-                    {
-                        DB.stock stock = new DB.stock();
-                        if(tmp.id!=null)
-                        if (stock.setDemarcheur(dgv1.SelectedRows[0].Cells["id"].Value.ToString(), tmp.id))
-                        {
-                            MessageBox.Show("Parcelle assignée avec succès");
-                            this.refresh();
-                        }
-                    };
-                    tmp.ShowDialog();
-                }
-                else
-                    MessageBox.Show("Aucun element selectionné");
-            else
-                MessageBox.Show("Aucun element selectionné");
-        }
-
-        private void button4_Click(object sender, EventArgs e)
-        {
-            if (dgv1.Rows.Count>0)
-                if (dgv1.SelectedRows.Count>0)
-                {
-                    Clients tmp = new Clients(true);
-                    tmp.FormClosing+=(s, args) =>
-                    {
-                        DB.stock stock = new DB.stock();
-                        if (stock.setClient(dgv1.SelectedRows[0].Cells["id"].Value.ToString(), tmp.id))
-                        {
-                            MessageBox.Show("Parcelle assignée avec succès");
-                            this.refresh();
-                        }
-                    };
-                    tmp.ShowDialog();
-                }
-                else
-                    MessageBox.Show("Aucun element selectionné");
-            else
-                MessageBox.Show("Aucun element selectionné");
-        }
 
         private void choisir_Click(object sender, EventArgs e)
         {
@@ -162,8 +158,8 @@ namespace ImmoSoft
         {
             if (dgv1.Rows.Count>0)
             {
-                DB.printer printer = new DB.printer();
-                printer.export(dgv1, search.Text);
+                Waiting wait = new Waiting(dgv1, search.Text);
+                wait.ShowDialog();
             }
             else
             {
@@ -178,6 +174,8 @@ namespace ImmoSoft
                     if (row["nom"].ToString()==search.Text)
                     {
                         selectedSite=row["id"].ToString();
+                        Properties.Settings.Default.site=search.Text;
+                        Properties.Settings.Default.siteid=selectedSite;
                         refresh();
                         break;
                     }
@@ -185,7 +183,23 @@ namespace ImmoSoft
 
         private void button3_Click(object sender, EventArgs e)
         {
+            if (dgv1.Rows.Count>0)
+                if (dgv1.SelectedRows.Count>0)
+                    if (MessageBox.Show("Voulez vous vraiment supprimer cette parcelle", "Supprimer",
+                        MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    {
+                        bool go = false;
+                        checkPassword check = new checkPassword(Properties.Settings.Default.id);
+                        check.FormClosed+=(a, s) => { go=check.isPassword; };
+                        check.ShowDialog();
+                        if (go)
+                        {
+                            DB.stock stock = new DB.stock();
+                            stock.delete(dgv1.SelectedRows[0].Cells["id"].Value.ToString());
+                            refresh();
+                        }
 
+                    }
         }
 
         private void button8_Click(object sender, EventArgs e)

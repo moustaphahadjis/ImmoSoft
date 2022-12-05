@@ -15,6 +15,7 @@ namespace ImmoSoft
         string pid = "0", cid= "0", did= "0";
         DB.common com = new DB.common();
         bool don= false;
+        bool update= false;
         public Vente(string id, char option, bool Don)
         {
             InitializeComponent();
@@ -22,8 +23,6 @@ namespace ImmoSoft
             if (don)
             {
                 prix.Enabled=false;
-                vsmt.Enabled=false;
-                rest.Enabled=false;
                 confirm.Text="Confirmer don";
             }
 
@@ -32,9 +31,14 @@ namespace ImmoSoft
             {
                 if (dgvP.Rows.Count>0)
                 {
+                    cid = dgvP.Rows[0].Cells["idclient"].Value.ToString();
+                    prix.Text=dgvP.Rows[0].Cells["prix"].Value.ToString();
+                    usage.Text=dgvP.Rows[0].Cells["type_usage"].Value.ToString();
+                    vsmt.Text = dgvP.Rows[0].Cells["montant"].Value.ToString();
+                    rest.Text = dgvP.Rows[0].Cells["reste"].Value.ToString();
+
                     if (dgvP.Rows[0].Cells["idclient"].Value.ToString()!="0")
                     {
-                        cid = dgvP.Rows[0].Cells["idclient"].Value.ToString();
                         DB.client client = new DB.client();
                         dgvC.DataSource=client.refresh(cid);
                     }
@@ -64,8 +68,40 @@ namespace ImmoSoft
                 DB.demarcheur demarcheur = new DB.demarcheur();
                 dgvD.DataSource=demarcheur.refresh(did);
             }
+        }
 
-            
+        public Vente(string id)
+        {
+            InitializeComponent();
+            update=true;
+
+            dgvP.DataSourceChanged+=(s, a) =>
+            {
+                if (dgvP.Rows.Count>0)
+                {
+                    pid=dgvP.Rows[0].Cells["id"].Value.ToString();
+                    prix.Text=dgvP.Rows[0].Cells["prix"].Value.ToString();
+                    usage.Text=dgvP.Rows[0].Cells["type_usage"].Value.ToString();
+                    vsmt.Text = dgvP.Rows[0].Cells["montant"].Value.ToString();
+                    rest.Text = dgvP.Rows[0].Cells["reste"].Value.ToString();
+
+                    if (dgvP.Rows[0].Cells["idclient"].Value.ToString()!="0")
+                    {
+                        cid = dgvP.Rows[0].Cells["idclient"].Value.ToString();
+                        DB.client client = new DB.client();
+                        dgvC.DataSource=client.refresh(cid);
+                    }
+                    if (dgvP.Rows[0].Cells["iddemarcheur"].Value.ToString()!="0")
+                    {
+                        did = dgvP.Rows[0].Cells["iddemarcheur"].Value.ToString();
+                        DB.demarcheur demarcheur = new DB.demarcheur();
+                        dgvD.DataSource=demarcheur.refresh(did);
+                    }
+                }
+            };
+            pid=id;
+                DB.stock stock = new DB.stock();
+                dgvP.DataSource=stock.refresh(pid);
         }
 
         private void selectC_Click(object sender, EventArgs e)
@@ -82,7 +118,7 @@ namespace ImmoSoft
         bool check()
         {
             bool r = false;
-            if(dgvP.Rows.Count>0 &&
+            if (dgvP.Rows.Count>0 &&
                 dgvC.Rows.Count>0)
             {
                 decimal tmp = 0;
@@ -122,28 +158,22 @@ namespace ImmoSoft
                 {
                     DB.stock stock = new DB.stock();
                     DB.historique hist = new DB.historique();
-                    DB.attribution att = new DB.attribution();
-                    bool attribue = false;
-                    string etat = "";
-                    string action = "1er Versement";
-                    //gerer le rang des versement
-                    if (decimal.Parse(rest.Text)>0)
-                    {
-                        etat= "En cours de vente";
-                    }
+                    string action, etat;
+                    if (update)
+                        action = "Vente Modifiée";
                     else
-                    {
+                        action = "Vente assignée";
+
+                    if (decimal.Parse(rest.Text)>0)
+                        etat= "En cours de vente";
+                    else
                         etat="Vendue";
-                        attribue=true;
-                    }
 
-                    if (stock.vente(pid, cid, did, prix.Text.Trim(), vsmt.Text.Trim(), rest.Text, usage.Text, etat))
+                    if (stock.vente(pid, cid, did, prix.Text.Trim(), vsmt.Text,rest.Text, usage.Text, etat))
                     {
-                        if (attribue)
-                            att.insert("0", pid, "0", cid, attribue);
-                        hist.add(action, pid, cid, did, prix.Text.Trim(), vsmt.Text.Trim(), rest.Text, usage.Text);
+                        hist.add(action, pid, cid, did, prix.Text.Trim(), vsmt.Text, rest.Text, usage.Text);
                         
-
+                        /*
                         DB.printer printer = new DB.printer();
                         printer.versement("Achat de terrain",
                             dgvC.Rows[0].Cells["nom"].Value.ToString()+" "+dgvC.Rows[0].Cells["prenom"].Value.ToString(),
@@ -153,6 +183,7 @@ namespace ImmoSoft
                              vsmt.Text, prix.Text,
                              (decimal.Parse(prix.Text)-decimal.Parse(rest.Text)).ToString(),
                              rest.Text, dgvP.Rows[0].Cells["id"].Value.ToString());
+                        */
                         this.Close();
                     }
                 }
@@ -164,15 +195,14 @@ namespace ImmoSoft
                 {
                     DB.stock stock = new DB.stock();
                     DB.historique hist = new DB.historique();
-                    DB.attribution att = new DB.attribution();
                     string etat = "Don";
                     string action = "Don";
 
                     if (stock.vente(pid, cid, did, "0", "0", "0", usage.Text, etat))
                     {
-                        att.insert("0", pid, "0", cid, true);
                         hist.add(action, pid, cid, did, "0", "0", "0", usage.Text);
                         
+                        /*
                         DB.printer printer = new DB.printer();
                         printer.versement("Achat de terrain",
                             dgvC.Rows[0].Cells["nom"].Value.ToString()+" "
@@ -185,6 +215,7 @@ namespace ImmoSoft
                             dgvP.Rows[0].Cells["parcelle"].Value.ToString(),
                              dgvP.Rows[0].Cells["superficie"].Value.ToString(), action,
                              "0","0","0","0", dgvP.Rows[0].Cells["id"].Value.ToString());
+                        */
                         this.Close();
                     }
                 }

@@ -64,7 +64,7 @@ namespace ImmoSoft.DB
                 " join client on client.id = historique.idclient" +
                 " where historique.deleted=0 and historique.date between @from and @to";
             if (id!=null)
-                com+=" and id='"+id+"'";
+                com+=" and stock.id='"+id+"'";
 
             MySqlDataAdapter da = new MySqlDataAdapter(com, con);
             da.SelectCommand.Parameters.Add("@from", MySqlDbType.DateTime).Value=from;
@@ -83,6 +83,38 @@ namespace ImmoSoft.DB
             try
             {
                 con.Open();
+                cmd = new MySqlCommand("insert into historique (idstock, action, prix, montant,reste, type_usage," +
+                    "idclient, iddemarcheur) Values (@idstock,@action,@prix,@montant,@reste,@usage, @idclient,@iddemarcheur)", con);
+                cmd.Parameters.Add("@idstock", MySqlDbType.Int32).Value = idstock;
+                cmd.Parameters.Add("@action", MySqlDbType.VarChar).Value = action;
+                cmd.Parameters.Add("@prix", MySqlDbType.Decimal).Value = prix;
+                cmd.Parameters.Add("@montant", MySqlDbType.Decimal).Value = montant;
+                cmd.Parameters.Add("@reste", MySqlDbType.Decimal).Value = reste;
+                cmd.Parameters.Add("@usage", MySqlDbType.VarChar).Value = usage;
+                cmd.Parameters.Add("@idclient", MySqlDbType.Int32).Value = idclient;
+                cmd.Parameters.Add("@iddemarcheur", MySqlDbType.Int32).Value = iddemarcheur;
+                cmd.ExecuteNonQuery();
+                con.Close();
+                return true;
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.ToString());
+                return false;
+            }
+        }
+        public bool annulerVente(string action, string idstock, string idclient,
+            string iddemarcheur, string prix, string montant, string reste, string usage)
+        {
+            try
+            {
+                con.Open();
+                cmd=new MySqlCommand("update historique set deleted='1' where idstock=@idstock and idclient=@idclient", con);
+                cmd.Parameters.Add("@idstock", MySqlDbType.Int32).Value = idstock;
+                cmd.Parameters.Add("@idclient", MySqlDbType.Int32).Value = idclient;
+                cmd.ExecuteNonQuery();
+
+
                 cmd = new MySqlCommand("insert into historique (idstock, action, prix, montant,reste, type_usage," +
                     "idclient, iddemarcheur) Values (@idstock,@action,@prix,@montant,@reste,@usage, @idclient,@iddemarcheur)", con);
                 cmd.Parameters.Add("@idstock", MySqlDbType.Int32).Value = idstock;

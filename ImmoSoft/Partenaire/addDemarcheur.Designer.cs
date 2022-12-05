@@ -107,7 +107,7 @@
             this.button1.Location = new System.Drawing.Point(248, 510);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(162, 43);
-            this.button1.TabIndex = 8;
+            this.button1.TabIndex = 1;
             this.button1.Text = "Confirmer";
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
@@ -116,19 +116,26 @@
             // 
             this.matrimonial.Font = new System.Drawing.Font("Cambria", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.matrimonial.FormattingEnabled = true;
+            this.matrimonial.Items.AddRange(new object[] {
+            "Celibataire",
+            "Marié(e) Legalement",
+            "Marié(e) Religieusement",
+            "Divorcé(e)"});
             this.matrimonial.Location = new System.Drawing.Point(200, 379);
             this.matrimonial.Name = "matrimonial";
             this.matrimonial.Size = new System.Drawing.Size(239, 29);
-            this.matrimonial.TabIndex = 4;
+            this.matrimonial.TabIndex = 8;
             // 
             // delivrance
             // 
             this.delivrance.Font = new System.Drawing.Font("Cambria", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.delivrance.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.delivrance.Location = new System.Drawing.Point(200, 287);
+            this.delivrance.MaxDate = new System.DateTime(2030, 12, 31, 0, 0, 0, 0);
+            this.delivrance.MinDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
             this.delivrance.Name = "delivrance";
             this.delivrance.Size = new System.Drawing.Size(238, 27);
-            this.delivrance.TabIndex = 3;
+            this.delivrance.TabIndex = 6;
             // 
             // piece
             // 
@@ -142,7 +149,7 @@
             this.piece.Location = new System.Drawing.Point(28, 236);
             this.piece.Name = "piece";
             this.piece.Size = new System.Drawing.Size(180, 29);
-            this.piece.TabIndex = 2;
+            this.piece.TabIndex = 4;
             // 
             // label7
             // 
@@ -160,7 +167,7 @@
             this.profession.Location = new System.Drawing.Point(200, 332);
             this.profession.Name = "profession";
             this.profession.Size = new System.Drawing.Size(244, 29);
-            this.profession.TabIndex = 1;
+            this.profession.TabIndex = 7;
             // 
             // numero
             // 
@@ -168,13 +175,13 @@
             this.numero.Location = new System.Drawing.Point(230, 236);
             this.numero.Name = "numero";
             this.numero.Size = new System.Drawing.Size(209, 29);
-            this.numero.TabIndex = 1;
+            this.numero.TabIndex = 5;
             // 
             // label10
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Cambria", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(5, 387);
+            this.label10.Location = new System.Drawing.Point(3, 387);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(189, 21);
             this.label10.TabIndex = 0;
@@ -234,9 +241,10 @@
             this.groupBox2.Location = new System.Drawing.Point(353, 52);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(452, 441);
-            this.groupBox2.TabIndex = 5;
+            this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Identification";
+            this.groupBox2.Enter += new System.EventHandler(this.groupBox2_Enter);
             // 
             // label2
             // 
@@ -272,7 +280,7 @@
             this.nom.Location = new System.Drawing.Point(157, 21);
             this.nom.Name = "nom";
             this.nom.Size = new System.Drawing.Size(235, 29);
-            this.nom.TabIndex = 1;
+            this.nom.TabIndex = 0;
             // 
             // label3
             // 
@@ -290,7 +298,7 @@
             this.contact.Location = new System.Drawing.Point(157, 111);
             this.contact.Name = "contact";
             this.contact.Size = new System.Drawing.Size(235, 29);
-            this.contact.TabIndex = 1;
+            this.contact.TabIndex = 2;
             // 
             // addresse
             // 
@@ -298,7 +306,7 @@
             this.addresse.Location = new System.Drawing.Point(157, 160);
             this.addresse.Name = "addresse";
             this.addresse.Size = new System.Drawing.Size(235, 29);
-            this.addresse.TabIndex = 1;
+            this.addresse.TabIndex = 3;
             // 
             // label4
             // 
@@ -322,6 +330,7 @@
             this.button5.TabIndex = 3;
             this.button5.Text = "camera";
             this.button5.UseVisualStyleBackColor = false;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // button4
             // 
@@ -335,6 +344,7 @@
             this.button4.TabIndex = 3;
             this.button4.Text = "scan";
             this.button4.UseVisualStyleBackColor = false;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // picture
             // 
@@ -346,6 +356,7 @@
             this.picture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picture.TabIndex = 2;
             this.picture.TabStop = false;
+            this.picture.DoubleClick += new System.EventHandler(this.picture_DoubleClick);
             // 
             // groupBox1
             // 
@@ -372,6 +383,7 @@
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "addDemarcheur";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "addDemarcheur";
             this.Load += new System.EventHandler(this.addDemarcheur_Load);
             this.panel1.ResumeLayout(false);

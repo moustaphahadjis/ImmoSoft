@@ -40,20 +40,21 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(103, 75);
+            this.label2.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(180, 92);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(360, 31);
+            this.label2.Size = new System.Drawing.Size(206, 28);
             this.label2.TabIndex = 10;
-            this.label2.Text = "Veuillez entrer votre mot de passe";
+            this.label2.Text = "Inserez mot de passe";
             // 
             // password
             // 
             this.password.Font = new System.Drawing.Font("Cambria", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.password.Location = new System.Drawing.Point(109, 118);
+            this.password.Location = new System.Drawing.Point(109, 147);
             this.password.Name = "password";
             this.password.Size = new System.Drawing.Size(347, 29);
             this.password.TabIndex = 11;
+            this.password.UseSystemPasswordChar = true;
             // 
             // button2
             // 
@@ -62,12 +63,13 @@
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(294, 177);
+            this.button2.Location = new System.Drawing.Point(294, 206);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(162, 43);
             this.button2.TabIndex = 12;
             this.button2.Text = "Annuler";
             this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button1
             // 
@@ -76,7 +78,7 @@
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(109, 177);
+            this.button1.Location = new System.Drawing.Point(109, 206);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(162, 43);
             this.button1.TabIndex = 13;
@@ -117,6 +119,7 @@
             this.Controls.Add(this.button1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "checkPassword";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "checkPassword";
             this.Load += new System.EventHandler(this.checkPassword_Load);
             this.panel1.ResumeLayout(false);

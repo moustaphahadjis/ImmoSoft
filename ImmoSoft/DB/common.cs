@@ -6,7 +6,8 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using System.Globalization;
 namespace ImmoSoft.DB
 {
     internal class common
@@ -49,24 +50,44 @@ namespace ImmoSoft.DB
                 r=false;
             return r;
         }
-        public DGV searchPerson(string tmp, DGV dgv)
+        public DGV searchPerson(string tmp, DGV dgv, CurrencyManager man)
         {
-            if (dgv.Rows.Count>1)
-                foreach (DataGridViewRow row in dgv.Rows)
+            try
+            {
+
+                if (dgv.Rows.Count>1)
                 {
-                    if (row.Cells["nom"].Value.ToString().ToUpper().Contains(tmp.ToUpper()) ||
+                    foreach (DataGridViewRow row in dgv.Rows)
+                    {
+
+                        if (row.Cells["nom"].Value.ToString().ToUpper().Contains(tmp.ToUpper()) ||
                             row.Cells["prenom"].Value.ToString().ToUpper().Contains(tmp.ToUpper()) ||
-                            row.Cells["contact"].Value.ToString().ToUpper().Contains(tmp.ToUpper()))
-                    {
-                        row.Selected = true;
-                        dgv.FirstDisplayedScrollingRowIndex = row.Index;
-                        break;
-                    }
-                    else
-                    {
-                        row.Selected = false;
+                            row.Cells["contact"].Value.ToString().ToUpper().Contains(tmp.ToUpper()) ||
+                            (row.Cells["nom"].Value.ToString().ToUpper() +' '+
+                            row.Cells["prenom"].Value.ToString().ToUpper())
+                            .Contains(tmp.ToUpper()))
+                        {
+                            man.SuspendBinding();
+                            row.Visible = true;
+                            man.ResumeBinding();
+                            dgv.FirstDisplayedScrollingRowIndex = row.Index;
+
+                        }
+                        else
+                        {
+                            man.SuspendBinding();
+                            row.Visible = false;
+                            man.ResumeBinding();
+                            row.Selected = false;
+                        }
                     }
                 }
+                dgv.FirstDisplayedScrollingRowIndex = 0;
+            }
+            catch (Exception e)
+            {
+
+            }
             return dgv;
         }
     }

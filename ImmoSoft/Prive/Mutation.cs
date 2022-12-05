@@ -22,6 +22,13 @@ namespace ImmoSoft
             {
                 if (dgvP.Rows.Count>0)
                 {
+
+                    pid=dgvP.Rows[0].Cells["id"].Value.ToString();
+                    prix.Text=dgvP.Rows[0].Cells["prix"].Value.ToString();
+                    usage.Text=dgvP.Rows[0].Cells["type_usage"].Value.ToString();
+                    vsmt.Text = dgvP.Rows[0].Cells["montant"].Value.ToString();
+                    rest.Text = dgvP.Rows[0].Cells["reste"].Value.ToString();
+
                     if (dgvP.Rows[0].Cells["idold"].Value.ToString()!="0")
                     {
                         cid = dgvP.Rows[0].Cells["idold"].Value.ToString();
@@ -95,9 +102,9 @@ namespace ImmoSoft
                 if (com.isNumber(prix.Text.Trim()) && com.isNumber(vsmt.Text.Trim()))
                     rest.Text = (decimal.Parse(prix.Text.Trim())-decimal.Parse(vsmt.Text.Trim())).ToString();
                 else
-                    rest.Text = "";
+                    rest.Text = "0";
             else
-                rest.Text="";
+                rest.Text="0";
         }
         private void confirm_Click(object sender, EventArgs e)
         {
@@ -105,28 +112,22 @@ namespace ImmoSoft
             {
                 DB.champs champs = new DB.champs();
                 DB.historiqueChamps hist = new DB.historiqueChamps();
-                DB.attribution att = new DB.attribution();
-
                 string etat = "";
-                string action = "1er Versement";
-                bool attribue=false;
+                string action = "Mutation assignée";
                 //gerer le rang des versement
                 if (decimal.Parse(rest.Text)>0)
                 {
-                    etat= "En cours de mutation";
+                    etat= "En cours de Mutation";
                 }
                 else
                 {
                     etat="Mutée";
-                    attribue= true;
                 }
 
                 if (champs.mutation(pid,oid, cid, did, prix.Text.Trim(), vsmt.Text.Trim(), rest.Text, usage.Text, etat))
                 {
-                    if (attribue)
-                        att.insert(pid, "0", oid, cid, attribue);
-
                     hist.add(action, pid, oid, cid, did, prix.Text.Trim(), vsmt.Text.Trim(), rest.Text, usage.Text);
+                    /*
                     DB.printer printer = new DB.printer();
                     printer.versement("Mutation",
                         dgvC.Rows[0].Cells["nom"].Value.ToString()+" "+dgvC.Rows[0].Cells["prenom"].Value.ToString(),
@@ -136,6 +137,7 @@ namespace ImmoSoft
                          vsmt.Text, prix.Text,
                          (decimal.Parse(prix.Text)-decimal.Parse(rest.Text)).ToString(),
                          rest.Text, dgvP.Rows[0].Cells["id"].Value.ToString());
+                    */
                     this.Close();
                 }
             }
@@ -148,7 +150,7 @@ namespace ImmoSoft
 
         private void prix_TextChanged(object sender, EventArgs e)
         {
-
+            calculate();
         }
 
         private void selectD_Click(object sender, EventArgs e)

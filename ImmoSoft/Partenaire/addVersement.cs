@@ -20,18 +20,37 @@ namespace ImmoSoft
         {
             InitializeComponent();
             id = ID;
-            DB.stock stock = new DB.stock();
-            dgvP.DataSource=stock.refresh(id);
-            DB.client client = new DB.client();
-            dgvC.DataSource=client.refresh(dgvP.Rows[0].Cells["idclient"].Value.ToString());
-            DB.demarcheur demarcheur = new DB.demarcheur();
-            dgvD.DataSource=demarcheur.refresh(dgvP.Rows[0].Cells["iddemarcheur"].Value.ToString());
+            mutation = muter;
+            if (!muter)
+            {
+                DB.stock stock = new DB.stock();
+                dgvP.DataSource=stock.refresh(id);
+                DB.client client = new DB.client();
+                dgvC.DataSource=client.refresh(dgvP.Rows[0].Cells["idclient"].Value.ToString());
+                DB.demarcheur demarcheur = new DB.demarcheur();
+                dgvD.DataSource=demarcheur.refresh(dgvP.Rows[0].Cells["iddemarcheur"].Value.ToString());
 
-            DB.historique hist = new DB.historique();
-            dgvV.DataSource = hist.getVersement(id);
+                DB.historique hist = new DB.historique();
+                dgvV.DataSource = hist.getVersement(id);
 
-            prix.Text=dgvP.Rows[0].Cells["prix"].Value.ToString();
-            montant.Text=dgvP.Rows[0].Cells["reste"].Value.ToString();
+                prix.Text=dgvP.Rows[0].Cells["prix"].Value.ToString();
+                montant.Text=dgvP.Rows[0].Cells["reste"].Value.ToString();
+            }
+            else
+            {
+                DB.champs champs = new DB.champs();
+                dgvP.DataSource=champs.refresh(id);
+                DB.client client = new DB.client();
+                dgvC.DataSource=client.refresh(dgvP.Rows[0].Cells["idnew"].Value.ToString());
+                DB.demarcheur demarcheur = new DB.demarcheur();
+                dgvD.DataSource=demarcheur.refresh(dgvP.Rows[0].Cells["iddemarcheur"].Value.ToString());
+
+                DB.historiqueChamps hist = new DB.historiqueChamps();
+                dgvV.DataSource = hist.getVersement(id);
+
+                prix.Text=dgvP.Rows[0].Cells["prix"].Value.ToString();
+                montant.Text=dgvP.Rows[0].Cells["reste"].Value.ToString();
+            }
         }
         bool check()
         {
@@ -74,57 +93,97 @@ namespace ImmoSoft
         {
             if (check())
             {
-                DB.stock stock = new DB.stock();
-                DB.historique hist = new DB.historique();
-                DB.printer printer = new DB.printer();
-                DB.attribution att = new DB.attribution();
-                bool attribue = false;
-                string etat = "";
-                string action = (dgvV.Rows.Count+1).ToString()+"eme Versement";
-                if (decimal.Parse(reste.Text)>0)
+                if (!mutation)
                 {
-                    etat= "En cours de vente";
+                    DB.stock stock = new DB.stock();
+                    DB.historique hist = new DB.historique();
+                    DB.printer printer = new DB.printer();
+                    string etat = "";
+                    string action;
+
+                    if(dgvV.Rows.Count==1)
+                        action = "1er Versement";
+                    else
+                        action = (dgvV.Rows.Count+1).ToString()+"eme Versement";
+
+                    if (decimal.Parse(reste.Text)>0)
+                    {
+                        etat= "En cours de vente";
+                    }
+                    else
+                    {
+                        etat="Vendue";
+                    }
+
+                    if (stock.setVersement(id, (decimal.Parse(prix.Text.Trim())-decimal.Parse(reste.Text)).ToString(), reste.Text, etat))
+                    {
+                        hist.add(action, id, dgvP.Rows[0].Cells["idclient"].Value.ToString(),
+                            dgvP.Rows[0].Cells["iddemarcheur"].Value.ToString(),
+                            prix.Text.Trim(), versement.Text.Trim(), reste.Text,
+                            dgvP.Rows[0].Cells["type_usage"].Value.ToString());
+
+                        
+                            Waiting wait = new Waiting(dgvP,dgvC,action,prix.Text,versement.Text,reste.Text);
+                            wait.ShowDialog();
+
+                        
+
+                        this.Close();
+                    }
                 }
                 else
                 {
-                    etat="Vendue";
-                    attribue = true;
-                }
+                    DB.champs champs = new DB.champs();
+                    DB.historiqueChamps hist = new DB.historiqueChamps();
+                    DB.printer printer = new DB.printer();
+                    string etat;
+                    string action;
 
-                if (stock.setVersement(id, (decimal.Parse(prix.Text.Trim())-decimal.Parse(reste.Text)).ToString(), reste.Text, etat))
-                {
-                    if (attribue)
-                        att.insert("0", id, "0", dgvP.Rows[0].Cells["idclient"].Value.ToString(), attribue);
-                    hist.add(action, id, dgvP.Rows[0].Cells["idclient"].Value.ToString(),
-                        dgvP.Rows[0].Cells["iddemarcheur"].Value.ToString(),
-                        prix.Text.Trim(), versement.Text.Trim(), reste.Text,
-                        dgvP.Rows[0].Cells["type_usage"].Value.ToString());
+                    if (dgvV.Rows.Count==1)
+                        action = "1er Versement";
+                    else
+                        action = (dgvV.Rows.Count+1).ToString()+"eme Versement";
+                    
+                    if (decimal.Parse(reste.Text)>0)
+                    {
+                        etat= "En cours de Mutation";
+                    }
+                    else
+                    {
+                        etat="Mutée";
+                    }
 
-                    printer.versement("Achat de terrain",
-                        dgvC.Rows[0].Cells["nom"].Value.ToString()+" "+dgvC.Rows[0].Cells["prenom"].Value.ToString(),
-                        dgvC.Rows[0].Cells["piece"].Value.ToString()+" N° "+dgvC.Rows[0].Cells["numero"].Value.ToString()+" du "+dgvC.Rows[0].Cells["delivrance"].Value.ToString(),
-                        dgvC.Rows[0].Cells["contact"].Value.ToString(), dgvP.Rows[0].Cells["lot"].Value.ToString(), dgvP.Rows[0].Cells["parcelle"].Value.ToString(),
-                         dgvP.Rows[0].Cells["superficie"].Value.ToString(), action,
-                         versement.Text, prix.Text,
-                         (decimal.Parse(prix.Text)-decimal.Parse(reste.Text)).ToString(),
-                         reste.Text, dgvP.Rows[0].Cells["id"].Value.ToString());
+                    if (champs.setVersement(id, (decimal.Parse(prix.Text.Trim())-decimal.Parse(reste.Text)).ToString(), reste.Text, etat))
+                    {
+                        hist.add(action, id, dgvP.Rows[0].Cells["idold"].Value.ToString(),
+                            dgvP.Rows[0].Cells["idnew"].Value.ToString(),
+                            dgvP.Rows[0].Cells["iddemarcheur"].Value.ToString(),
+                            prix.Text.Trim(), versement.Text.Trim(), reste.Text,
+                            dgvP.Rows[0].Cells["type_usage"].Value.ToString());
 
-                   /* printer.versement(dgvC.Rows[0].Cells["nom"].Value.ToString() +
-                        " " + dgvC.Rows[0].Cells["prenom"].Value.ToString(),
-                        dgvC.Rows[0].Cells["Piece"].Value.ToString() +
-                        " N° "+dgvC.Rows[0].Cells["Numero"].Value.ToString(),
-                        dgvC.Rows[0].Cells["contact"].Value.ToString(),
-                        dgvP.Rows[0].Cells["lot"].Value.ToString(),
-                        dgvP.Rows[0].Cells["parcelle"].Value.ToString(),
-                        dgvP.Rows[0].Cells["superficie"].Value.ToString(),
-                        action, versement.Text, prix.Text,
-                        (decimal.Parse(prix.Text.Trim())-decimal.Parse(reste.Text)).ToString(),
-                        reste.Text, hist.getLast().ToString());
-                   */
+                        Waiting wait = new Waiting(dgvP, dgvC, action, prix.Text, versement.Text, reste.Text);
+                        wait.ShowDialog();
+                        /*
+                        printer.versement("Mutation de terrain",
+                            dgvC.Rows[0].Cells["nom"].Value.ToString()+" "+dgvC.Rows[0].Cells["prenom"].Value.ToString(),
+                            dgvC.Rows[0].Cells["piece"].Value.ToString()+" N° "+dgvC.Rows[0].Cells["numero"].Value.ToString()+" du "+dgvC.Rows[0].Cells["delivrance"].Value.ToString(),
+                            dgvC.Rows[0].Cells["contact"].Value.ToString(), dgvP.Rows[0].Cells["lot"].Value.ToString(), dgvP.Rows[0].Cells["parcelle"].Value.ToString(),
+                             dgvP.Rows[0].Cells["superficie"].Value.ToString(), action,
+                             versement.Text, prix.Text,
+                             (decimal.Parse(prix.Text)-decimal.Parse(reste.Text)).ToString(),
+                             reste.Text, dgvP.Rows[0].Cells["id"].Value.ToString());
+                        */
+                        this.Close();
+                    }
                 }
             }
             else
                 MessageBox.Show("Erreur! Réverifiez les données saisies");
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

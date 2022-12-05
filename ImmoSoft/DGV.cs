@@ -17,15 +17,7 @@ namespace ImmoSoft
         }
         void refresh()
         {
-            this.DoubleBuffered = true;
-            this.ReadOnly = true;
-            this.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            this.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            this.AllowUserToAddRows = false;
-            this.AllowUserToDeleteRows = false;
-            this.RowHeadersVisible = false;
-            this.Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top | AnchorStyles.Bottom;
-
+            
             DataGridViewCellStyle styleHeader = new DataGridViewCellStyle();
             styleHeader.Alignment = DataGridViewContentAlignment.MiddleCenter;
             styleHeader.Font = new Font("Cambria", 11, FontStyle.Regular);
@@ -38,6 +30,19 @@ namespace ImmoSoft
 
             this.DataSourceChanged+=(s, args) =>
             {
+                this.DoubleBuffered = true;
+                this.ReadOnly = true;
+                this.AutoSize=false;
+                this.ScrollBars= ScrollBars.Both;
+                this.MultiSelect= false;
+                this.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
+                this.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+                this.AllowUserToAddRows = false;
+                this.AllowUserToDeleteRows = false;
+                this.RowHeadersVisible = false;
+                this.Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top | AnchorStyles.Bottom;
+
+
                 foreach (DataGridViewColumn col in this.Columns)
                     col.HeaderText= col.HeaderText.ToUpper();
                 this.ColumnHeadersDefaultCellStyle = styleHeader;
@@ -69,15 +74,24 @@ namespace ImmoSoft
                         this.Columns["idstock"].Visible=false;
                     if (this.Columns.Contains("idchamps"))
                         this.Columns["idchamps"].Visible=false;
-
+                    if (this.Columns.Contains("cloture"))
+                        this.Columns["cloture"].Visible=false;
+                    /*
                     if (this.Columns.Contains("lot"))
-                        this.Columns["lot"].AutoSizeMode= DataGridViewAutoSizeColumnMode.AllCells;
+                        this.Columns["lot"].AutoSizeMode= DataGridViewAutoSizeColumnMode.AllCells; 
+                    if (this.Columns.Contains("nom"))
+                        this.Columns["nom"].AutoSizeMode= DataGridViewAutoSizeColumnMode.AllCells;
+                    if (this.Columns.Contains("prenom"))
+                        this.Columns["prenom"].AutoSizeMode= DataGridViewAutoSizeColumnMode.AllCells;
+                    if (this.Columns.Contains("contact"))
+                        this.Columns["contact"].AutoSizeMode= DataGridViewAutoSizeColumnMode.AllCells;
                     if (this.Columns.Contains("section"))
                         this.Columns["section"].AutoSizeMode= DataGridViewAutoSizeColumnMode.AllCells;
                     if (this.Columns.Contains("parcelle"))
                         this.Columns["parcelle"].AutoSizeMode= DataGridViewAutoSizeColumnMode.AllCells;
                     if (this.Columns.Contains("Superficie"))
                         this.Columns["superficie"].AutoSizeMode= DataGridViewAutoSizeColumnMode.AllCells;
+                    */
                     if (this.Columns.Contains("image"))
                         ((DataGridViewImageColumn)this.Columns["image"]).ImageLayout= DataGridViewImageCellLayout.Zoom;
 

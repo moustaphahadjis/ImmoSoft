@@ -17,6 +17,7 @@ namespace ImmoSoft
         public Form1()
         {
             InitializeComponent();
+            this.FormBorderStyle = FormBorderStyle.Sizable;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -152,6 +153,27 @@ namespace ImmoSoft
             Form tmp = new Attribution();
             changeForm(tmp);
             showTitle(button14);
+        }
+
+        private void panel1_SizeChanged(object sender, EventArgs e)
+        {
+            int x, y;
+            x=panel1.Size.Width/2- title.Width/2;
+            title.Location= new Point(x,title.Location.Y);
+        }
+
+        private void menuPanel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void mainPanel_SizeChanged(object sender, EventArgs e)
+        {
+            int x, y;
+            x=mainPanel.Size.Width/2- madeby.Width/2;
+
+            y=mainPanel.Size.Height/4;
+            madeby.Location= new Point(x, y);
         }
     }
 }

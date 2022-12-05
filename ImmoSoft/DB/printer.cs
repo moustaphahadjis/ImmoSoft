@@ -64,10 +64,14 @@ namespace ImmoSoft.DB
                     doc.Tables[1].Rows[pos].Cells[1].Range.Text = (i+1).ToString();
                     doc.Tables[1].Rows[pos].Cells[3].Range.Text = row.Cells["Parcelle"].Value.ToString();
                     doc.Tables[1].Rows[pos].Cells[4].Range.Text = row.Cells["Superficie"].Value.ToString()+"㎡";
+                    if (data.Columns.Contains("Client"))
+                    doc.Tables[1].Rows[pos].Cells[5].Range.Text = row.Cells["Client"].Value.ToString();
+                    if(data.Columns.Contains("Demarcheur"))
+                    doc.Tables[1].Rows[pos].Cells[6].Range.Text = row.Cells["Demarcheur"].Value.ToString();
                     if (data.Columns.Contains("Montant"))
-                    doc.Tables[1].Rows[pos].Cells[5].Range.Text = row.Cells["Montant"].Value.ToString();
-                    if(data.Columns.Contains("Reste"))
-                    doc.Tables[1].Rows[pos].Cells[6].Range.Text = row.Cells["Reste"].Value.ToString();
+                        doc.Tables[1].Rows[pos].Cells[7].Range.Text = row.Cells["Montant"].Value.ToString();
+                    if (data.Columns.Contains("Reste"))
+                        doc.Tables[1].Rows[pos].Cells[8].Range.Text = row.Cells["Reste"].Value.ToString();
                     last=pos;
                     pos++;
                 }

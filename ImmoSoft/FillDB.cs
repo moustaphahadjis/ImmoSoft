@@ -70,10 +70,12 @@ namespace ImmoSoft
             app.Quit();
         }
             */
+
             con.Open();
-            cmd= new MySqlCommand("update stock set etat='Disponible'", con);
+            cmd= new MySqlCommand("update stock set siteid=3 where lot=2 and siteid=1", con);
             cmd.ExecuteNonQuery();
             con.Close();
         }
+        
     }
 }

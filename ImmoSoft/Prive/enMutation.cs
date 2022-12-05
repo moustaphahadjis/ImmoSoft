@@ -20,10 +20,11 @@ namespace ImmoSoft
         }
         void refresh()
         {
-            DB.stock stock = new DB.stock();
+            DB.champs champs = new DB.champs();
             DataTable dt = new DataTable();
-            dt=stock.refreshVendue("En cours de vente", selectedSite);
+            dt=champs.refreshVendue("En cours de Mutation", selectedSite);
             dgv1.DataSource = dt;
+            calculate();
         }
         void refreshSite()
         {
@@ -35,10 +36,30 @@ namespace ImmoSoft
             //string[] noms = dt.AsEnumerable().Select<DataRow, string>(x => x.Field<string>("site")).ToArray();
             search.Items.AddRange(sites);
         }
+        void calculate()
+        {
+            if (dgv1.Rows.Count>0)
+            {
+                List<string> lots = new List<string>();
+                foreach (DataGridViewRow row in dgv1.Rows)
+                    if (!lots.Contains(row.Cells["lot"].Value.ToString()))
+                        lots.Add(row.Cells["lot"].Value.ToString());
+                nblot.Text=lots.Count.ToString();
+                nbpar.Text=dgv1.Rows.Count.ToString();
+            }
+            else
+            {
+                nblot.Text="0";
+                nbpar.Text="0";
+            }
+
+        }
         private void enMutation_Load(object sender, EventArgs e)
         {
-            refresh();
             refreshSite();
+            if (search.Items.Count>0)
+                search.SelectedItem=search.Items[0];
+            refresh();
         }
 
         private void search_SelectedIndexChanged(object sender, EventArgs e)
@@ -89,13 +110,60 @@ namespace ImmoSoft
         {
             if (dgv1.Rows.Count>0)
             {
-                DB.printer printer = new DB.printer();
-                printer.export(dgv1, search.Text);
+                Waiting wait = new Waiting(dgv1, search.Text);
+                wait.ShowDialog();
             }
             else
             {
                 MessageBox.Show("La liste est vide");
             }
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            if (dgv1.Rows.Count>0)
+                if (dgv1.SelectedRows.Count>0)
+                {
+                    Files file = new Files("fiche", dgv1.SelectedRows[0].Cells["id"].Value.ToString(), "champs");
+                    file.ShowDialog();
+                }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            if (dgv1.Rows.Count>0)
+                if (dgv1.SelectedRows.Count>0)
+                {
+                    addVersement add = new addVersement(dgv1.SelectedRows[0].Cells["id"].Value.ToString(), true);
+                    add.FormClosed+=(s, a) => { this.refresh(); };
+                    add.ShowDialog();
+                }
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            if (dgv1.Rows.Count>0)
+                if (dgv1.SelectedRows.Count>0)
+                    if (MessageBox.Show("Voulez vous vraiment annuler cette mutation", "Annuler",
+                        MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    {
+                        bool go = false;
+                        checkPassword check = new checkPassword(Properties.Settings.Default.id);
+                        check.FormClosed+=(a, s) => { go=check.isPassword; };
+                        check.ShowDialog();
+                        if (go)
+                        {
+                            DB.champs champs = new DB.champs();
+                            DB.historiqueChamps hist = new DB.historiqueChamps();
+                            string idclient = dgv1.SelectedRows[0].Cells["idclient"].Value.ToString();
+                            champs.update(dgv1.SelectedRows[0].Cells["id"].Value.ToString(),
+                                "0", "0", "0", "0", "0", "Disponible", "");
+                            hist.annulerVente("Vente annulée", dgv1.SelectedRows[0].Cells["id"].Value.ToString(),
+                                idclient, "0", "0", "0", "0", "");
+                            refresh();
+                        }
+
+                    }
         }
     }
 }

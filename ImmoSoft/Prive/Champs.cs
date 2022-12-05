@@ -35,10 +35,22 @@ namespace ImmoSoft
             view.Sort = "lot ASC, parcelle ASC";
             dgv1.DataSource = view;
 
-            choisir.Visible=choix;
-            choisir.Enabled=choix;
+            if (choix)
+            {
+                choisir.Visible=true;
+                choisir.Enabled=true;
+                groupBox2.Enabled=false;
+                button7.Enabled=false;
+                groupBox2.Visible=false;
+                button7.Visible=false;
+            }
+            else
+            {
+                choisir.Visible=false;
+                choisir.Enabled=false;
+            }
 
-
+            calculate();
         }
         void refreshSite()
         {
@@ -50,11 +62,30 @@ namespace ImmoSoft
             //string[] noms = dt.AsEnumerable().Select<DataRow, string>(x => x.Field<string>("site")).ToArray();
             search.Items.AddRange(sites);
         }
+        void calculate()
+        {
+            if (dgv1.Rows.Count>0)
+            {
+                List<string> lots = new List<string>();
+                foreach (DataGridViewRow row in dgv1.Rows)
+                    if (!lots.Contains(row.Cells["lot"].Value.ToString()))
+                        lots.Add(row.Cells["lot"].Value.ToString());
+                nblot.Text=lots.Count.ToString();
+                nbpar.Text=dgv1.Rows.Count.ToString();
+            }
+            else
+            {
+                nblot.Text="0";
+                nbpar.Text="0";
+            }
 
+        }
         private void Champs_Load(object sender, EventArgs e)
         {
-            refresh();
             refreshSite();
+            if (search.Items.Count>0)
+                search.SelectedItem=search.Items[0];
+            refresh();
         }
 
         private void search_SelectedIndexChanged(object sender, EventArgs e)
@@ -153,6 +184,19 @@ namespace ImmoSoft
                     MessageBox.Show("Aucun element selectionné");
             else
                 MessageBox.Show("Aucun element selectionné");
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            if (dgv1.Rows.Count>0)
+            {
+                Waiting wait = new Waiting(dgv1, search.Text);
+                wait.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("La liste est vide");
+            }
         }
     }
 }

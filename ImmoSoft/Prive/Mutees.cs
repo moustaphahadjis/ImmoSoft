@@ -16,13 +16,19 @@ namespace ImmoSoft
         string selectedSite = "0";
         public Mutees()
         {
-            InitializeComponent();
+            InitializeComponent(); 
+            dgv1.DataSourceChanged+=(s, a) =>
+            {
+                if (dgv1.Columns.Contains("cloture"))
+                    dgv1.Columns["cloture"].Visible=true;
+            };
         }
         void refresh()
         {
-            DB.stock stock = new DB.stock();
-            dgv1.DataSource = stock.refreshVendue("Vendue", selectedSite);
+            DB.champs champs = new DB.champs();
+            dgv1.DataSource = champs.refreshVendue("Mutée", selectedSite);
 
+            calculate();
         }
         void refreshSite()
         {
@@ -34,10 +40,30 @@ namespace ImmoSoft
             //string[] noms = dt.AsEnumerable().Select<DataRow, string>(x => x.Field<string>("site")).ToArray();
             search.Items.AddRange(sites);
         }
+        void calculate()
+        {
+            if (dgv1.Rows.Count>0)
+            {
+                List<string> lots = new List<string>();
+                foreach (DataGridViewRow row in dgv1.Rows)
+                    if (!lots.Contains(row.Cells["lot"].Value.ToString()))
+                        lots.Add(row.Cells["lot"].Value.ToString());
+                nblot.Text=lots.Count.ToString();
+                nbpar.Text=dgv1.Rows.Count.ToString();
+            }
+            else
+            {
+                nblot.Text="0";
+                nbpar.Text="0";
+            }
+
+        }
         private void Mutees_Load(object sender, EventArgs e)
         {
-            refresh();
             refreshSite();
+            if (search.Items.Count>0)
+                search.SelectedItem=search.Items[0];
+            refresh();
         }
 
         private void search_SelectedIndexChanged(object sender, EventArgs e)
@@ -88,8 +114,8 @@ namespace ImmoSoft
         {
             if (dgv1.Rows.Count>0)
             {
-                DB.printer printer = new DB.printer();
-                printer.export(dgv1, search.Text);
+                Waiting wait = new Waiting(dgv1, search.Text);
+                wait.ShowDialog();
             }
             else
             {
@@ -102,7 +128,7 @@ namespace ImmoSoft
             if (dgv1.Rows.Count>0)
                 if (dgv1.SelectedRows.Count>0)
                 {
-                    Files file = new Files("fiche", dgv1.SelectedRows[0].Cells["id"].Value.ToString(),"champs");
+                    Files file = new Files("fiche", dgv1.SelectedRows[0].Cells["id"].Value.ToString(), "champs");
                     file.ShowDialog();
                 }
         }
@@ -112,9 +138,24 @@ namespace ImmoSoft
             if (dgv1.Rows.Count>0)
                 if (dgv1.SelectedRows.Count>0)
                 {
-                    Files file = new Files("attestation", dgv1.SelectedRows[0].Cells["id"].Value.ToString(),"champs");
+                    Files file = new Files("attestation", dgv1.SelectedRows[0].Cells["id"].Value.ToString(), "champs");
                     file.ShowDialog();
                 }
+        }
+
+        private void button4_Click_1(object sender, EventArgs e)
+        {
+            if (dgv1.Rows.Count>0)
+                if (dgv1.SelectedRows.Count>0)
+                    if (dgv1.SelectedRows[0].Cells["cloture"].Value.ToString()==false.ToString())
+                    {
+                        Cloture clo = new Cloture(dgv1.SelectedRows[0].Cells["id"].Value.ToString(), true);
+                        clo.ShowDialog();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Cette mutation a déjà été cloturée");
+                    }
         }
     }
 }

@@ -77,7 +77,7 @@
             this.button1.Location = new System.Drawing.Point(242, 377);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(162, 43);
-            this.button1.TabIndex = 9;
+            this.button1.TabIndex = 1;
             this.button1.Text = "Confirmer";
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
@@ -103,7 +103,7 @@
             this.groupBox1.Location = new System.Drawing.Point(6, 63);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(836, 291);
-            this.groupBox1.TabIndex = 6;
+            this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Personnel";
             // 
@@ -117,7 +117,7 @@
             this.admin.Location = new System.Drawing.Point(575, 224);
             this.admin.Name = "admin";
             this.admin.Size = new System.Drawing.Size(234, 29);
-            this.admin.TabIndex = 2;
+            this.admin.TabIndex = 7;
             // 
             // label2
             // 
@@ -156,7 +156,7 @@
             this.password2.Name = "password2";
             this.password2.PasswordChar = '*';
             this.password2.Size = new System.Drawing.Size(235, 29);
-            this.password2.TabIndex = 1;
+            this.password2.TabIndex = 6;
             this.password2.UseSystemPasswordChar = true;
             // 
             // password
@@ -166,7 +166,7 @@
             this.password.Name = "password";
             this.password.PasswordChar = '*';
             this.password.Size = new System.Drawing.Size(235, 29);
-            this.password.TabIndex = 1;
+            this.password.TabIndex = 5;
             this.password.UseSystemPasswordChar = true;
             // 
             // username
@@ -175,7 +175,7 @@
             this.username.Location = new System.Drawing.Point(574, 37);
             this.username.Name = "username";
             this.username.Size = new System.Drawing.Size(235, 29);
-            this.username.TabIndex = 1;
+            this.username.TabIndex = 4;
             // 
             // contact
             // 
@@ -183,7 +183,7 @@
             this.contact.Location = new System.Drawing.Point(106, 228);
             this.contact.Name = "contact";
             this.contact.Size = new System.Drawing.Size(235, 29);
-            this.contact.TabIndex = 1;
+            this.contact.TabIndex = 3;
             // 
             // addresse
             // 
@@ -191,7 +191,7 @@
             this.addresse.Location = new System.Drawing.Point(106, 163);
             this.addresse.Name = "addresse";
             this.addresse.Size = new System.Drawing.Size(235, 29);
-            this.addresse.TabIndex = 1;
+            this.addresse.TabIndex = 2;
             // 
             // prenom
             // 
@@ -207,7 +207,7 @@
             this.nom.Location = new System.Drawing.Point(106, 41);
             this.nom.Name = "nom";
             this.nom.Size = new System.Drawing.Size(235, 29);
-            this.nom.TabIndex = 1;
+            this.nom.TabIndex = 0;
             // 
             // label9
             // 
@@ -290,7 +290,9 @@
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.groupBox1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "addUser";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "addUser";
             this.Load += new System.EventHandler(this.addUser_Load);
             this.groupBox1.ResumeLayout(false);

@@ -63,3 +63,9 @@ C:\Work\Software\ImmoSoft\ImmoSoft\bin\Debug\System.Numerics.Vectors.xml
 C:\Work\Software\ImmoSoft\ImmoSoft\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
 C:\Work\Software\ImmoSoft\ImmoSoft\obj\Debug\ImmoSoft.Camera.resources
 C:\Work\Software\ImmoSoft\ImmoSoft\obj\Debug\ImmoSoft.Attribution.resources
+C:\Work\Software\ImmoSoft\ImmoSoft\obj\Debug\ImmoSoft.Loading.resources
+C:\Work\Software\ImmoSoft\ImmoSoft\bin\Debug\ImmoSoft.exe.manifest
+C:\Work\Software\ImmoSoft\ImmoSoft\bin\Debug\ImmoSoft.application
+C:\Work\Software\ImmoSoft\ImmoSoft\obj\Debug\ImmoSoft.exe.manifest
+C:\Work\Software\ImmoSoft\ImmoSoft\obj\Debug\ImmoSoft.application
+C:\Work\Software\ImmoSoft\ImmoSoft\obj\Debug\ImmoSoft.Cloture.resources

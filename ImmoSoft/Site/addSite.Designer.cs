@@ -118,6 +118,7 @@
             this.button2.TabIndex = 6;
             this.button2.Text = "Annuler";
             this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button1
             // 
@@ -171,6 +172,7 @@
             this.Controls.Add(this.taille);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "addSite";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "addSite";
             this.Load += new System.EventHandler(this.addSite_Load);
             this.panel1.ResumeLayout(false);

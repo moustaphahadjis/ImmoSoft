@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
@@ -41,6 +42,7 @@ namespace ImmoSoft
             contact.Text=row["contact"].ToString();
             addresse.Text=row["addresse"].ToString();
             profession.Text=row["profession"].ToString();
+            matrimonial.Text=row["matrimonial"].ToString();
             string[] date = row["delivrance"].ToString().Split('/');
             delivrance.Value=new DateTime(Int32.Parse(
                 date[2]), Int32.Parse(date[1]), Int32.Parse(date[0]));
@@ -80,6 +82,12 @@ namespace ImmoSoft
             profession.Enabled=false;
             delivrance.Enabled=false;
             button1.Enabled=false;
+            matrimonial.Enabled=false;
+
+            button4.Enabled=false;
+            button4.Visible=false;
+            button5.Visible=false;
+            button5.Enabled=false;
            // button3.Enabled=false;
 
             button1.Visible=false;
@@ -262,6 +270,17 @@ namespace ImmoSoft
                     picture.Image=cam.picture.Image;
             };
             cam.ShowDialog();
+        }
+
+        private void picture_DoubleClick(object sender, EventArgs e)
+        {
+            if (picture.Image!=null)
+            {
+                Image img = picture.Image;
+                string path = System.IO.Path.GetTempPath()+@"\"+DateTime.Now.ToString("dd mm ss")+".jpeg";
+                img.Save(path, ImageFormat.Jpeg);
+                Process.Start(path);
+            }
         }
     }
 }

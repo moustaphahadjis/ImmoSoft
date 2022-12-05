@@ -59,8 +59,10 @@ namespace ImmoSoft.DB
         {
             con.Open();
             MySqlDataAdapter da;
-            string aa = "select stock.id,stock.section,stock.lot,stock.parcelle,stock.superficie,client.nom, client.prenom," +
-                " demarcheur.nom,demarcheur.prenom, idclient, iddemarcheur" +
+            string aa = "select stock.id,stock.section,stock.lot,stock.parcelle,stock.superficie," +
+                "CONCAT (client.nom,' ', client.prenom) as Client," +
+                " CONCAT (demarcheur.nom,' ',demarcheur.prenom) as Demarcheur" +
+                ", idclient, iddemarcheur" +
                 " from stock join demarcheur on demarcheur.id = stock.iddemarcheur" +
                 " join client on client.id=stock.idclient"+
                 " where stock.etat=@etat and stock.deleted=0";
@@ -77,16 +79,6 @@ namespace ImmoSoft.DB
             DataTable ds = new DataTable();
             ds.BeginLoadData();
             da.Fill(ds);
-            ds.Columns[5].ColumnName="Client";
-            ds.Columns[7].ColumnName="Demarcheur";
-            if(ds.Rows.Count>0)
-                foreach(DataRow row in ds.Rows)
-                {
-                    row[5]=row[5]+" "+row[6];
-                    row[7]=row[7]+" "+row[8];
-                }
-            ds.Columns.RemoveAt(8);
-            ds.Columns.RemoveAt(6);
             ds.EndLoadData();
 
             con.Close();
@@ -96,8 +88,11 @@ namespace ImmoSoft.DB
         {
             con.Open();
             string aa =
-                "select stock.id,stock.section,stock.lot,stock.parcelle,stock.superficie,client.nom,client.prenom," +
-                " demarcheur.nom, demarcheur.prenom, stock.idclient, stock.iddemarcheur" +
+                "select stock.id,stock.section,stock.lot,stock.parcelle,stock.superficie," +
+                "CONCAT (client.nom,' ',client.prenom) as Client," +
+                " CONCAT(demarcheur.nom,' ', demarcheur.prenom) as Demarcheur" +
+                ", stock.idclient, stock.iddemarcheur," +
+                "Montant, Reste, cloture" +
                 " from stock join client on client.id = stock.idclient" +
                 " join demarcheur on demarcheur.id = stock.iddemarcheur"+
                 " where stock.etat=@etat and stock.deleted=0";
@@ -116,16 +111,6 @@ namespace ImmoSoft.DB
             DataTable ds = new DataTable();
             ds.BeginLoadData();
             da.Fill(ds);
-            ds.Columns[5].ColumnName="Client";
-            ds.Columns[7].ColumnName="Demarcheur";
-            if (ds.Rows.Count>0)
-                foreach (DataRow row in ds.Rows)
-                {
-                    row[5]=row[5]+" "+row[6];
-                    row[7]=row[7]+" "+row[8];
-                }
-            ds.Columns.RemoveAt(8);
-            ds.Columns.RemoveAt(6);
             ds.EndLoadData();
 
             con.Close();
@@ -214,14 +199,40 @@ namespace ImmoSoft.DB
             try
             {
                 con.Open();
-                cmd = new MySqlCommand("update stock set site=@site,lot=@lot, parcelle=@prcle," +
+                cmd = new MySqlCommand("update stock set siteid=@siteid,lot=@lot, parcelle=@prcle," +
                     "superficie=@spfc, section=@section where id=@id", con);
                 cmd.Parameters.Add("@id", MySqlDbType.Int32).Value=id;
                 cmd.Parameters.Add("@section", MySqlDbType.VarChar).Value=section;
-                cmd.Parameters.Add("@site", MySqlDbType.Int32).Value=site;
+                cmd.Parameters.Add("@siteid", MySqlDbType.Int32).Value=site;
                 cmd.Parameters.Add("@lot", MySqlDbType.Int32).Value=lot;
                 cmd.Parameters.Add("@prcle", MySqlDbType.VarChar).Value=prcle;
                 cmd.Parameters.Add("@spfc", MySqlDbType.Decimal).Value=spfc;
+                cmd.ExecuteNonQuery();
+                con.Close();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return false;
+            }
+        }
+        public bool update(string id, string idclient, string iddemarcheur,
+            string montant, string prix,  string reste, string etat, string usage)
+        {
+            try
+            {
+                con.Open();
+                cmd = new MySqlCommand("update stock set idclient=@idclient,iddemarcheur=@iddemarcheur, montant=@montant," +
+                    "prix=@prix, reste=@reste,etat=@etat where id=@id", con);
+                cmd.Parameters.Add("@id", MySqlDbType.Int32).Value=id;
+                cmd.Parameters.Add("@idclient", MySqlDbType.Int32).Value=idclient;
+                cmd.Parameters.Add("@iddemarcheur", MySqlDbType.Int32).Value=iddemarcheur;
+                cmd.Parameters.Add("@montant", MySqlDbType.Decimal).Value=montant;
+                cmd.Parameters.Add("@prix", MySqlDbType.Decimal).Value=prix;
+                cmd.Parameters.Add("@reste", MySqlDbType.Decimal).Value=reste;
+                cmd.Parameters.Add("@etat", MySqlDbType.VarChar).Value=etat;
+                cmd.Parameters.Add("@usage", MySqlDbType.VarChar).Value=usage;
                 cmd.ExecuteNonQuery();
                 con.Close();
                 return true;
@@ -286,6 +297,44 @@ namespace ImmoSoft.DB
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+                return false;
+            }
+        }
+        public bool delete(string id)
+        {
+            try
+            {
+                con.Open();
+
+                cmd = new MySqlCommand("update stock set deleted=1 where id=@id", con);
+                cmd.Parameters.Add("@id", MySqlDbType.Int32).Value = id;
+                cmd.ExecuteNonQuery();
+                con.Close();
+                return true;
+
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.ToString());
+                return false;
+            }
+        }
+        public bool cloturer(string id)
+        {
+            try
+            {
+                con.Open();
+
+                cmd = new MySqlCommand("update stock set cloture=1 where id=@id", con);
+                cmd.Parameters.Add("@id", MySqlDbType.Int32).Value = id;
+                cmd.ExecuteNonQuery();
+                con.Close();
+                return true;
+
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.ToString());
                 return false;
             }
         }

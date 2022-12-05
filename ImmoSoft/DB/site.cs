@@ -124,5 +124,24 @@ namespace ImmoSoft.DB
                 return false;
             }
         }
+        public bool delete(string id)
+        {
+            try
+            {
+                con.Open();
+                
+                    cmd = new MySqlCommand("update site set deleted=1 where id=@id", con);
+                    cmd.Parameters.Add("@id", MySqlDbType.Int32).Value = id;
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+                    return true;
+
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.ToString());
+                return false;
+            }
+        }
     }
 }

@@ -79,9 +79,9 @@
             // 
             this.groupBox3.Controls.Add(this.dgvD);
             this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox3.Location = new System.Drawing.Point(12, 243);
+            this.groupBox3.Location = new System.Drawing.Point(12, 289);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(958, 90);
+            this.groupBox3.Size = new System.Drawing.Size(958, 117);
             this.groupBox3.TabIndex = 1;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Details Demarcheur";
@@ -115,16 +115,16 @@
             this.dgvD.RowHeadersWidth = 51;
             this.dgvD.RowTemplate.Height = 24;
             this.dgvD.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvD.Size = new System.Drawing.Size(937, 65);
+            this.dgvD.Size = new System.Drawing.Size(937, 92);
             this.dgvD.TabIndex = 2;
             // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.dgvC);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(12, 147);
+            this.groupBox2.Location = new System.Drawing.Point(12, 175);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(958, 90);
+            this.groupBox2.Size = new System.Drawing.Size(958, 117);
             this.groupBox2.TabIndex = 2;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Details Client";
@@ -158,7 +158,7 @@
             this.dgvC.RowHeadersWidth = 51;
             this.dgvC.RowTemplate.Height = 24;
             this.dgvC.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvC.Size = new System.Drawing.Size(937, 65);
+            this.dgvC.Size = new System.Drawing.Size(937, 92);
             this.dgvC.TabIndex = 2;
             // 
             // groupBox1
@@ -167,7 +167,7 @@
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(12, 51);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(958, 90);
+            this.groupBox1.Size = new System.Drawing.Size(958, 117);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Details Parcelle";
@@ -201,7 +201,7 @@
             this.dgvP.RowHeadersWidth = 51;
             this.dgvP.RowTemplate.Height = 24;
             this.dgvP.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvP.Size = new System.Drawing.Size(937, 65);
+            this.dgvP.Size = new System.Drawing.Size(937, 92);
             this.dgvP.TabIndex = 2;
             // 
             // groupBox4
@@ -212,7 +212,7 @@
             this.groupBox4.Controls.Add(this.montant);
             this.groupBox4.Controls.Add(this.label1);
             this.groupBox4.Controls.Add(this.prix);
-            this.groupBox4.Location = new System.Drawing.Point(12, 499);
+            this.groupBox4.Location = new System.Drawing.Point(12, 562);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(469, 117);
             this.groupBox4.TabIndex = 4;
@@ -303,7 +303,7 @@
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(286, 625);
+            this.button1.Location = new System.Drawing.Point(286, 688);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(173, 44);
             this.button1.TabIndex = 2;
@@ -317,18 +317,19 @@
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(481, 625);
+            this.button2.Location = new System.Drawing.Point(481, 688);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(173, 44);
             this.button2.TabIndex = 2;
             this.button2.Text = "Annuler";
             this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // groupBox5
             // 
             this.groupBox5.Controls.Add(this.dgvV);
             this.groupBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox5.Location = new System.Drawing.Point(12, 339);
+            this.groupBox5.Location = new System.Drawing.Point(12, 402);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(958, 154);
             this.groupBox5.TabIndex = 1;
@@ -394,7 +395,7 @@
             this.groupBox6.Controls.Add(this.label4);
             this.groupBox6.Controls.Add(this.versement);
             this.groupBox6.Controls.Add(this.reste);
-            this.groupBox6.Location = new System.Drawing.Point(500, 499);
+            this.groupBox6.Location = new System.Drawing.Point(500, 562);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Size = new System.Drawing.Size(461, 120);
             this.groupBox6.TabIndex = 5;
@@ -446,7 +447,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(982, 688);
+            this.ClientSize = new System.Drawing.Size(982, 755);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.groupBox6);
             this.Controls.Add(this.button2);
@@ -458,6 +459,7 @@
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "addVersement";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "addVersement";
             this.Load += new System.EventHandler(this.addVersement_Load);
             this.groupBox3.ResumeLayout(false);

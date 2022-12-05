@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -21,8 +22,24 @@ namespace ImmoSoft
         }
         public Clients(bool Choix)
         {
-            choix=true;
             InitializeComponent();
+            choix=true;
+            dgv1.DataSourceChanged+=(e, s) =>
+            {
+                dgv1.CellDoubleClick+=(a, sv) =>
+                {
+                    if (dgv1.Rows.Count>0)
+                        if (dgv1.SelectedRows.Count>0)
+                        {
+                            id=dgv1.SelectedRows[0].Cells["id"].Value.ToString();
+                            this.Close();
+                        }
+                        else
+                            MessageBox.Show("Aucun element selectionné");
+                    else
+                        MessageBox.Show("Aucun element selectionné");
+                };
+            };
         }
 
         void refresh()
@@ -42,9 +59,10 @@ namespace ImmoSoft
 
             string[] nom = dt.AsEnumerable().Select<DataRow, string>(x => x.Field<string>("nom")).ToArray();
             string[] prenom = dt.AsEnumerable().Select<DataRow, string>(x => x.Field<string>("prenom")).ToArray();
+            //prenom.CopyTo(nom, nom.Length);
             string[] contact = dt.AsEnumerable().Select<DataRow, string>(x => x.Field<string>("contact")).ToArray();
             search.AutoCompleteCustomSource.AddRange(nom);
-            search.AutoCompleteCustomSource.AddRange(prenom);
+            //search.AutoCompleteCustomSource.AddRange(prenom);
             search.AutoCompleteCustomSource.AddRange(contact);
         }
         private void Clients_Load(object sender, EventArgs e)
@@ -54,7 +72,8 @@ namespace ImmoSoft
 
         private void search_TextChanged(object sender, EventArgs e)
         {
-            dgv1=com.searchPerson(search.Text, dgv1);
+            CurrencyManager man = (CurrencyManager)BindingContext[dgv1.DataSource];
+            dgv1=com.searchPerson(search.Text, dgv1, man);
         }
 
         private void button1_Click(object sender, EventArgs e)

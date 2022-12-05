@@ -57,9 +57,13 @@ namespace ImmoSoft.DB
             con.Open();
             MySqlDataAdapter da;
             string aa = "select champs.id,champs.section,champs.lot,champs.parcelle,champs.superficie," +
-                " demarcheur.nom,demarcheur.prenom,champs.idold, champs.idnew, iddemarcheur" +
+                " CONCAT(pro.nom,' ',pro.prenom) as Proprietaire," +
+                " CONCAT(cl.nom,' ',cl.prenom) as Client," +
+                " CONCAT(demarcheur.nom,' ',demarcheur.prenom) as Demarcheur," +
+                " champs.idold, champs.idnew, iddemarcheur" +
                 " from champs join demarcheur on demarcheur.id = champs.iddemarcheur" +
-                " join client on client.id=champs.idnew"+
+                " join client pro on pro.id=champs.idold" +
+                " join client cl on cl.id = champs.idnew"+
                 " where champs.etat=@etat and champs.deleted=0";
             if (siteid!="0")
             {
@@ -74,22 +78,6 @@ namespace ImmoSoft.DB
             DataTable ds = new DataTable();
             ds.BeginLoadData();
             da.Fill(ds);
-            //ds.Columns[5].ColumnName="Client";
-            //ds.Columns[7].ColumnName="Demarcheur";
-            /*
-            DB.client client= new DB.client();
-            ds.Columns.
-            if (ds.Rows.Count>0)
-                foreach (DataRow row in ds.Rows)
-                {
-                    DataRow dp = client.refresh(row["idold"].ToString()).Rows[0];
-                    DataRow dc = client.refresh(row["idnew"].ToString()).Rows[0];
-                    row["idold"]=dp["nom"].ToString()+" "+dp["prenom"].ToString(); 
-                    row["idnew"]=dc["nom"].ToString()+" "+dc["prenom"].ToString();
-                }
-            ds.Columns["idold"].ColumnName="Proprietaire";
-            ds.Columns["idnew"].ColumnName="Client";
-            */
             ds.EndLoadData();
 
             con.Close();
@@ -99,15 +87,20 @@ namespace ImmoSoft.DB
         {
             con.Open();
             string aa =
-                "select champs.id,champs.section,champs.lot,champs.parcelle,champs.superficie,client.nom,client.prenom," +
-                " demarcheur.nom, demarcheur.prenom, stock.idclient, stock.iddemarcheur" +
-                " from champs join client on client.id = stock.idclient" +
-                " join demarcheur on demarcheur.id = stock.iddemarcheur"+
+                "select champs.id,champs.section,champs.lot,champs.parcelle,champs.superficie," +
+                " CONCAT(pro.nom,' ',pro.prenom) as Proprietaire," +
+                " CONCAT(cl.nom,' ',cl.prenom) as Client," +
+                " CONCAT(demarcheur.nom,' ',demarcheur.prenom) as Demarcheur,"+
+                " champs.idold, champs.iddemarcheur, champs.idnew," +
+                " champs.montant, champs.reste, cloture from champs" +
+                " join client pro on pro.id=champs.idold" +
+                " join client cl on cl.id = champs.idnew"+
+                " join demarcheur on demarcheur.id = champs.iddemarcheur"+
                 " where champs.etat=@etat and champs.deleted=0";
 
             if (siteid!="0")
             {
-                aa+= " and stock.siteid=@siteid";
+                aa+= " and champs.siteid=@siteid";
             }
             MySqlDataAdapter da = new MySqlDataAdapter(aa, con);
             da.SelectCommand.Parameters.Add("@etat", MySqlDbType.VarChar).Value=etat;
@@ -119,16 +112,6 @@ namespace ImmoSoft.DB
             DataTable ds = new DataTable();
             ds.BeginLoadData();
             da.Fill(ds);
-            ds.Columns[5].ColumnName="Client";
-            ds.Columns[7].ColumnName="Demarcheur";
-            if (ds.Rows.Count>0)
-                foreach (DataRow row in ds.Rows)
-                {
-                    row[5]=row[5]+" "+row[6];
-                    row[7]=row[7]+" "+row[8];
-                }
-            ds.Columns.RemoveAt(8);
-            ds.Columns.RemoveAt(6);
             ds.EndLoadData();
 
             con.Close();
@@ -238,6 +221,32 @@ namespace ImmoSoft.DB
                 return false;
             }
         }
+        public bool update(string id, string idnew, string iddemarcheur,
+            string montant, string prix, string reste, string etat, string usage)
+        {
+            try
+            {
+                con.Open();
+                cmd = new MySqlCommand("update champs set idnew=@idnew,iddemarcheur=@iddemarcheur, montant=@montant," +
+                    "prix=@prix, reste=@reste,etat=@etat where id=@id", con);
+                cmd.Parameters.Add("@id", MySqlDbType.Int32).Value=id;
+                cmd.Parameters.Add("@idnew", MySqlDbType.Int32).Value=idnew;
+                cmd.Parameters.Add("@iddemarcheur", MySqlDbType.Int32).Value=iddemarcheur;
+                cmd.Parameters.Add("@montant", MySqlDbType.Decimal).Value=montant;
+                cmd.Parameters.Add("@prix", MySqlDbType.Decimal).Value=prix;
+                cmd.Parameters.Add("@reste", MySqlDbType.Decimal).Value=reste;
+                cmd.Parameters.Add("@etat", MySqlDbType.VarChar).Value=etat;
+                cmd.Parameters.Add("@usage", MySqlDbType.VarChar).Value=usage;
+                cmd.ExecuteNonQuery();
+                con.Close();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return false;
+            }
+        }
         public bool setDemarcheur(string id, string iddemarcheur)
         {
             try
@@ -292,6 +301,44 @@ namespace ImmoSoft.DB
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+                return false;
+            }
+        }
+        public bool delete(string id)
+        {
+            try
+            {
+                con.Open();
+
+                cmd = new MySqlCommand("update champs set deleted=1 where id=@id", con);
+                cmd.Parameters.Add("@id", MySqlDbType.Int32).Value = id;
+                cmd.ExecuteNonQuery();
+                con.Close();
+                return true;
+
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.ToString());
+                return false;
+            }
+        }
+        public bool cloturer(string id)
+        {
+            try
+            {
+                con.Open();
+
+                cmd = new MySqlCommand("update champs set cloture=1 where id=@id", con);
+                cmd.Parameters.Add("@id", MySqlDbType.Int32).Value = id;
+                cmd.ExecuteNonQuery();
+                con.Close();
+                return true;
+
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.ToString());
                 return false;
             }
         }

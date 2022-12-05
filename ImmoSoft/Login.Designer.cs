@@ -57,7 +57,7 @@
             this.username.Location = new System.Drawing.Point(95, 201);
             this.username.Name = "username";
             this.username.Size = new System.Drawing.Size(276, 29);
-            this.username.TabIndex = 1;
+            this.username.TabIndex = 0;
             // 
             // password
             // 
@@ -126,9 +126,9 @@
             this.panel1.Controls.Add(this.panel2);
             this.panel1.Controls.Add(this.annuler);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel1.Location = new System.Drawing.Point(477, 5);
+            this.panel1.Location = new System.Drawing.Point(475, 5);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(500, 543);
+            this.panel1.Size = new System.Drawing.Size(500, 540);
             this.panel1.TabIndex = 4;
             // 
             // panel2
@@ -145,7 +145,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(40)))), ((int)(((byte)(45)))));
-            this.ClientSize = new System.Drawing.Size(982, 553);
+            this.ClientSize = new System.Drawing.Size(980, 550);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);

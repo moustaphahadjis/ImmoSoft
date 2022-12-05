@@ -102,6 +102,38 @@ namespace ImmoSoft.DB
                 return false;
             }
         }
+        public bool annulerVente(string action, string idstock, string idnew,
+            string iddemarcheur, string prix, string montant, string reste, string usage)
+        {
+            try
+            {
+                con.Open();
+                cmd=new MySqlCommand("update historique set deleted='1' where idstock=@idstock and idnew=@idnew", con);
+                cmd.Parameters.Add("@idstock", MySqlDbType.Int32).Value = idstock;
+                cmd.Parameters.Add("@idnew", MySqlDbType.Int32).Value = idnew;
+                cmd.ExecuteNonQuery();
+
+
+                cmd = new MySqlCommand("insert into historique (idstock, action, prix, montant,reste, type_usage," +
+                    "idnew, iddemarcheur) Values (@idstock,@action,@prix,@montant,@reste,@usage, @idnew,@iddemarcheur)", con);
+                cmd.Parameters.Add("@idstock", MySqlDbType.Int32).Value = idstock;
+                cmd.Parameters.Add("@action", MySqlDbType.VarChar).Value = action;
+                cmd.Parameters.Add("@prix", MySqlDbType.Decimal).Value = prix;
+                cmd.Parameters.Add("@montant", MySqlDbType.Decimal).Value = montant;
+                cmd.Parameters.Add("@reste", MySqlDbType.Decimal).Value = reste;
+                cmd.Parameters.Add("@usage", MySqlDbType.VarChar).Value = usage;
+                cmd.Parameters.Add("@idnew", MySqlDbType.Int32).Value = idnew;
+                cmd.Parameters.Add("@iddemarcheur", MySqlDbType.Int32).Value = iddemarcheur;
+                cmd.ExecuteNonQuery();
+                con.Close();
+                return true;
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.ToString());
+                return false;
+            }
+        }
         public int getLast()
         {
             try

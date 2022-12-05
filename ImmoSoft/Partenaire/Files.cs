@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Office.Interop.Excel;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -34,7 +35,7 @@ namespace ImmoSoft
             }
             
         }
-        void refresh(DataTable dt)
+        void refresh(System.Data.DataTable dt)
         {
             dgv1.DataSource=dt;
         }
@@ -79,17 +80,15 @@ namespace ImmoSoft
                     DataRow site = si.refresh(parcelle["siteid"].ToString()).Rows[0];
                 if (nom.ToLower().Contains("attestation"))
                 {
-                    printer.attestation(
-                        client["nom"].ToString(), client["prenom"].ToString(), client["matrimonial"].ToString(),
-                        client["piece"]+" n "+client["numero"]+" du "+client["delivrance"],
-                        client["addresse"].ToString(), client["profession"].ToString(), client["contact"].ToString(),
-                        site["ville"].ToString(), site["nom"].ToString(),
-                        parcelle["section"].ToString(), parcelle["lot"].ToString(), parcelle["parcelle"].ToString(), parcelle["type_usage"].ToString(),
-                        parcelle["superficie"].ToString(), parcelle["id"].ToString());
+                    Waiting wait = new Waiting(client,site,parcelle, true);
+                    wait.ShowDialog();
                     refresh(printer.refresh(nom,idstock,idchamps));
                 }
                 else if (nom.ToLower().Contains("fiche"))
                 {
+                    Waiting wait = new Waiting(client, site, parcelle, false);
+                    wait.ShowDialog();
+                    /*
                     printer.fiche(
                         client["nom"].ToString(), client["prenom"].ToString(), client["matrimonial"].ToString(),
                         client["piece"]+" n "+client["numero"]+" du "+client["delivrance"],
@@ -97,6 +96,7 @@ namespace ImmoSoft
                         site["ville"].ToString(), site["nom"].ToString(),
                         parcelle["section"].ToString(), parcelle["lot"].ToString(), parcelle["parcelle"].ToString(), parcelle["type_usage"].ToString(),
                         parcelle["superficie"].ToString(), parcelle["id"].ToString());
+                    */
                     refresh(printer.refresh(nom, idstock, idchamps));
                 }
             }
@@ -115,6 +115,11 @@ namespace ImmoSoft
                         MessageBoxButtons.YesNo, MessageBoxIcon.Question)==DialogResult.Yes)
                         printer.delete(dgv1.SelectedRows[0].Cells["id"].Value.ToString());
                 }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

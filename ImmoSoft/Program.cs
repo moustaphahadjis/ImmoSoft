@@ -28,7 +28,7 @@ namespace ImmoSoft
                     MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
-            Form objMyForm = new Form1();
+            Form objMyForm = new Login();
             objMyForm.ShowDialog();
         }
 

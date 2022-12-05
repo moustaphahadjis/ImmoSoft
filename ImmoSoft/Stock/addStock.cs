@@ -19,6 +19,8 @@ namespace ImmoSoft
         public addStock()
         {
             InitializeComponent();
+            combobox.Text=Properties.Settings.Default.site;
+            siteid=Properties.Settings.Default.siteid;
         }
         public addStock(string stockID)
         {
@@ -32,6 +34,7 @@ namespace ImmoSoft
             section.Text=row["section"].ToString();
             prcle.Text=row["parcelle"].ToString();
             spf.Text=row["superficie"].ToString();
+            siteid=row["siteid"].ToString();
         }
         private void addStock_Load(object sender, EventArgs e)
         {
@@ -60,7 +63,6 @@ namespace ImmoSoft
                     if (com.isNumber(lot.Text.Trim())
                             && com.isNumber(spf.Text.Trim()))
                     {
-                        DB.site ste = new site();
                         DB.stock stock = new stock();
 
                         if (stockid==null)
@@ -77,9 +79,10 @@ namespace ImmoSoft
             this.Close();
         }
 
-
-        private void site_SelectedIndexChanged(object sender, EventArgs e)
+        private void combobox_TextChanged(object sender, EventArgs e)
         {
+            if(!String.IsNullOrEmpty(combobox.Text))
+                if(dtsite!=null)
             if (dtsite.Rows.Count>0)
                 foreach (DataRow row in dtsite.Rows)
                 {
