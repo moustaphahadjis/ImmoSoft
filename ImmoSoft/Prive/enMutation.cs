@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ImmoSoft.DB;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -14,6 +15,7 @@ namespace ImmoSoft
     {
         DataTable sitedt;
         string selectedSite = "0";
+        DB.common com = new DB.common();
         public enMutation()
         {
             InitializeComponent();
@@ -164,6 +166,13 @@ namespace ImmoSoft
                         }
 
                     }
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            CurrencyManager man = (CurrencyManager)BindingContext[dgv1.DataSource];
+            dgv1=com.searchClient(textBox1.Text, dgv1, man);
+
         }
     }
 }

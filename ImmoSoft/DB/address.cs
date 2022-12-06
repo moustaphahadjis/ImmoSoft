@@ -19,7 +19,7 @@ namespace ImmoSoft.DB
         public string getAddress()
         {
             //return "datasource=" + address + ";port=3306;username="+user+"; password="+pass+ ";database=ayinde2;";
-            return "datasource=" + ip + ";port=3306;username=" + user + "; password=" + pass + ";database=fasocheval;";
+            return "datasource=" + ip + ";port=3306;username=" + user + "; password=" + pass + ";database=immosoft;";
         }
 
     }

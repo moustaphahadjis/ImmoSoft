@@ -14,6 +14,7 @@ namespace ImmoSoft
     {
         DataTable sitedt;
         string selectedSite = "0";
+        DB.common com = new DB.common();
         public Mutees()
         {
             InitializeComponent(); 
@@ -156,6 +157,12 @@ namespace ImmoSoft
                     {
                         MessageBox.Show("Cette mutation a déjà été cloturée");
                     }
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            CurrencyManager man = (CurrencyManager)BindingContext[dgv1.DataSource];
+            dgv1=com.searchClient(textBox1.Text, dgv1, man);
         }
     }
 }

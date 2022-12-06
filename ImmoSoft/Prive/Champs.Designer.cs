@@ -38,8 +38,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.search = new System.Windows.Forms.ComboBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
             this.dgv1 = new ImmoSoft.DGV();
             this.choisir = new System.Windows.Forms.Button();
@@ -119,7 +117,7 @@
             this.button7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button7.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button7.ForeColor = System.Drawing.Color.White;
-            this.button7.Location = new System.Drawing.Point(694, 484);
+            this.button7.Location = new System.Drawing.Point(694, 393);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(266, 45);
             this.button7.TabIndex = 0;
@@ -152,45 +150,13 @@
             // groupBox2
             // 
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox2.Controls.Add(this.button4);
-            this.groupBox2.Controls.Add(this.button5);
             this.groupBox2.Controls.Add(this.button6);
             this.groupBox2.Location = new System.Drawing.Point(688, 298);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(278, 191);
+            this.groupBox2.Size = new System.Drawing.Size(278, 89);
             this.groupBox2.TabIndex = 13;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Options";
-            // 
-            // button4
-            // 
-            this.button4.BackColor = System.Drawing.Color.DarkSlateGray;
-            this.button4.FlatAppearance.BorderSize = 0;
-            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button4.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button4.ForeColor = System.Drawing.Color.White;
-            this.button4.Location = new System.Drawing.Point(6, 135);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(266, 45);
-            this.button4.TabIndex = 0;
-            this.button4.Text = "Assigner Client";
-            this.button4.UseVisualStyleBackColor = false;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
-            // 
-            // button5
-            // 
-            this.button5.BackColor = System.Drawing.Color.DarkSlateGray;
-            this.button5.FlatAppearance.BorderSize = 0;
-            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button5.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button5.ForeColor = System.Drawing.Color.White;
-            this.button5.Location = new System.Drawing.Point(6, 84);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(266, 45);
-            this.button5.TabIndex = 0;
-            this.button5.Text = "Assigner demarcheur";
-            this.button5.UseVisualStyleBackColor = false;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // button6
             // 
@@ -235,7 +201,7 @@
             this.dgv1.RowHeadersWidth = 51;
             this.dgv1.RowTemplate.Height = 24;
             this.dgv1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv1.Size = new System.Drawing.Size(664, 646);
+            this.dgv1.Size = new System.Drawing.Size(664, 546);
             this.dgv1.TabIndex = 14;
             // 
             // choisir
@@ -260,7 +226,7 @@
             this.Compteur.Controls.Add(this.nbpar);
             this.Compteur.Controls.Add(this.nblot);
             this.Compteur.Controls.Add(this.label2);
-            this.Compteur.Location = new System.Drawing.Point(688, 546);
+            this.Compteur.Location = new System.Drawing.Point(688, 458);
             this.Compteur.Name = "Compteur";
             this.Compteur.Size = new System.Drawing.Size(272, 109);
             this.Compteur.TabIndex = 15;
@@ -311,7 +277,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(982, 693);
+            this.ClientSize = new System.Drawing.Size(982, 606);
             this.Controls.Add(this.button7);
             this.Controls.Add(this.Compteur);
             this.Controls.Add(this.groupBox1);
@@ -343,8 +309,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox search;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button6;
         private DGV dgv1;
         private System.Windows.Forms.Button choisir;

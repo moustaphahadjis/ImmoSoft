@@ -90,5 +90,41 @@ namespace ImmoSoft.DB
             }
             return dgv;
         }
+
+        public DGV searchClient(string tmp, DGV dgv, CurrencyManager man)
+        {
+            try
+            {
+
+                if (dgv.Rows.Count>1)
+                {
+                    foreach (DataGridViewRow row in dgv.Rows)
+                    {
+
+                        if (row.Cells["Client"].Value.ToString().ToUpper().Contains(tmp.ToUpper()))
+                        {
+                            man.SuspendBinding();
+                            row.Visible = true;
+                            man.ResumeBinding();
+                            dgv.FirstDisplayedScrollingRowIndex = row.Index;
+
+                        }
+                        else
+                        {
+                            man.SuspendBinding();
+                            row.Visible = false;
+                            man.ResumeBinding();
+                            row.Selected = false;
+                        }
+                    }
+                }
+                dgv.FirstDisplayedScrollingRowIndex = 0;
+            }
+            catch (Exception e)
+            {
+
+            }
+            return dgv;
+        }
     }
 }

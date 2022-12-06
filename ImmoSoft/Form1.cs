@@ -29,6 +29,8 @@ namespace ImmoSoft
             {
                 activeForm.Close();
             }
+            if( mainPanel.Contains(madeby))
+                mainPanel.Controls.Remove(madeby);
             activeForm = newForm;
             activeForm.FormBorderStyle = FormBorderStyle.None;
             activeForm.BackColor = mainPanel.BackColor;

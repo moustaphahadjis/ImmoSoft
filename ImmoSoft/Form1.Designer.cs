@@ -487,9 +487,9 @@
             this.madeby.BackColor = System.Drawing.Color.Transparent;
             this.madeby.Image = global::ImmoSoft.Properties.Resources.T_TechMaker_madeby;
             this.madeby.InitialImage = null;
-            this.madeby.Location = new System.Drawing.Point(295, 168);
+            this.madeby.Location = new System.Drawing.Point(334, 178);
             this.madeby.Name = "madeby";
-            this.madeby.Size = new System.Drawing.Size(500, 500);
+            this.madeby.Size = new System.Drawing.Size(400, 400);
             this.madeby.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.madeby.TabIndex = 0;
             this.madeby.TabStop = false;

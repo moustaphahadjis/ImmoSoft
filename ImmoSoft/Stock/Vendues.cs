@@ -15,6 +15,7 @@ namespace ImmoSoft
     {
         DataTable sitedt;
         string selectedSite = "0";
+        DB.common com = new DB.common();
         public Vendues()
         {
             InitializeComponent();
@@ -153,7 +154,7 @@ namespace ImmoSoft
         {
             if (dgv1.Rows.Count>0)
                 if (dgv1.SelectedRows.Count>0)
-                    if (dgv1.SelectedRows[0].Cells["cloture"].Value.ToString()=="0")
+                    if (dgv1.SelectedRows[0].Cells["cloture"].Value.ToString()==false.ToString())
                     {
                         Cloture clo = new Cloture(dgv1.SelectedRows[0].Cells["id"].Value.ToString(), false);
                         clo.ShowDialog();
@@ -162,6 +163,12 @@ namespace ImmoSoft
                     {
                         MessageBox.Show("Cette vente a déjà été cloturée");
                     }
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            CurrencyManager man = (CurrencyManager)BindingContext[dgv1.DataSource];
+            dgv1=com.searchClient(textBox1.Text, dgv1, man);
         }
     }
 }

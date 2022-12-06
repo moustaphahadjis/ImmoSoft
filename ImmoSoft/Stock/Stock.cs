@@ -217,5 +217,19 @@ namespace ImmoSoft
             else
                 MessageBox.Show("Aucun element selectionné");
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            Demarcheurs tmp = new Demarcheurs(true);
+            tmp.FormClosing+=(s, args) =>
+            {
+                DB.stock stock = new DB.stock();
+                string did = tmp.id;
+                if(!String.IsNullOrEmpty(did))
+                    stock.setDemarcheur(dgv1.SelectedRows[0].Cells["id"].Value.ToString(),did);
+                this.refresh();
+            };
+            tmp.ShowDialog();
+        }
     }
 }
