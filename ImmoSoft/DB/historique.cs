@@ -58,7 +58,7 @@ namespace ImmoSoft.DB
             string com = "select historique.id,stock.lot,stock.parcelle,stock.superficie," +
                 " client.nom, client.prenom, client.contact," +
                 " historique.action," +
-                " stock.prix, stock.montant, stock.reste," +
+                " historique.prix, historique.montant, historique.reste," +
                 " historique.date from historique" +
                 " join stock on stock.id = historique.id" +
                 " join client on client.id = historique.idclient" +

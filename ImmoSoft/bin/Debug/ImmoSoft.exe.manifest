@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <asmv1:assembly xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" manifestVersion="1.0" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:co.v1="urn:schemas-microsoft-com:clickonce.v1" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:co.v2="urn:schemas-microsoft-com:clickonce.v2">
-  <asmv1:assemblyIdentity name="ImmoSoft.exe" version="1.0.0.8" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
+  <asmv1:assemblyIdentity name="ImmoSoft.exe" version="1.0.0.10" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
+  <description asmv2:iconFile="Immosoftico.ico" xmlns="urn:schemas-microsoft-com:asm.v1" />
   <application />
   <entryPoint>
     <assemblyIdentity name="ImmoSoft" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
@@ -66,14 +67,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ImmoSoft.exe" size="5021632">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ImmoSoft.exe" size="5129664">
       <assemblyIdentity name="ImmoSoft" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>vNOVVJcFOdarDVuPiYhh09mLum2GQba9cUqeTkqFDjw=</dsig:DigestValue>
+        <dsig:DigestValue>T+PjF5rwBbyedYUyI5MLuwK61GU+kKK0TUeB6HG+m2w=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -240,6 +241,15 @@
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
       <dsig:DigestValue>0bw8bckW6ilJdsbH2lSrDKObBndRPGC2mnkNsSc0d9I=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Immosoftico.ico" size="107771">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>hvutpD7fcy0EeXXBODRisOLLsMAP0+6SCEZW4+fHfy0=</dsig:DigestValue>
     </hash>
   </file>
 </asmv1:assembly>

@@ -110,8 +110,13 @@ namespace ImmoSoft
             tmp.FormClosing+=(s, args) =>
             {
                 cid=tmp.id;
-                DB.client stock = new DB.client();
-                dgvC.DataSource=stock.refresh(cid);
+                if (!String.IsNullOrEmpty(cid))
+                {
+                    DB.client stock = new DB.client();
+                    dgvC.DataSource=stock.refresh(cid);
+                }
+                else
+                    cid="0";
             };
             tmp.ShowDialog();
         }
@@ -144,8 +149,13 @@ namespace ImmoSoft
             tmp.FormClosing+=(s, args) =>
             {
                 did=tmp.id;
-                DB.demarcheur demarcheur = new DB.demarcheur();
-                dgvD.DataSource=demarcheur.refresh(did);
+                if (!String.IsNullOrEmpty(did))
+                {
+                    DB.demarcheur demarcheur = new DB.demarcheur();
+                    dgvD.DataSource=demarcheur.refresh(did);
+                }
+                else
+                    did="0";
             };
             tmp.ShowDialog();
         }

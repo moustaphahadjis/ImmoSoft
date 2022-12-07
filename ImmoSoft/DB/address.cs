@@ -12,7 +12,7 @@ namespace ImmoSoft.DB
         string ip, user, pass;
         public address()
         {
-            ip = "localhost";
+            ip = "192.168.1.5";
             user = "root";
             pass = "";
         }
