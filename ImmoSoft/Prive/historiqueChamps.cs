@@ -16,5 +16,10 @@ namespace ImmoSoft
         {
             InitializeComponent();
         }
+
+        private void historiqueChamps_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

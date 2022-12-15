@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 
 namespace ImmoSoft
 {
@@ -15,6 +16,7 @@ namespace ImmoSoft
     {
         DataTable sitedt;
         string selectedSite = "0";
+        string user = "";
         DB.common com = new DB.common();
         public enMutation()
         {
@@ -22,11 +24,41 @@ namespace ImmoSoft
         }
         void refresh()
         {
-            DB.champs champs = new DB.champs();
+            DB.stock stock = new DB.stock();
             DataTable dt = new DataTable();
-            dt=champs.refreshVendue("En cours de Mutation", selectedSite);
+            dt=stock.refreshMutee("En cours de Mutation", selectedSite);
             dgv1.DataSource = dt;
             calculate();
+            user =Properties.Settings.Default.admin;
+
+            if (Properties.Settings.Default.admin.ToLower()=="caissiere")
+            {
+                groupBox2.Enabled=false;
+                groupBox3.Enabled=false;
+
+                groupBox2.Visible=false;
+                groupBox3.Visible=false;
+            }
+            else if (Properties.Settings.Default.admin.ToLower()=="secretaire")
+            {
+
+                groupBox2.Enabled=false;
+                groupBox3.Enabled=false;
+                button5.Enabled=false;
+
+                groupBox2.Visible=false;
+                groupBox3.Visible=false;
+                button5.Visible=false;
+
+            }
+            else if (Properties.Settings.Default.admin.ToLower()=="commercial")
+            {
+
+                groupBox2.Enabled=false;
+
+                groupBox2.Visible=false;
+
+            }
         }
         void refreshSite()
         {
@@ -155,10 +187,10 @@ namespace ImmoSoft
                         check.ShowDialog();
                         if (go)
                         {
-                            DB.champs champs = new DB.champs();
-                            DB.historiqueChamps hist = new DB.historiqueChamps();
+                            DB.stock stock = new DB.stock();
+                            DB.historique hist = new DB.historique();
                             string idclient = dgv1.SelectedRows[0].Cells["idclient"].Value.ToString();
-                            champs.update(dgv1.SelectedRows[0].Cells["id"].Value.ToString(),
+                            stock.update(dgv1.SelectedRows[0].Cells["id"].Value.ToString(),
                                 "0", "0", "0", "0", "0", "Disponible", "");
                             hist.annulerVente("Vente annulée", dgv1.SelectedRows[0].Cells["id"].Value.ToString(),
                                 idclient, "0", "0", "0", "0", "");

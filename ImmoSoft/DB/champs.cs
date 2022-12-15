@@ -9,12 +9,12 @@ using System.Windows.Forms;
 
 namespace ImmoSoft.DB
 {
-    internal class champs
+    internal class champsfe
     {
         MySqlConnection con;
         MySqlCommand cmd;
 
-        public champs()
+        public champsfe()
         {
             address add = new address();
             con = new MySqlConnection(add.getAddress());

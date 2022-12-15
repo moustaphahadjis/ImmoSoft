@@ -20,6 +20,32 @@ namespace ImmoSoft
         public enVente()
         {
             InitializeComponent();
+            if (Properties.Settings.Default.admin.ToLower()=="caissiere")
+            {
+                groupBox4.Enabled=false;
+
+                groupBox4.Visible=false;
+            }
+            else if (Properties.Settings.Default.admin.ToLower()=="secretaire")
+            {
+
+                groupBox2.Enabled=false;
+                groupBox3.Enabled=false;
+                groupBox4.Enabled=false;
+
+                groupBox2.Visible=false;
+                groupBox3.Visible=false;
+                groupBox4.Visible=false;
+
+            }
+            else if (Properties.Settings.Default.admin.ToLower()=="commercial")
+            {
+
+                groupBox2.Enabled=false;
+
+                groupBox2.Visible=false;
+
+            }
         }
         void refresh()
         {
@@ -117,8 +143,20 @@ namespace ImmoSoft
             if (dgv1.Rows.Count>0)
                 if (dgv1.SelectedRows.Count>0)
                 {
-                    historique hist = new historique(dgv1.SelectedRows[0].Cells["id"].Value.ToString());
-                    hist.ShowDialog();
+                    if (decimal.Parse(dgv1.SelectedRows[0].Cells["comReste"].Value.ToString())==0)
+                    {
+                        addCommission com = new addCommission(
+                            dgv1.SelectedRows[0].Cells["id"].Value.ToString(), search.Text, "stock");
+                        com.ShowDialog();
+                        /*
+                        historique hist = new historique(dgv1.SelectedRows[0].Cells["id"].Value.ToString());
+                        hist.ShowDialog();
+                        */
+                    }
+                    else
+                    {
+                        MessageBox.Show("Pas de commission ou commission dejà payée");
+                    }
                 }
         }
 
@@ -200,6 +238,21 @@ namespace ImmoSoft
         {
             CurrencyManager man = (CurrencyManager)BindingContext[dgv1.DataSource];
             dgv1=com.searchClient(textBox1.Text, dgv1, man);
+        }
+
+        private void groupBox3_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            if (dgv1.Rows.Count>0)
+                if (dgv1.SelectedRows.Count>0)
+                {
+                    Files file = new Files("acte", dgv1.SelectedRows[0].Cells["id"].Value.ToString(), "stock");
+                    file.ShowDialog();
+                }
         }
     }
 }

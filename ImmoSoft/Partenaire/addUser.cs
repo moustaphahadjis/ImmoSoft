@@ -31,6 +31,8 @@ namespace ImmoSoft
             username.Text=row["username"].ToString();
             contact.Text=row["contact"].ToString();
             admin.Text=row["admin"].ToString();
+            if (admin.Text.ToLower()!="admin")
+                admin.Enabled=false;
         }
 
         private void label9_Click(object sender, EventArgs e)
@@ -69,12 +71,13 @@ namespace ImmoSoft
             else
                 {
                     if (!user.usernameExist(username.Text,id))
-                        if (password.Text.Length>8)
+                        if (password.Text.Length>=4)
                             if (password.Text==password2.Text)
                             {
 
 
-                                user.insert(nom.Text.TrimEnd().TrimStart(),
+                                user.update(Properties.Settings.Default.id,
+                                    nom.Text.TrimEnd().TrimStart(),
                                     prenom.Text.TrimEnd().TrimStart(),
                                     addresse.Text.TrimEnd().TrimStart(),
                                     contact.Text.TrimEnd().TrimStart(),
@@ -82,7 +85,7 @@ namespace ImmoSoft
                                     password.Text.TrimEnd().TrimStart(),
                                     admin.Text);
                                 done=true;
-                                MessageBox.Show("Utilisateur inséré avec succès");
+                                MessageBox.Show("Utilisateur modifié avec succès");
 
                             }
                 }
@@ -93,6 +96,11 @@ namespace ImmoSoft
         private void addUser_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

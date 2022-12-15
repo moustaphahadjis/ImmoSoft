@@ -56,12 +56,15 @@ namespace ImmoSoft.DB
         {
             con.Open();
             string com = "select historique.id,stock.lot,stock.parcelle,stock.superficie," +
-                " client.nom, client.prenom, client.contact," +
-                " historique.action," +
+                " CONCAT (client.nom,' ', client.prenom) as Client, client.contact," +
+                " CONCAT (demarcheur.nom,' ', demarcheur.prenom) as demarcheur,historique.action," +
                 " historique.prix, historique.montant, historique.reste," +
-                " historique.date from historique" +
+                " historique.date," +
+                " CONCAT (user.nom,' ', user.prenom) as Utilisateur from historique" +
                 " join stock on stock.id = historique.id" +
                 " join client on client.id = historique.idclient" +
+                " join user on user.id = historique.iduser" +
+                " join demarcheur on demarcheur.id = historique.iddemarcheur" +
                 " where historique.deleted=0 and historique.date between @from and @to";
             if (id!=null)
                 com+=" and stock.id='"+id+"'";
@@ -78,21 +81,24 @@ namespace ImmoSoft.DB
             return ds;
         }
         public bool add(string action, string idstock, string idclient,
-            string iddemarcheur, string prix, string montant, string reste, string usage)
+            string iddemarcheur, string prix, string montant, string reste,
+            string commission, string usage)
         {
             try
             {
                 con.Open();
-                cmd = new MySqlCommand("insert into historique (idstock, action, prix, montant,reste, type_usage," +
-                    "idclient, iddemarcheur) Values (@idstock,@action,@prix,@montant,@reste,@usage, @idclient,@iddemarcheur)", con);
+                cmd = new MySqlCommand("insert into historique (idstock, action, prix, montant,reste,commission, type_usage," +
+                    "idclient, iddemarcheur,iduser) Values (@idstock,@action,@prix,@montant,@reste,@commission,@usage, @idclient,@iddemarcheur,@iduser)", con);
                 cmd.Parameters.Add("@idstock", MySqlDbType.Int32).Value = idstock;
                 cmd.Parameters.Add("@action", MySqlDbType.VarChar).Value = action;
                 cmd.Parameters.Add("@prix", MySqlDbType.Decimal).Value = prix;
                 cmd.Parameters.Add("@montant", MySqlDbType.Decimal).Value = montant;
+                cmd.Parameters.Add("@commission", MySqlDbType.Decimal).Value = commission;
                 cmd.Parameters.Add("@reste", MySqlDbType.Decimal).Value = reste;
                 cmd.Parameters.Add("@usage", MySqlDbType.VarChar).Value = usage;
                 cmd.Parameters.Add("@idclient", MySqlDbType.Int32).Value = idclient;
                 cmd.Parameters.Add("@iddemarcheur", MySqlDbType.Int32).Value = iddemarcheur;
+                cmd.Parameters.Add("@iduser", MySqlDbType.Int32).Value = Properties.Settings.Default.id;
                 cmd.ExecuteNonQuery();
                 con.Close();
                 return true;
@@ -103,6 +109,37 @@ namespace ImmoSoft.DB
                 return false;
             }
         }
+        public bool add(string action, string idstock, string idclient,
+            string iddemarcheur, string prix, string montant, string reste,
+            string commission, string comreste, string usage)
+        {
+            try
+            {
+                con.Open();
+                cmd = new MySqlCommand("insert into historique (idstock, action, prix, montant,reste,commission, type_usage," +
+                    "idclient, iddemarcheur,iduser,comReste) Values (@idstock,@action,@prix,@montant,@reste,@commission,@usage, @idclient,@iddemarcheur,@iduser,@comreste)", con);
+                cmd.Parameters.Add("@idstock", MySqlDbType.Int32).Value = idstock;
+                cmd.Parameters.Add("@action", MySqlDbType.VarChar).Value = action;
+                cmd.Parameters.Add("@prix", MySqlDbType.Decimal).Value = prix;
+                cmd.Parameters.Add("@montant", MySqlDbType.Decimal).Value = montant;
+                cmd.Parameters.Add("@commission", MySqlDbType.Decimal).Value = commission;
+                cmd.Parameters.Add("@comreste", MySqlDbType.Decimal).Value = comreste;
+                cmd.Parameters.Add("@reste", MySqlDbType.Decimal).Value = reste;
+                cmd.Parameters.Add("@usage", MySqlDbType.VarChar).Value = usage;
+                cmd.Parameters.Add("@idclient", MySqlDbType.Int32).Value = idclient;
+                cmd.Parameters.Add("@iddemarcheur", MySqlDbType.Int32).Value = iddemarcheur;
+                cmd.Parameters.Add("@iduser", MySqlDbType.Int32).Value = Properties.Settings.Default.id;
+                cmd.ExecuteNonQuery();
+                con.Close();
+                return true;
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.ToString());
+                return false;
+            }
+        }
+
         public bool annulerVente(string action, string idstock, string idclient,
             string iddemarcheur, string prix, string montant, string reste, string usage)
         {
@@ -116,7 +153,7 @@ namespace ImmoSoft.DB
 
 
                 cmd = new MySqlCommand("insert into historique (idstock, action, prix, montant,reste, type_usage," +
-                    "idclient, iddemarcheur) Values (@idstock,@action,@prix,@montant,@reste,@usage, @idclient,@iddemarcheur)", con);
+                    "idclient, iddemarcheur,iduser) Values (@idstock,@action,@prix,@montant,@reste,@usage, @idclient,@iddemarcheur,@iduser)", con);
                 cmd.Parameters.Add("@idstock", MySqlDbType.Int32).Value = idstock;
                 cmd.Parameters.Add("@action", MySqlDbType.VarChar).Value = action;
                 cmd.Parameters.Add("@prix", MySqlDbType.Decimal).Value = prix;
@@ -125,6 +162,7 @@ namespace ImmoSoft.DB
                 cmd.Parameters.Add("@usage", MySqlDbType.VarChar).Value = usage;
                 cmd.Parameters.Add("@idclient", MySqlDbType.Int32).Value = idclient;
                 cmd.Parameters.Add("@iddemarcheur", MySqlDbType.Int32).Value = iddemarcheur;
+                cmd.Parameters.Add("@iduser", MySqlDbType.Int32).Value = Properties.Settings.Default.id;
                 cmd.ExecuteNonQuery();
                 con.Close();
                 return true;

@@ -38,18 +38,19 @@ namespace ImmoSoft
             }
             else
             {
-                DB.champs champs = new DB.champs();
-                dgvP.DataSource=champs.refresh(id);
+                DB.stock stock = new DB.stock();
+                dgvP.DataSource=stock.refresh(id);
                 DB.client client = new DB.client();
-                dgvC.DataSource=client.refresh(dgvP.Rows[0].Cells["idnew"].Value.ToString());
+                dgvC.DataSource=client.refresh(dgvP.Rows[0].Cells["idclient"].Value.ToString());
                 DB.demarcheur demarcheur = new DB.demarcheur();
                 dgvD.DataSource=demarcheur.refresh(dgvP.Rows[0].Cells["iddemarcheur"].Value.ToString());
 
-                DB.historiqueChamps hist = new DB.historiqueChamps();
+                DB.historique hist = new DB.historique();
                 dgvV.DataSource = hist.getVersement(id);
 
-                prix.Text=dgvP.Rows[0].Cells["prix"].Value.ToString();
-                montant.Text=dgvP.Rows[0].Cells["reste"].Value.ToString();
+                prix.Text=dgvP.Rows[0].Cells["mprix"].Value.ToString();
+                montant.Text=dgvP.Rows[0].Cells["mreste"].Value.ToString();
+                label1.Text= "Frais";
             }
         }
         bool check()
@@ -100,7 +101,7 @@ namespace ImmoSoft
                     DB.printer printer = new DB.printer();
                     string etat = "";
                     string action;
-
+                    bool vendue=false;
                     if(dgvV.Rows.Count==1)
                         action = "1er Versement";
                     else
@@ -113,6 +114,7 @@ namespace ImmoSoft
                     else
                     {
                         etat="Vendue";
+                        vendue= true;
                     }
 
                     if (stock.setVersement(id, (decimal.Parse(prix.Text.Trim())-decimal.Parse(reste.Text)).ToString(), reste.Text, etat))
@@ -120,21 +122,20 @@ namespace ImmoSoft
                         hist.add(action, id, dgvP.Rows[0].Cells["idclient"].Value.ToString(),
                             dgvP.Rows[0].Cells["iddemarcheur"].Value.ToString(),
                             prix.Text.Trim(), versement.Text.Trim(), reste.Text,
+                            dgvP.Rows[0].Cells["commission"].Value.ToString(),
                             dgvP.Rows[0].Cells["type_usage"].Value.ToString());
 
                         
                             Waiting wait = new Waiting(dgvP,dgvC,action,prix.Text,versement.Text,reste.Text);
                             wait.ShowDialog();
-
                         
-
                         this.Close();
                     }
                 }
                 else
                 {
-                    DB.champs champs = new DB.champs();
-                    DB.historiqueChamps hist = new DB.historiqueChamps();
+                    DB.stock stock = new DB.stock();
+                    DB.historique hist = new DB.historique();
                     DB.printer printer = new DB.printer();
                     string etat;
                     string action;
@@ -153,10 +154,10 @@ namespace ImmoSoft
                         etat="Mutée";
                     }
 
-                    if (champs.setVersement(id, (decimal.Parse(prix.Text.Trim())-decimal.Parse(reste.Text)).ToString(), reste.Text, etat))
+                    if (stock.setVersementPrive(id, (decimal.Parse(prix.Text.Trim())-decimal.Parse(reste.Text)).ToString(), reste.Text, etat))
                     {
                         hist.add(action, id, dgvP.Rows[0].Cells["idold"].Value.ToString(),
-                            dgvP.Rows[0].Cells["idnew"].Value.ToString(),
+                            dgvP.Rows[0].Cells["idclient"].Value.ToString(),
                             dgvP.Rows[0].Cells["iddemarcheur"].Value.ToString(),
                             prix.Text.Trim(), versement.Text.Trim(), reste.Text,
                             dgvP.Rows[0].Cells["type_usage"].Value.ToString());

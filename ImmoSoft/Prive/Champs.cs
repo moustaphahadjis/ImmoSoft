@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ImmoSoft.DB;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 
 namespace ImmoSoft
 {
@@ -15,22 +17,39 @@ namespace ImmoSoft
         bool choix = false;
         public string id;
         DataTable sitedt;
+        string user = "";
         string selectedSite = "0";
         public Champs()
         {
-            InitializeComponent();
+            InitializeComponent(); 
+            if (Properties.Settings.Default.admin.ToLower()=="secretaire")
+            {
+
+                groupBox2.Enabled=false;
+
+                groupBox2.Visible=false;
+
+            }
         }
         public Champs(bool Choix)
         {
             choix=true;
             InitializeComponent();
+            if (Properties.Settings.Default.admin.ToLower()=="secretaire")
+            {
+
+                groupBox2.Enabled=false;
+
+                groupBox2.Visible=false;
+
+            }
 
         }
         void refresh()
         {
-            DB.champs champs = new DB.champs();
+            DB.stock stock = new DB.stock();
             DataTable dt = new DataTable();
-            dt=champs.refreshStock("Disponible", selectedSite);
+            dt=stock.refreshPrive("Disponible", selectedSite);
             DataView view = dt.DefaultView;
             view.Sort = "lot ASC, parcelle ASC";
             dgv1.DataSource = view;
@@ -49,7 +68,14 @@ namespace ImmoSoft
                 choisir.Visible=false;
                 choisir.Enabled=false;
             }
+            user =Properties.Settings.Default.admin;
 
+            if (Properties.Settings.Default.admin.ToLower()=="caissiere")
+            {
+                groupBox2.Enabled=false;
+
+                groupBox2.Visible=false;
+            }
             calculate();
         }
         void refreshSite()
@@ -147,7 +173,7 @@ namespace ImmoSoft
                     Demarcheurs tmp = new Demarcheurs(true);
                     tmp.FormClosing+=(s, args) =>
                     {
-                        DB.champs stock = new DB.champs();
+                        DB.stock stock = new DB.stock();
                         if (tmp.id!=null)
                             if (stock.setDemarcheur(dgv1.SelectedRows[0].Cells["id"].Value.ToString(), tmp.id))
                             {
@@ -171,7 +197,7 @@ namespace ImmoSoft
                     Clients tmp = new Clients(true);
                     tmp.FormClosing+=(s, args) =>
                     {
-                        DB.champs stock = new DB.champs();
+                        DB.stock stock = new DB.stock();
                         if (stock.setClient(dgv1.SelectedRows[0].Cells["id"].Value.ToString(), tmp.id))
                         {
                             MessageBox.Show("Parcelle assignée avec succès");

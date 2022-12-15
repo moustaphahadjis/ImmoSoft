@@ -13,17 +13,20 @@ namespace ImmoSoft
 {
     public partial class Waiting : Form
     {
-        DataGridView dgv1, dgvP, dgvC;
+        DataGridView dgv1, dgvP, dgvC, dgvD;
         string name;
         int time;
         bool finish=false;
 
         //versement
         string action, prix, versement, reste;
-        bool payment = false, fiche = false, attribution = false;
-
+        bool payment = false, fiche = false, attribution = false, decharge=false, acte=false;
+        
         //attribution
         DataRow client, site, parcelle;
+
+        //decharge
+        string montant, sitenom;
         public Waiting(DataGridView dgv, string name)
         {
             InitializeComponent();
@@ -40,6 +43,22 @@ namespace ImmoSoft
             this.versement = versement;
             this.reste = reste;
             payment=true;
+        }
+        public Waiting(DataGridView dgvp, DataGridView dgvd, string montant,string site)
+        {
+            InitializeComponent();
+            dgvP=dgvp; dgvD=dgvd;
+            this.montant = montant;
+            this.sitenom=site;
+            decharge=true;
+        }
+        public Waiting(DataRow parcelle, DataRow client, string site)
+        {
+            InitializeComponent();
+            this.client = client;
+            this.parcelle= parcelle;
+            this.sitenom= site;
+            acte=true;
         }
         public Waiting(DataRow client, DataRow site, DataRow parcelle, bool attribution)
         {
@@ -93,21 +112,56 @@ namespace ImmoSoft
 
                 printer.attestation(
                     client["nom"].ToString(), client["prenom"].ToString(), client["matrimonial"].ToString(),
-                    client["piece"]+" n "+client["numero"]+" du "+client["delivrance"],
+                    client["piece"]+" n° "+client["numero"]+" du "+client["delivrance"],
                     client["addresse"].ToString(), client["profession"].ToString(), client["contact"].ToString(),
                     site["ville"].ToString(), site["nom"].ToString(),
                     parcelle["section"].ToString(), parcelle["lot"].ToString(), parcelle["parcelle"].ToString(), parcelle["type_usage"].ToString(),
                     parcelle["superficie"].ToString(), parcelle["id"].ToString());
+                finish= true;
             }
             else if(fiche)
             {
                 printer.fiche(
                     client["nom"].ToString(), client["prenom"].ToString(), client["matrimonial"].ToString(),
-                    client["piece"]+" n "+client["numero"]+" du "+client["delivrance"],
+                    client["piece"]+" n° "+client["numero"]+" du "+client["delivrance"],
                     client["addresse"].ToString(), client["profession"].ToString(), client["contact"].ToString(),
                     site["ville"].ToString(), site["nom"].ToString(),
                     parcelle["section"].ToString(), parcelle["lot"].ToString(), parcelle["parcelle"].ToString(), parcelle["type_usage"].ToString(),
                     parcelle["superficie"].ToString(), parcelle["id"].ToString());
+                finish= true;
+            }
+            else if(decharge)
+            {
+                printer.decharge(dgvD.Rows[0].Cells["nom"].Value.ToString(),
+                    dgvD.Rows[0].Cells["prenom"].Value.ToString(),
+                    dgvD.Rows[0].Cells["piece"].Value.ToString()+" n° "+
+                    dgvD.Rows[0].Cells["numero"].Value.ToString()+" du "+
+                    dgvD.Rows[0].Cells["delivrance"].Value.ToString(),
+                    dgvD.Rows[0].Cells["contact"].Value.ToString(),
+                    sitenom,
+                    dgvP.Rows[0].Cells["lot"].Value.ToString(),
+                    dgvP.Rows[0].Cells["parcelle"].Value.ToString(),
+                    dgvP.Rows[0].Cells["superficie"].Value.ToString(),
+                    dgvP.Rows[0].Cells["id"].Value.ToString(),
+                    montant);
+                finish= true;
+            }
+            else if (acte)
+            {
+                printer.acte(client["nom"].ToString()+" "+
+                    client["prenom"].ToString(),
+                    client["piece"].ToString()+" n° "+
+                    client["numero"].ToString()+" du "+
+                    client["delivrance"].ToString(), 
+                    sitenom,
+                    parcelle["lot"].ToString(),
+                    parcelle["parcelle"].ToString(),
+                    parcelle["superficie"].ToString(),
+                    parcelle["prix"].ToString(),
+                    parcelle["montant"].ToString(),
+                    parcelle["reste"].ToString(),
+                    parcelle["id"].ToString());
+                finish= true;
             }
             else
             {

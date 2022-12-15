@@ -9,12 +9,12 @@ using System.Data;
 
 namespace ImmoSoft.DB
 {
-    internal class historiqueChamps
+    internal class historiqueChampsnlk
     {
         MySqlConnection con;
         MySqlCommand cmd;
 
-        public historiqueChamps()
+        public historiqueChampsnlk()
         {
             address add = new address();
             con = new MySqlConnection(add.getAddress());

@@ -83,12 +83,13 @@
             this.cancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cancel.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cancel.ForeColor = System.Drawing.Color.White;
-            this.cancel.Location = new System.Drawing.Point(485, 594);
+            this.cancel.Location = new System.Drawing.Point(519, 711);
             this.cancel.Name = "cancel";
-            this.cancel.Size = new System.Drawing.Size(187, 52);
+            this.cancel.Size = new System.Drawing.Size(276, 52);
             this.cancel.TabIndex = 7;
-            this.cancel.Text = "Annuler vente";
+            this.cancel.Text = "Annuler Mutation";
             this.cancel.UseVisualStyleBackColor = false;
+            this.cancel.Click += new System.EventHandler(this.cancel_Click);
             // 
             // confirm
             // 
@@ -97,11 +98,11 @@
             this.confirm.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.confirm.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.confirm.ForeColor = System.Drawing.Color.White;
-            this.confirm.Location = new System.Drawing.Point(282, 594);
+            this.confirm.Location = new System.Drawing.Point(249, 711);
             this.confirm.Name = "confirm";
-            this.confirm.Size = new System.Drawing.Size(187, 52);
+            this.confirm.Size = new System.Drawing.Size(254, 52);
             this.confirm.TabIndex = 8;
-            this.confirm.Text = "Confirmer vente";
+            this.confirm.Text = "Confirmer Mutation";
             this.confirm.UseVisualStyleBackColor = false;
             this.confirm.Click += new System.EventHandler(this.confirm_Click);
             // 
@@ -131,9 +132,9 @@
             this.groupBox4.Controls.Add(this.label3);
             this.groupBox4.Controls.Add(this.label1);
             this.groupBox4.Controls.Add(this.label4);
-            this.groupBox4.Location = new System.Drawing.Point(12, 459);
+            this.groupBox4.Location = new System.Drawing.Point(18, 576);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(958, 116);
+            this.groupBox4.Size = new System.Drawing.Size(1003, 116);
             this.groupBox4.TabIndex = 2;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Details Payement";
@@ -265,7 +266,7 @@
             this.dgvC.RowHeadersWidth = 51;
             this.dgvC.RowTemplate.Height = 24;
             this.dgvC.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvC.Size = new System.Drawing.Size(800, 65);
+            this.dgvC.Size = new System.Drawing.Size(842, 92);
             this.dgvC.TabIndex = 2;
             // 
             // selectD
@@ -312,7 +313,7 @@
             this.dgvO.RowHeadersWidth = 51;
             this.dgvO.RowTemplate.Height = 24;
             this.dgvO.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvO.Size = new System.Drawing.Size(800, 65);
+            this.dgvO.Size = new System.Drawing.Size(842, 94);
             this.dgvO.TabIndex = 2;
             // 
             // selectC
@@ -334,9 +335,9 @@
             // 
             this.groupBox2.Controls.Add(this.dgvO);
             this.groupBox2.Controls.Add(this.selectC);
-            this.groupBox2.Location = new System.Drawing.Point(15, 158);
+            this.groupBox2.Location = new System.Drawing.Point(21, 185);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(958, 93);
+            this.groupBox2.Size = new System.Drawing.Size(1000, 122);
             this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Details Proprietaire";
@@ -385,16 +386,16 @@
             this.dgvP.RowHeadersWidth = 51;
             this.dgvP.RowTemplate.Height = 24;
             this.dgvP.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvP.Size = new System.Drawing.Size(800, 65);
+            this.dgvP.Size = new System.Drawing.Size(842, 92);
             this.dgvP.TabIndex = 2;
             // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.dgvC);
             this.groupBox3.Controls.Add(this.selectD);
-            this.groupBox3.Location = new System.Drawing.Point(9, 257);
+            this.groupBox3.Location = new System.Drawing.Point(15, 313);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(961, 95);
+            this.groupBox3.Size = new System.Drawing.Size(1003, 122);
             this.groupBox3.TabIndex = 4;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Details Client";
@@ -405,7 +406,7 @@
             this.groupBox1.Controls.Add(this.selectP);
             this.groupBox1.Location = new System.Drawing.Point(15, 57);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(958, 95);
+            this.groupBox1.Size = new System.Drawing.Size(1000, 122);
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Details Parcelle";
@@ -414,9 +415,9 @@
             // 
             this.groupBox5.Controls.Add(this.dgvD);
             this.groupBox5.Controls.Add(this.button1);
-            this.groupBox5.Location = new System.Drawing.Point(9, 358);
+            this.groupBox5.Location = new System.Drawing.Point(15, 441);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(961, 95);
+            this.groupBox5.Size = new System.Drawing.Size(1003, 122);
             this.groupBox5.TabIndex = 4;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Details Demarcheur";
@@ -450,7 +451,7 @@
             this.dgvD.RowHeadersWidth = 51;
             this.dgvD.RowTemplate.Height = 24;
             this.dgvD.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvD.Size = new System.Drawing.Size(800, 65);
+            this.dgvD.Size = new System.Drawing.Size(842, 92);
             this.dgvD.TabIndex = 2;
             // 
             // button1
@@ -475,7 +476,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(982, 47);
+            this.panel1.Size = new System.Drawing.Size(1033, 47);
             this.panel1.TabIndex = 11;
             // 
             // label10
@@ -493,7 +494,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(982, 673);
+            this.ClientSize = new System.Drawing.Size(1033, 800);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.cancel);
             this.Controls.Add(this.confirm);

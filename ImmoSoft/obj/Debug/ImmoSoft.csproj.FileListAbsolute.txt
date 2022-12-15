@@ -69,3 +69,5 @@ C:\Work\Software\ImmoSoft\ImmoSoft\bin\Debug\ImmoSoft.application
 C:\Work\Software\ImmoSoft\ImmoSoft\obj\Debug\ImmoSoft.exe.manifest
 C:\Work\Software\ImmoSoft\ImmoSoft\obj\Debug\ImmoSoft.application
 C:\Work\Software\ImmoSoft\ImmoSoft\obj\Debug\ImmoSoft.Cloture.resources
+C:\Work\Software\ImmoSoft\ImmoSoft\obj\Debug\ImmoSoft.commission.resources
+C:\Work\Software\ImmoSoft\ImmoSoft\obj\Debug\ImmoSoft.addCommission.resources

@@ -24,10 +24,10 @@ namespace ImmoSoft
                 {
 
                     pid=dgvP.Rows[0].Cells["id"].Value.ToString();
-                    prix.Text=dgvP.Rows[0].Cells["prix"].Value.ToString();
+                    prix.Text=dgvP.Rows[0].Cells["mprix"].Value.ToString();
                     usage.Text=dgvP.Rows[0].Cells["type_usage"].Value.ToString();
-                    vsmt.Text = dgvP.Rows[0].Cells["montant"].Value.ToString();
-                    rest.Text = dgvP.Rows[0].Cells["reste"].Value.ToString();
+                    vsmt.Text = dgvP.Rows[0].Cells["mmontant"].Value.ToString();
+                    rest.Text = dgvP.Rows[0].Cells["mreste"].Value.ToString();
 
                     if (dgvP.Rows[0].Cells["idold"].Value.ToString()!="0")
                     {
@@ -35,7 +35,9 @@ namespace ImmoSoft
                         DB.client client = new DB.client();
                         dgvO.DataSource=client.refresh(cid);
                     }
-                    if (dgvP.Rows[0].Cells["idnew"].Value.ToString()!="0")
+                    if (dgvP.Rows[0].Cells["idclient"].Value.ToString()!="0"
+                    && dgvP.Rows[0].Cells["idclient"].Value.ToString()!=
+                    dgvP.Rows[0].Cells["idold"].Value.ToString())
                     {
                         cid = dgvP.Rows[0].Cells["idnew"].Value.ToString();
                         DB.client client = new DB.client();
@@ -52,7 +54,7 @@ namespace ImmoSoft
             if (option=='P')
             {
                 pid = id;
-                DB.champs stock = new DB.champs();
+                DB.stock stock = new DB.stock();
                 dgvP.DataSource=stock.refresh(pid);
             }
             else if (option=='C')
@@ -78,8 +80,8 @@ namespace ImmoSoft
             st.FormClosing+=(s, args) =>
             {
                 pid=st.id;
-                DB.champs champs = new DB.champs();
-                dgvP.DataSource=champs.refresh(pid);
+                DB.stock stock = new DB.stock();
+                dgvP.DataSource=stock.refresh(pid);
             };
             st.ShowDialog();
         }
@@ -88,6 +90,8 @@ namespace ImmoSoft
             bool r = false;
             if (dgvP.Rows.Count>0 &&
                 dgvC.Rows.Count>0)
+                if (dgvP.Rows[0].Cells["idold"].Value.ToString()
+                    !=dgvC.Rows[0].Cells["id"].Value.ToString())
             {
                 decimal tmp = 0;
                 if (decimal.TryParse(rest.Text.Trim(), out tmp))
@@ -110,8 +114,8 @@ namespace ImmoSoft
         {
             if (check())
             {
-                DB.champs champs = new DB.champs();
-                DB.historiqueChamps hist = new DB.historiqueChamps();
+                DB.stock stock = new DB.stock();
+                DB.historique hist = new DB.historique();
                 string etat = "";
                 string action = "Mutation assignée";
                 //gerer le rang des versement
@@ -124,7 +128,7 @@ namespace ImmoSoft
                     etat="Mutée";
                 }
 
-                if (champs.mutation(pid,oid, cid, did, prix.Text.Trim(), vsmt.Text.Trim(), rest.Text, usage.Text, etat))
+                if (stock.mutation(pid,oid, cid, did, prix.Text.Trim(), vsmt.Text.Trim(), rest.Text, usage.Text, etat))
                 {
                     hist.add(action, pid, oid, cid, did, prix.Text.Trim(), vsmt.Text.Trim(), rest.Text, usage.Text);
                     /*
@@ -151,6 +155,11 @@ namespace ImmoSoft
         private void prix_TextChanged(object sender, EventArgs e)
         {
             calculate();
+        }
+
+        private void cancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
 
         private void selectD_Click(object sender, EventArgs e)

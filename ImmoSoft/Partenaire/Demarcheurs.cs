@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 
 namespace ImmoSoft
 {
@@ -18,6 +19,22 @@ namespace ImmoSoft
         public Demarcheurs()
         {
             InitializeComponent();
+            if (Properties.Settings.Default.admin.ToLower()=="caissiere")
+            {
+
+                option2.Enabled=false;
+
+                option2.Visible=false;
+
+            }
+            else if (Properties.Settings.Default.admin.ToLower()=="secretaire")
+            {
+
+                option2.Enabled=false;
+
+                option2.Visible=false;
+
+            }
         }
         public Demarcheurs(bool Choix)
         {

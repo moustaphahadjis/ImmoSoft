@@ -79,10 +79,8 @@ namespace ImmoSoft
                 if (dgv1.SelectedRows.Count>0)
                 {
                     Files file;
-                    if (dgv1.SelectedRows[0].Cells["idstock"].Value.ToString()=="0")
-                        file = new Files("attestation", dgv1.SelectedRows[0].Cells["idchamps"].Value.ToString(), "champs");
-                    else
-                        file = new Files("attestation", dgv1.SelectedRows[0].Cells["idstock"].Value.ToString(), "stock");
+                        file = new Files("attribution", dgv1.SelectedRows[0].Cells["idstock"].Value.ToString(),
+                            dgv1.SelectedRows[0].Cells["id"].Value.ToString(), "stock");
 
                     file.ShowDialog();
                 }

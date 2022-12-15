@@ -20,6 +20,8 @@ namespace ImmoSoft
         public addChamps()
         {
             InitializeComponent();
+            combobox.Text=Properties.Settings.Default.site;
+            siteid=Properties.Settings.Default.siteid;
         }
         public addChamps(string stockID)
         {
@@ -27,12 +29,17 @@ namespace ImmoSoft
             stockid = stockID;
             DB.stock st = new stock();
             DataRow row = st.refresh(stockid).Rows[0];
+            cid=row["idold"].ToString();
+            DB.client stock = new DB.client();
+            dgvC.DataSource=stock.refresh(cid);
 
             // site.Text = row["site"].ToString();
             lot.Text=row["lot"].ToString();
             section.Text=row["section"].ToString();
             prcle.Text=row["parcelle"].ToString();
             spf.Text=row["superficie"].ToString();
+            combobox.Text=Properties.Settings.Default.site;
+            siteid=Properties.Settings.Default.siteid;
         }
         void refresh()
         {
@@ -58,12 +65,12 @@ namespace ImmoSoft
                         && com.isNumber(spf.Text.Trim()))
                 {
                     DB.site ste = new site();
-                    DB.champs champs = new champs();
+                    DB.stock stock = new stock();
 
                     if (stockid==null)
-                        champs.add(siteid, section.Text, lot.Text, prcle.Text, spf.Text, "Disponible",cid);
+                        stock.add(siteid, section.Text, lot.Text, prcle.Text, spf.Text, "Disponible",cid);
                     else
-                        champs.update(stockid, siteid, section.Text, lot.Text, prcle.Text, spf.Text,cid);
+                        stock.update(stockid, siteid, section.Text, lot.Text, prcle.Text, spf.Text,cid);
                     this.Close();
                 }
         }
@@ -71,6 +78,11 @@ namespace ImmoSoft
         private void addChamps_Load(object sender, EventArgs e)
         {
             refresh();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
 
         private void selectP_Click(object sender, EventArgs e)

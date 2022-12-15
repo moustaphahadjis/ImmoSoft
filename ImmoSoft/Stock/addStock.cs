@@ -1,4 +1,6 @@
 ﻿using ImmoSoft.DB;
+using Microsoft.Office.Interop.Excel;
+using Microsoft.Office.Interop.Word;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,7 +16,7 @@ namespace ImmoSoft
 {
     public partial class addStock : Form
     {
-        DataTable dtsite;
+        System.Data.DataTable dtsite;
         string siteid, stockid;
         public addStock()
         {
@@ -55,23 +57,31 @@ namespace ImmoSoft
 
         private void button1_Click(object sender, EventArgs e)
         {
-                common com = new common();
-                if (!String.IsNullOrEmpty(lot.Text) &&
-                    !String.IsNullOrEmpty(combobox.Text) &&
-                    !String.IsNullOrEmpty(prcle.Text) &&
-                    !String.IsNullOrEmpty(spf.Text))
-                    if (com.isNumber(lot.Text.Trim())
-                            && com.isNumber(spf.Text.Trim()))
-                    {
-                        DB.stock stock = new stock();
+            common com = new common();
 
-                        if (stockid==null)
-                            stock.add(siteid, section.Text, lot.Text, prcle.Text, spf.Text, "Disponible");
-                        else
-                            stock.update(stockid, siteid, section.Text, lot.Text, prcle.Text, spf.Text);
-                        this.Close();
+            DB.historique hist = new DB.historique();
+            if (!String.IsNullOrEmpty(lot.Text) &&
+                !String.IsNullOrEmpty(combobox.Text) &&
+                !String.IsNullOrEmpty(prcle.Text) &&
+                !String.IsNullOrEmpty(spf.Text))
+                if (com.isNumber(lot.Text.Trim())
+                        && com.isNumber(spf.Text.Trim()))
+                {
+                    DB.stock stock = new stock();
+
+                    if (stockid==null)
+                    {
+                        stock.add(siteid, section.Text, lot.Text, prcle.Text, spf.Text, "Disponible");
+                        hist.add("Parcelle ajoutée", stock.getLast(), "0", "0", "0", "0", "0", "0", "");
                     }
-            
+                    else
+                    {
+                        stock.update(stockid, siteid, section.Text, lot.Text, prcle.Text, spf.Text);
+                        hist.add("Parcelle modifiée", stockid.ToString(), "0", "0", "0", "0", "0", "0", "");
+                    }
+                    this.Close();
+                }
+
         }
 
         private void button2_Click(object sender, EventArgs e)

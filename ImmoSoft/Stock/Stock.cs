@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 
 namespace ImmoSoft
 {
@@ -17,6 +18,7 @@ namespace ImmoSoft
         bool choix=false;
         public string id;
         DataTable sitedt;
+        string user = "";
         string selectedSite = "0";
         public Stock()
         {
@@ -58,6 +60,26 @@ namespace ImmoSoft
             {
                 choisir.Visible=false;
                 choisir.Enabled=false;
+            }
+            user=Properties.Settings.Default.admin.ToLower();
+
+            if (Properties.Settings.Default.admin.ToLower()=="caissiere")
+            {
+                groupBox2.Enabled=false;
+                groupBox3.Enabled=false;
+
+                groupBox2.Visible=false;
+                groupBox3.Visible=false;
+            }
+            else if (Properties.Settings.Default.admin.ToLower()=="secretaire")
+            {
+
+                groupBox2.Enabled=false;
+                groupBox3.Enabled=false;
+
+                groupBox2.Visible=false;
+                groupBox3.Visible=false;
+
             }
 
             calculate();
@@ -230,6 +252,17 @@ namespace ImmoSoft
                 this.refresh();
             };
             tmp.ShowDialog();
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            if (dgv1.Rows.Count>0)
+                if (dgv1.SelectedRows.Count>0)
+                    if (dgv1.SelectedRows[0].Cells["iddemarcheur"].Value.ToString()!="0")
+                {
+                    Files file = new Files("fiche", dgv1.SelectedRows[0].Cells["id"].Value.ToString(), "stock dispo");
+                    file.ShowDialog();
+                }
         }
     }
 }

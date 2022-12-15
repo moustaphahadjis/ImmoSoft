@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 
 namespace ImmoSoft
 {
@@ -23,11 +24,29 @@ namespace ImmoSoft
                 if (dgv1.Columns.Contains("cloture"))
                     dgv1.Columns["cloture"].Visible=true;
             };
+            if (Properties.Settings.Default.admin.ToLower()=="caissiere")
+            {
+                groupBox2.Enabled=false;
+                groupBox3.Enabled=false;
+
+                groupBox2.Visible=false;
+                groupBox3.Visible=false;
+            }
+            else if (Properties.Settings.Default.admin.ToLower()=="secretaire")
+            {
+
+                groupBox2.Enabled=false;
+                groupBox3.Enabled=false;
+
+                groupBox2.Visible=false;
+                groupBox3.Visible=false;
+
+            }
         }
         void refresh()
         {
-            DB.champs champs = new DB.champs();
-            dgv1.DataSource = champs.refreshVendue("Mutée", selectedSite);
+            DB.stock stock = new DB.stock();
+            dgv1.DataSource = stock.refreshMutee("Mutée", selectedSite);
 
             calculate();
         }

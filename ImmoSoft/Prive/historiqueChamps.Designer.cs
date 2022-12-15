@@ -157,6 +157,7 @@
             this.Controls.Add(this.dgv1);
             this.Name = "historiqueChamps";
             this.Text = "historiqueChamps";
+            this.Load += new System.EventHandler(this.historiqueChamps_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv1)).EndInit();

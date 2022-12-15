@@ -274,6 +274,113 @@ namespace ImmoSoft.DB
             }
         }
 
+        public bool decharge(string nom, string prenom, 
+            string identity, string contact,
+            string site, string lot, string parcelle,
+            string superficie, string idstock, string montant)
+        {
+            Word.Application app = new Word.Application();
+            convertir con = new convertir();
+            try
+            {
+                app.ShowAnimation = false;
+                app.Visible=false;
+                string filenum = (getLast("Decharge")+1).ToString();
+                string filename = @"Decharge n"+filenum+".docx";
+                string filepath = path + filename;
+                Word.Document doc = app.Documents.Open(path+@"Decharge.docx");
+
+                app.Selection.Find.Execute(FindText: "@num", ReplaceWith: filenum, Replace: Word.WdReplace.wdReplaceAll);
+                app.Selection.Find.Execute(FindText: "@nom", ReplaceWith: nom, Replace: Word.WdReplace.wdReplaceAll);
+                app.Selection.Find.Execute(FindText: "@prenom", ReplaceWith: prenom, Replace: Word.WdReplace.wdReplaceAll);
+                app.Selection.Find.Execute(FindText: "@motif", ReplaceWith: "vente", Replace: Word.WdReplace.wdReplaceAll);
+                app.Selection.Find.Execute(FindText: "@identity", ReplaceWith: identity, Replace: Word.WdReplace.wdReplaceAll);
+                app.Selection.Find.Execute(FindText: "@contact", ReplaceWith: contact, Replace: Word.WdReplace.wdReplaceAll);
+                app.Selection.Find.Execute(FindText: "@site", ReplaceWith: site, Replace: Word.WdReplace.wdReplaceAll);
+                app.Selection.Find.Execute(FindText: "@lot", ReplaceWith: lot, Replace: Word.WdReplace.wdReplaceAll);
+                app.Selection.Find.Execute(FindText: "@parcelle", ReplaceWith: parcelle, Replace: Word.WdReplace.wdReplaceAll);
+                app.Selection.Find.Execute(FindText: "@superficie", ReplaceWith: superficie, Replace: Word.WdReplace.wdReplaceAll);
+                app.Selection.Find.Execute(FindText: "@montant", ReplaceWith: montant, Replace: Word.WdReplace.wdReplaceAll);
+                app.Selection.Find.Execute(FindText: "@lettre", ReplaceWith: con.enLettre(montant), Replace: Word.WdReplace.wdReplaceAll);
+                app.Selection.Find.Execute(FindText: "@date", ReplaceWith: DateTime.Now.ToString("dd-MM-yyyy"), Replace: Word.WdReplace.wdReplaceAll);
+
+
+                doc.SaveAs2(filepath);
+
+                Object oMissing = System.Reflection.Missing.Value;
+                doc.ExportAsFixedFormat(filepath.Replace("docx", "pdf"), Word.WdExportFormat.wdExportFormatPDF, false,
+                    Word.WdExportOptimizeFor.wdExportOptimizeForPrint,
+                    Word.WdExportRange.wdExportAllDocument, 1, 1, Word.WdExportItem.wdExportDocumentContent, true, true,
+                    Word.WdExportCreateBookmarks.wdExportCreateHeadingBookmarks, true, true, false, ref oMissing);
+                doc.Close();
+                app.Quit();
+
+                save("decharge", filenum, filename.Replace("docx", "pdf"),
+                    new FileStream(filepath.Replace("docx", "pdf"), FileMode.Open, FileAccess.Read), idstock);
+
+                Process.Start(filepath.Replace("docx", "pdf"));
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                MessageBox.Show("Erreur lors de l'exportation");
+                return false;
+            }
+        }
+
+        public bool acte(string nomclient, string identity, string site,
+            string lot, string parcelle, string superficie, string prix,
+            string montant, string reste, string idstock)
+        {
+            Word.Application app = new Word.Application();
+            convertir con = new convertir();
+            try
+            {
+                app.ShowAnimation = false;
+                app.Visible=false;
+                string filenum = (getLast("Acte")+1).ToString();
+                string filename = @"Acte n"+filenum+".docx";
+                string filepath = path + filename;
+                Word.Document doc = app.Documents.Open(path+@"acte.docx");
+
+                app.Selection.Find.Execute(FindText: "@num", ReplaceWith: filenum, Replace: Word.WdReplace.wdReplaceAll);
+                app.Selection.Find.Execute(FindText: "@nomclient", ReplaceWith: nomclient, Replace: Word.WdReplace.wdReplaceAll);
+                app.Selection.Find.Execute(FindText: "@identity", ReplaceWith: identity, Replace: Word.WdReplace.wdReplaceAll);
+                app.Selection.Find.Execute(FindText: "@site", ReplaceWith: site, Replace: Word.WdReplace.wdReplaceAll);
+                app.Selection.Find.Execute(FindText: "@lot", ReplaceWith: lot, Replace: Word.WdReplace.wdReplaceAll);
+                app.Selection.Find.Execute(FindText: "@parcelle", ReplaceWith: parcelle, Replace: Word.WdReplace.wdReplaceAll);
+                app.Selection.Find.Execute(FindText: "@superficie", ReplaceWith: superficie, Replace: Word.WdReplace.wdReplaceAll);
+                app.Selection.Find.Execute(FindText: "@montant", ReplaceWith: montant, Replace: Word.WdReplace.wdReplaceAll);
+                app.Selection.Find.Execute(FindText: "@prix", ReplaceWith: prix, Replace: Word.WdReplace.wdReplaceAll);
+                app.Selection.Find.Execute(FindText: "@reste", ReplaceWith: reste, Replace: Word.WdReplace.wdReplaceAll);
+                app.Selection.Find.Execute(FindText: "@date", ReplaceWith: DateTime.Now.ToString("dd-MM-yyyy"), Replace: Word.WdReplace.wdReplaceAll);
+
+
+                doc.SaveAs2(filepath);
+
+                Object oMissing = System.Reflection.Missing.Value;
+                doc.ExportAsFixedFormat(filepath.Replace("docx", "pdf"), Word.WdExportFormat.wdExportFormatPDF, false,
+                    Word.WdExportOptimizeFor.wdExportOptimizeForPrint,
+                    Word.WdExportRange.wdExportAllDocument, 1, 1, Word.WdExportItem.wdExportDocumentContent, true, true,
+                    Word.WdExportCreateBookmarks.wdExportCreateHeadingBookmarks, true, true, false, ref oMissing);
+                doc.Close();
+                app.Quit();
+
+                save("acte", filenum, filename.Replace("docx", "pdf"),
+                    new FileStream(filepath.Replace("docx", "pdf"), FileMode.Open, FileAccess.Read), idstock);
+
+                Process.Start(filepath.Replace("docx", "pdf"));
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                MessageBox.Show("Erreur lors de l'exportation");
+                return false;
+            }
+        }
+
         public bool save(string type,string num, string nom, FileStream file, string idstock)
         {
             try

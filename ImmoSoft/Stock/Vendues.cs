@@ -24,6 +24,32 @@ namespace ImmoSoft
                 if (dgv1.Columns.Contains("cloture"))
                     dgv1.Columns["cloture"].Visible=true;
             };
+            if (Properties.Settings.Default.admin.ToLower()=="caissiere")
+            {
+                groupBox3.Enabled=false;
+
+                groupBox3.Visible=false;
+            }
+            else if (Properties.Settings.Default.admin.ToLower()=="secretaire")
+            {
+
+                groupBox2.Enabled=false;
+                groupBox3.Enabled=false;
+                groupBox4.Enabled=false;
+
+                groupBox2.Visible=false;
+                groupBox3.Visible=false;
+                groupBox4.Visible=false;
+
+            }
+            else if (Properties.Settings.Default.admin.ToLower()=="commercial")
+            {
+
+                groupBox4.Enabled=false;
+
+                groupBox4.Visible=false;
+
+            }
         }
         void refresh()
         {
@@ -126,16 +152,6 @@ namespace ImmoSoft
                 }
         }
 
-        private void button4_Click(object sender, EventArgs e)
-        {
-            if(dgv1.Rows.Count>0)
-                if(dgv1.SelectedRows.Count>0)
-                {
-                    Files file = new Files("attestation", dgv1.SelectedRows[0].Cells["id"].Value.ToString(), "stock");
-                    file.ShowDialog();
-                }
-        }
-
         private void search_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (sitedt.Rows.Count>0)
@@ -158,6 +174,7 @@ namespace ImmoSoft
                     {
                         Cloture clo = new Cloture(dgv1.SelectedRows[0].Cells["id"].Value.ToString(), false);
                         clo.ShowDialog();
+                        refresh();
                     }
                     else
                     {
@@ -169,6 +186,28 @@ namespace ImmoSoft
         {
             CurrencyManager man = (CurrencyManager)BindingContext[dgv1.DataSource];
             dgv1=com.searchClient(textBox1.Text, dgv1, man);
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            if (dgv1.Rows.Count>0)
+                if (dgv1.SelectedRows.Count>0)
+                {
+                    if (decimal.Parse(dgv1.SelectedRows[0].Cells["comReste"].Value.ToString())==0)
+                    {
+                        addCommission com = new addCommission(
+                            dgv1.SelectedRows[0].Cells["id"].Value.ToString(), search.Text, "stock");
+                        com.ShowDialog();
+                        /*
+                        historique hist = new historique(dgv1.SelectedRows[0].Cells["id"].Value.ToString());
+                        hist.ShowDialog();
+                        */
+                    }
+                    else
+                    {
+                        MessageBox.Show("Pas de commission ou commission dejà payée");
+                    }
+                }
         }
     }
 }

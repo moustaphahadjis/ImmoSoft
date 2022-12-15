@@ -18,6 +18,8 @@ namespace ImmoSoft
         string nom = "";
         string idstock;
         string idchamps;
+        bool demarcheur=false;
+        string idatt;
         public Files(string Nom, string id, string type)
         {
             InitializeComponent();
@@ -28,6 +30,18 @@ namespace ImmoSoft
                 idstock = id;
                 refresh(printer.refresh(nom, id, null));
             }
+            else if(type=="stock dispo")
+            {
+                idstock = id;
+                demarcheur= true;
+                refresh(printer.refresh(nom, id, null));
+            }
+            else if (type=="champs dispo")
+            {
+                idchamps = id;
+                demarcheur= true;
+                refresh(printer.refresh(nom, null, id));
+            }
             else
             {
                 idchamps = id;
@@ -35,7 +49,15 @@ namespace ImmoSoft
             }
             
         }
-        void refresh(System.Data.DataTable dt)
+        public Files(string Nom, string id, string idatt, string type)
+        {
+            InitializeComponent();
+            nom = Nom;
+            idstock = id;
+            this.idatt=idatt;
+            refresh(printer.refresh(nom, id, null));
+        }
+            void refresh(System.Data.DataTable dt)
         {
             dgv1.DataSource=dt;
         }
@@ -60,47 +82,61 @@ namespace ImmoSoft
             try
             {
                 DB.client cl = new DB.client();
+                DB.demarcheur dem = new DB.demarcheur();
                 DB.site si = new DB.site();
                 DB.stock st = new DB.stock();
-                DB.champs ch = new DB.champs();
+                DB.stock ch = new DB.stock();
+                DB.attribution att = new DB.attribution();
+                DataRow attribution = att.refresh(idatt).Rows[0];
                 DataRow parcelle;
-                DataRow client;
+                DataRow person;
 
                 if (idstock!=null)
                 {
                     parcelle = st.refresh(idstock).Rows[0];
-                    client = cl.refresh(parcelle["idclient"].ToString()).Rows[0];
+                    if (!demarcheur)
+                        person = cl.refresh(parcelle["idclient"].ToString()).Rows[0];
+                    else
+                        person=dem.refresh(parcelle["iddemarcheur"].ToString()).Rows[0];
                 }
                 else
                 {
-                    parcelle = ch.refresh(idchamps).Rows[0]; 
-                    client = cl.refresh(parcelle["idnew"].ToString()).Rows[0];
+                    parcelle = ch.refresh(idchamps).Rows[0];
+                    if (!demarcheur)
+                        person = cl.refresh(parcelle["idnew"].ToString()).Rows[0];
+                    else
+                        person=dem.refresh(parcelle["iddemarcheur"].ToString()).Rows[0];
                 }
 
-                    DataRow site = si.refresh(parcelle["siteid"].ToString()).Rows[0];
+
+                DataRow site = si.refresh(parcelle["siteid"].ToString()).Rows[0];
                 if (nom.ToLower().Contains("attestation"))
                 {
-                    Waiting wait = new Waiting(client,site,parcelle, true);
+                    Waiting wait = new Waiting(person, site, parcelle, true);
                     wait.ShowDialog();
-                    refresh(printer.refresh(nom,idstock,idchamps));
+                    refresh(printer.refresh(nom, idstock, idchamps));
+                }
+                else if (nom.ToLower().Contains("attribution"))
+                {
+                    person=cl.refresh(attribution["idnew"].ToString()).Rows[0];
+                    Waiting wait = new Waiting(person, site, parcelle, true);
+                    wait.ShowDialog();
+                    refresh(printer.refresh(nom, idstock, idchamps));
                 }
                 else if (nom.ToLower().Contains("fiche"))
                 {
-                    Waiting wait = new Waiting(client, site, parcelle, false);
+                    Waiting wait = new Waiting(person, site, parcelle, false);
                     wait.ShowDialog();
-                    /*
-                    printer.fiche(
-                        client["nom"].ToString(), client["prenom"].ToString(), client["matrimonial"].ToString(),
-                        client["piece"]+" n "+client["numero"]+" du "+client["delivrance"],
-                        client["addresse"].ToString(), client["profession"].ToString(), client["contact"].ToString(),
-                        site["ville"].ToString(), site["nom"].ToString(),
-                        parcelle["section"].ToString(), parcelle["lot"].ToString(), parcelle["parcelle"].ToString(), parcelle["type_usage"].ToString(),
-                        parcelle["superficie"].ToString(), parcelle["id"].ToString());
-                    */
+                    refresh(printer.refresh(nom, idstock, idchamps));
+                }
+                else if (nom.ToLower().Contains("acte"))
+                {
+                    Waiting wait = new Waiting(parcelle, person, site["nom"].ToString());
+                    wait.ShowDialog();
                     refresh(printer.refresh(nom, idstock, idchamps));
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }

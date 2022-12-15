@@ -17,7 +17,7 @@ namespace ImmoSoft
     {
         string id;
         string pid = "0", cid = "0", did = "0", oid = "0";
-        string prix, mnt, rest, usage;
+        string prix, mnt, rest, comm, usage;
         bool mutation;
         public Cloture(string ID, bool muter)
         {
@@ -41,15 +41,16 @@ namespace ImmoSoft
                 mnt=dgvP.Rows[0].Cells["montant"].Value.ToString();
                 rest=dgvP.Rows[0].Cells["reste"].Value.ToString();
                 usage=dgvP.Rows[0].Cells["type_usage"].Value.ToString();
+                comm=dgvP.Rows[0].Cells["commission"].Value.ToString();
             }
             else
             {
-                DB.champs champs = new DB.champs();
-                dgvP.DataSource=champs.refresh(id);
+                DB.stock stock = new DB.stock();
+                dgvP.DataSource=stock.refresh(id);
                 DB.client client = new DB.client();
-                dgvC.DataSource=client.refresh(dgvP.Rows[0].Cells["idnew"].Value.ToString());
+                dgvC.DataSource=client.refresh(dgvP.Rows[0].Cells["idclient"].Value.ToString());
                 
-                DB.historiqueChamps hist = new DB.historiqueChamps();
+                DB.historique hist = new DB.historique();
                 dgvV.DataSource = hist.getVersement(id);
 
                 pid=dgvP.Rows[0].Cells["id"].Value.ToString();
@@ -60,6 +61,7 @@ namespace ImmoSoft
                 prix=dgvP.Rows[0].Cells["prix"].Value.ToString();
                 mnt=dgvP.Rows[0].Cells["montant"].Value.ToString();
                 rest=dgvP.Rows[0].Cells["reste"].Value.ToString();
+                comm=dgvP.Rows[0].Cells["commission"].Value.ToString();
                 usage=dgvP.Rows[0].Cells["type_usage"].Value.ToString();
             }
         }
@@ -78,20 +80,19 @@ namespace ImmoSoft
         {
             DB.attribution att = new DB.attribution();
             DB.historique hist= new DB.historique();
-            DB.historiqueChamps histc=new DB.historiqueChamps();
+            DB.historique histc=new DB.historique();
             DB.stock stock= new DB.stock();
-            DB.champs champs= new DB.champs();
             if (!mutation)
             {
                 att.insert("0", pid, "0", cid, true);
-                stock.cloturer(pid);
-                hist.add("Cloture", pid, cid, did, prix, mnt, rest, usage);
+                stock.cloturer(pid,cid);
+                hist.add("Cloture", pid, cid, did, prix, mnt, rest,comm, usage);
             }
             else
             {
 
                 att.insert(pid, "0", oid, cid, true);
-                champs.cloturer(pid);
+                stock.cloturer(pid,cid);
                 histc.add("Cloture", pid,oid, cid, did, prix, mnt, rest, usage);
             }
             this.Close();

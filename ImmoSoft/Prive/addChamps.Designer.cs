@@ -42,14 +42,14 @@
             this.section = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.dgvC = new ImmoSoft.DGV();
             this.selectP = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label10 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvC)).BeginInit();
+            this.dgvC = new ImmoSoft.DGV();
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvC)).BeginInit();
             this.SuspendLayout();
             // 
             // label4
@@ -150,12 +150,13 @@
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(408, 414);
+            this.button2.Location = new System.Drawing.Point(404, 450);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(169, 49);
             this.button2.TabIndex = 7;
             this.button2.Text = "Annuler";
             this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button1
             // 
@@ -163,13 +164,60 @@
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(200, 414);
+            this.button1.Location = new System.Drawing.Point(196, 450);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(169, 49);
             this.button1.TabIndex = 6;
             this.button1.Text = "Confirmer";
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // selectP
+            // 
+            this.selectP.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.selectP.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.selectP.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.selectP.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.selectP.ForeColor = System.Drawing.Color.White;
+            this.selectP.Location = new System.Drawing.Point(188, 120);
+            this.selectP.Name = "selectP";
+            this.selectP.Size = new System.Drawing.Size(250, 48);
+            this.selectP.TabIndex = 0;
+            this.selectP.Text = "Choisir Proprietaire";
+            this.selectP.UseVisualStyleBackColor = false;
+            this.selectP.Click += new System.EventHandler(this.selectP_Click);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.selectP);
+            this.groupBox1.Controls.Add(this.dgvC);
+            this.groupBox1.Location = new System.Drawing.Point(91, 235);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(630, 175);
+            this.groupBox1.TabIndex = 5;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Details Proprietaire";
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(40)))), ((int)(((byte)(45)))));
+            this.panel1.Controls.Add(this.label10);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(797, 47);
+            this.panel1.TabIndex = 13;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Segoe UI Semibold", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.ForeColor = System.Drawing.Color.White;
+            this.label10.Location = new System.Drawing.Point(306, 9);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(203, 31);
+            this.label10.TabIndex = 0;
+            this.label10.Text = "Details de Parcelle";
             // 
             // dgvC
             // 
@@ -200,61 +248,14 @@
             this.dgvC.RowHeadersWidth = 51;
             this.dgvC.RowTemplate.Height = 24;
             this.dgvC.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvC.Size = new System.Drawing.Size(618, 65);
+            this.dgvC.Size = new System.Drawing.Size(618, 93);
             this.dgvC.TabIndex = 11;
-            // 
-            // selectP
-            // 
-            this.selectP.BackColor = System.Drawing.Color.DarkSlateGray;
-            this.selectP.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.selectP.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.selectP.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.selectP.ForeColor = System.Drawing.Color.White;
-            this.selectP.Location = new System.Drawing.Point(188, 92);
-            this.selectP.Name = "selectP";
-            this.selectP.Size = new System.Drawing.Size(250, 48);
-            this.selectP.TabIndex = 0;
-            this.selectP.Text = "Choisir Proprietaire";
-            this.selectP.UseVisualStyleBackColor = false;
-            this.selectP.Click += new System.EventHandler(this.selectP_Click);
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.selectP);
-            this.groupBox1.Controls.Add(this.dgvC);
-            this.groupBox1.Location = new System.Drawing.Point(91, 235);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(630, 147);
-            this.groupBox1.TabIndex = 5;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Details Proprietaire";
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(40)))), ((int)(((byte)(45)))));
-            this.panel1.Controls.Add(this.label10);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(797, 47);
-            this.panel1.TabIndex = 13;
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Segoe UI Semibold", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.ForeColor = System.Drawing.Color.White;
-            this.label10.Location = new System.Drawing.Point(306, 9);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(203, 31);
-            this.label10.TabIndex = 0;
-            this.label10.Text = "Details de Parcelle";
             // 
             // addChamps
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(797, 486);
+            this.ClientSize = new System.Drawing.Size(797, 532);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label4);
@@ -274,10 +275,10 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "addChamps";
             this.Load += new System.EventHandler(this.addChamps_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvC)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvC)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

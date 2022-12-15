@@ -19,6 +19,22 @@ namespace ImmoSoft
         public Clients()
         {
             InitializeComponent();
+            if (Properties.Settings.Default.admin.ToLower()=="caissiere")
+            {
+
+                option2.Enabled=false;
+
+                option2.Visible=false;
+
+            }
+            else if (Properties.Settings.Default.admin.ToLower()=="secretaire")
+            {
+
+                option2.Enabled=false;
+
+                option2.Visible=false;
+
+            }
         }
         public Clients(bool Choix)
         {

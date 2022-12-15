@@ -18,6 +18,12 @@ namespace ImmoSoft
         {
             InitializeComponent();
             this.FormBorderStyle = FormBorderStyle.Sizable;
+            if (Properties.Settings.Default.admin.ToLower()!="admin")
+
+            {
+                button14.Enabled=false;
+                button14.Visible=false; 
+            }
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -143,12 +149,6 @@ namespace ImmoSoft
             showTitle(button12);
         }
 
-        private void button10_Click(object sender, EventArgs e)
-        {
-            Form tmp = new historiqueChamps();
-            changeForm(tmp);
-            showTitle(button10);
-        }
 
         private void button14_Click(object sender, EventArgs e)
         {

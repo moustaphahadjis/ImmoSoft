@@ -38,7 +38,6 @@
             this.button5 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.button10 = new System.Windows.Forms.Button();
             this.button11 = new System.Windows.Forms.Button();
             this.button12 = new System.Windows.Forms.Button();
             this.button13 = new System.Windows.Forms.Button();
@@ -124,11 +123,12 @@
             // 
             this.menuPanel.AutoScroll = true;
             this.menuPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(40)))), ((int)(((byte)(45)))));
-            this.menuPanel.Controls.Add(this.button14);
             this.menuPanel.Controls.Add(this.groupBox2);
             this.menuPanel.Controls.Add(this.groupBox3);
             this.menuPanel.Controls.Add(this.groupBox1);
             this.menuPanel.Controls.Add(this.panel3);
+            this.menuPanel.Controls.Add(this.button4);
+            this.menuPanel.Controls.Add(this.button14);
             this.menuPanel.Controls.Add(this.button9);
             this.menuPanel.Controls.Add(this.panel4);
             this.menuPanel.Dock = System.Windows.Forms.DockStyle.Left;
@@ -148,11 +148,11 @@
             this.button14.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button14.Font = new System.Drawing.Font("Cambria", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button14.ForeColor = System.Drawing.Color.White;
-            this.button14.Image = global::ImmoSoft.Properties.Resources.maps_location_11097;
+            this.button14.Image = global::ImmoSoft.Properties.Resources.home_199;
             this.button14.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button14.Location = new System.Drawing.Point(0, 715);
+            this.button14.Location = new System.Drawing.Point(0, 103);
             this.button14.Name = "button14";
-            this.button14.Size = new System.Drawing.Size(245, 50);
+            this.button14.Size = new System.Drawing.Size(250, 50);
             this.button14.TabIndex = 3;
             this.button14.Text = "            Attribution";
             this.button14.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -167,7 +167,7 @@
             this.groupBox2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.groupBox2.Font = new System.Drawing.Font("Palatino Linotype", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.ForeColor = System.Drawing.Color.White;
-            this.groupBox2.Location = new System.Drawing.Point(0, 581);
+            this.groupBox2.Location = new System.Drawing.Point(0, 570);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(245, 134);
             this.groupBox2.TabIndex = 1;
@@ -218,7 +218,6 @@
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.button10);
             this.groupBox3.Controls.Add(this.button11);
             this.groupBox3.Controls.Add(this.button12);
             this.groupBox3.Controls.Add(this.button13);
@@ -226,34 +225,13 @@
             this.groupBox3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.groupBox3.Font = new System.Drawing.Font("Palatino Linotype", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox3.ForeColor = System.Drawing.Color.White;
-            this.groupBox3.Location = new System.Drawing.Point(0, 341);
+            this.groupBox3.Location = new System.Drawing.Point(0, 386);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Padding = new System.Windows.Forms.Padding(5, 3, 3, 3);
-            this.groupBox3.Size = new System.Drawing.Size(245, 240);
+            this.groupBox3.Size = new System.Drawing.Size(245, 184);
             this.groupBox3.TabIndex = 1;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Parcelle Privées";
-            // 
-            // button10
-            // 
-            this.button10.BackColor = System.Drawing.Color.Transparent;
-            this.button10.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button10.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button10.FlatAppearance.BorderSize = 0;
-            this.button10.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(109)))), ((int)(((byte)(148)))));
-            this.button10.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button10.Font = new System.Drawing.Font("Cambria", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button10.ForeColor = System.Drawing.Color.White;
-            this.button10.Image = global::ImmoSoft.Properties.Resources.history_7615;
-            this.button10.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button10.Location = new System.Drawing.Point(5, 180);
-            this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(237, 50);
-            this.button10.TabIndex = 0;
-            this.button10.Text = "            Historique";
-            this.button10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button10.UseVisualStyleBackColor = false;
-            this.button10.Click += new System.EventHandler(this.button10_Click);
             // 
             // button11
             // 
@@ -320,7 +298,6 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.button4);
             this.groupBox1.Controls.Add(this.button2);
             this.groupBox1.Controls.Add(this.button3);
             this.groupBox1.Controls.Add(this.button1);
@@ -328,10 +305,10 @@
             this.groupBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.groupBox1.Font = new System.Drawing.Font("Palatino Linotype", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.ForeColor = System.Drawing.Color.White;
-            this.groupBox1.Location = new System.Drawing.Point(0, 103);
+            this.groupBox1.Location = new System.Drawing.Point(0, 203);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(5, 3, 3, 3);
-            this.groupBox1.Size = new System.Drawing.Size(245, 238);
+            this.groupBox1.Size = new System.Drawing.Size(245, 183);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Parcelles Faso Cheval";
@@ -349,9 +326,9 @@
             this.button4.ForeColor = System.Drawing.Color.White;
             this.button4.Image = global::ImmoSoft.Properties.Resources.history_7615;
             this.button4.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button4.Location = new System.Drawing.Point(5, 180);
+            this.button4.Location = new System.Drawing.Point(0, 153);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(237, 50);
+            this.button4.Size = new System.Drawing.Size(250, 50);
             this.button4.TabIndex = 0;
             this.button4.Text = "            Historique";
             this.button4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -425,9 +402,9 @@
             // 
             this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(40)))), ((int)(((byte)(45)))));
             this.panel3.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel3.Location = new System.Drawing.Point(245, 103);
+            this.panel3.Location = new System.Drawing.Point(245, 203);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(5, 839);
+            this.panel3.Size = new System.Drawing.Size(5, 739);
             this.panel3.TabIndex = 0;
             // 
             // button9
@@ -541,7 +518,6 @@
         private System.Windows.Forms.Button button9;
         private System.Windows.Forms.Button title;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.Button button10;
         private System.Windows.Forms.Button button11;
         private System.Windows.Forms.Button button12;
         private System.Windows.Forms.Button button13;

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -135,8 +136,8 @@ namespace ImmoSoft
         }
         void calculate()
         {
-            if (prix.Text.Trim().Length>0 && vsmt.Text.Trim().Length>0)
-                if (com.isNumber(prix.Text.Trim()) && com.isNumber(vsmt.Text.Trim()))
+            if (prix.Text.Trim().Length>0 && vsmt.Text.Trim().Length>0 && commission.Text.Trim().Length>0)
+                if (com.isNumber(prix.Text.Trim()) && com.isNumber(vsmt.Text.Trim()) && com.isNumber(commission.Text))
                     rest.Text = (decimal.Parse(prix.Text.Trim())-decimal.Parse(vsmt.Text.Trim())).ToString();
                 else
                     rest.Text = "";
@@ -153,9 +154,14 @@ namespace ImmoSoft
                 {
                     DB.demarcheur demarcheur = new DB.demarcheur();
                     dgvD.DataSource=demarcheur.refresh(did);
+                    commission.ReadOnly=false;
                 }
                 else
+                {
                     did="0";
+                    commission.Text="0";
+                    commission.ReadOnly=true;
+                }
             };
             tmp.ShowDialog();
         }
@@ -179,9 +185,9 @@ namespace ImmoSoft
                     else
                         etat="Vendue";
 
-                    if (stock.vente(pid, cid, did, prix.Text.Trim(), vsmt.Text,rest.Text, usage.Text, etat))
+                    if (stock.vente(pid, cid, did, prix.Text.Trim(), vsmt.Text,rest.Text,commission.Text, usage.Text, etat))
                     {
-                        hist.add(action, pid, cid, did, prix.Text.Trim(), vsmt.Text, rest.Text, usage.Text);
+                        hist.add(action, pid, cid, did, prix.Text.Trim(), vsmt.Text, rest.Text, commission.Text, usage.Text);
                         
                         /*
                         DB.printer printer = new DB.printer();
@@ -208,9 +214,9 @@ namespace ImmoSoft
                     string etat = "Don";
                     string action = "Don";
 
-                    if (stock.vente(pid, cid, did, "0", "0", "0", usage.Text, etat))
+                    if (stock.vente(pid, cid, did, "0", "0", "0", commission.Text, usage.Text, etat))
                     {
-                        hist.add(action, pid, cid, did, "0", "0", "0", usage.Text);
+                        hist.add(action, pid, cid, did, "0", "0", "0", commission.Text, usage.Text);
                         
                         /*
                         DB.printer printer = new DB.printer();

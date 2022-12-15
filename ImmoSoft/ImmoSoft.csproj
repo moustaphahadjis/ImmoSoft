@@ -26,7 +26,7 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>10</ApplicationRevision>
+    <ApplicationRevision>16</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -115,6 +115,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="addCommission.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="addCommission.Designer.cs">
+      <DependentUpon>addCommission.cs</DependentUpon>
+    </Compile>
     <Compile Include="Attribution.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -132,6 +138,12 @@
     </Compile>
     <Compile Include="Cloture.Designer.cs">
       <DependentUpon>Cloture.cs</DependentUpon>
+    </Compile>
+    <Compile Include="commission.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="commission.Designer.cs">
+      <DependentUpon>commission.cs</DependentUpon>
     </Compile>
     <Compile Include="DB\attribution.cs" />
     <Compile Include="DB\ayant.cs" />
@@ -333,6 +345,9 @@
     <Compile Include="Waiting.Designer.cs">
       <DependentUpon>Waiting.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="addCommission.resx">
+      <DependentUpon>addCommission.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Attribution.resx">
       <DependentUpon>Attribution.cs</DependentUpon>
     </EmbeddedResource>
@@ -341,6 +356,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Cloture.resx">
       <DependentUpon>Cloture.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="commission.resx">
+      <DependentUpon>commission.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FillDB.resx">
       <DependentUpon>FillDB.cs</DependentUpon>
