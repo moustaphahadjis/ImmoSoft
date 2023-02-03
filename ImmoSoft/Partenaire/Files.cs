@@ -87,7 +87,7 @@ namespace ImmoSoft
                 DB.stock st = new DB.stock();
                 DB.stock ch = new DB.stock();
                 DB.attribution att = new DB.attribution();
-                DataRow attribution = att.refresh(idatt).Rows[0];
+                
                 DataRow parcelle;
                 DataRow person;
 
@@ -118,6 +118,7 @@ namespace ImmoSoft
                 }
                 else if (nom.ToLower().Contains("attribution"))
                 {
+                    DataRow attribution = att.refresh(idatt).Rows[0];
                     person=cl.refresh(attribution["idnew"].ToString()).Rows[0];
                     Waiting wait = new Waiting(person, site, parcelle, true);
                     wait.ShowDialog();

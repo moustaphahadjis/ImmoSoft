@@ -12,15 +12,16 @@ namespace ImmoSoft.DB
         string ip, user, pass;
         public address()
         {
-            //ip = "192.168.1.5";
-            ip="localhost";
+
+            //ip="localhost";
+            ip = "192.168.1.5";
             user = "root";
             pass = "";
         }
         public string getAddress()
         {
             //return "datasource=" + address + ";port=3306;username="+user+"; password="+pass+ ";database=ayinde2;";
-            return "datasource=" + ip + ";port=3306;username=" + user + "; password=" + pass + ";database=immosoft;";
+            return "datasource=" + ip + ";port=3308;username=" + user + "; password=" + pass + ";database=immosoft;";
         }
 
     }
