@@ -20,6 +20,10 @@ namespace ImmoSoft
 
         private void confirm_Click(object sender, EventArgs e)
         {
+            connect();
+        }
+        void connect()
+        {
             DB.user user = new DB.user();
             //user.insert("nom", "prenom", "admin", "admin", "admin");
             DataTable dt = user.checkUser(username.Text, password.Text);
@@ -42,7 +46,6 @@ namespace ImmoSoft
             else
                 MessageBox.Show("Nom d'utilisateur ou mot de passe incorect");
         }
-
         private void Login_Load(object sender, EventArgs e)
         {
 
@@ -51,6 +54,19 @@ namespace ImmoSoft
         private void annuler_Click(object sender, EventArgs e)
         {
             this.Close();   
+        }
+
+        private void password_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void password_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Enter)
+            {
+                connect();
+            }
         }
     }
 }

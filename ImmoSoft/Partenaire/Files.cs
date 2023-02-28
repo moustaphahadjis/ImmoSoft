@@ -20,7 +20,14 @@ namespace ImmoSoft
         string idchamps;
         bool demarcheur=false;
         string idatt;
-        public Files(string Nom, string id, string type)
+        public Files()
+        {
+            InitializeComponent();
+            refresh(printer.refresh());
+            button2.Enabled= false;
+            button2.Visible= false;
+        }
+            public Files(string Nom, string id, string type)
         {
             InitializeComponent();
             nom = Nom;

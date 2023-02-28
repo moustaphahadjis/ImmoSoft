@@ -31,8 +31,8 @@ namespace ImmoSoft
         {
             
             //string path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)+@"\ImmoSoft\saabtenga.xlsx";
-            /*
-            string path = @"C:\Users\moust\Documents\ImmoSoft\kiri5ha.xlsx";
+            
+            string path = @"C:\Users\moust\Downloads\Book1.xlsx";
             Excel.Application app = new Excel.Application();
             Excel.Workbook book = app.Workbooks.Open(path);
             Excel.Worksheet sheet = (Excel.Worksheet)book.ActiveSheet;
@@ -58,7 +58,7 @@ namespace ImmoSoft
                         cmd = new MySqlCommand("insert into stock (siteid,lot, parcelle,superficie, etat) " +
                             "Values (@siteid,@lot,@prcle,@spf,@etat)", con);
 
-                        cmd.Parameters.Add("@siteid", MySqlDbType.Int32).Value = 8;
+                        cmd.Parameters.Add("@siteid", MySqlDbType.Int32).Value = 3;
                         cmd.Parameters.Add("@lot", MySqlDbType.Int32).Value = lot;
                         cmd.Parameters.Add("@prcle", MySqlDbType.VarChar).Value = parcelle;
                         cmd.Parameters.Add("@spf", MySqlDbType.Decimal).Value = superficie;
@@ -75,15 +75,10 @@ namespace ImmoSoft
             }
             con.Close();
             app.Quit();
-        }*/
+        }
             
-
-            con.Open();
-            cmd= new MySqlCommand("delete from stock where siteid=2", con);
-            cmd.ExecuteNonQuery();
-            con.Close();
         }
             
         
     }
-}
+

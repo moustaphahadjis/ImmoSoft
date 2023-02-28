@@ -447,6 +447,20 @@ namespace ImmoSoft.DB
                 return null;
             }
         }
+        public DataTable refresh()
+        {
+            con.Open();
+            MySqlDataAdapter da;
+            da= new MySqlDataAdapter(
+               "select id,nom,date from fichier where deleted=0", con);
+            DataTable ds = new DataTable();
+            ds.BeginLoadData();
+            da.Fill(ds);
+            ds.EndLoadData();
+
+            con.Close();
+            return ds;
+        }
         public DataTable refresh(string type, string idstock, string idchamps)
         {
             con.Open();

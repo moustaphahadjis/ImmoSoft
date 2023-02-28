@@ -177,5 +177,12 @@ namespace ImmoSoft
             y=mainPanel.Size.Height/4;
             madeby.Location= new Point(x, y);
         }
+
+        private void button7_Click_1(object sender, EventArgs e)
+        {
+            Form tmp = new Files();
+            changeForm(tmp);
+            showTitle(button7);
+        }
     }
 }

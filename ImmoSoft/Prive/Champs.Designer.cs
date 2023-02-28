@@ -143,7 +143,7 @@
             "Tous les sites"});
             this.search.Location = new System.Drawing.Point(59, 9);
             this.search.Name = "search";
-            this.search.Size = new System.Drawing.Size(452, 33);
+            this.search.Size = new System.Drawing.Size(617, 33);
             this.search.TabIndex = 9;
             this.search.SelectedIndexChanged += new System.EventHandler(this.search_SelectedIndexChanged);
             // 

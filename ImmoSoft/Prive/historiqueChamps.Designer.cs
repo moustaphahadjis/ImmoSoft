@@ -52,49 +52,57 @@
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Location = new System.Drawing.Point(14, 8);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(690, 92);
+            this.groupBox1.Size = new System.Drawing.Size(853, 92);
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "groupBox1";
+            this.groupBox1.Text = "Interval de Temps";
             // 
             // confirm
             // 
-            this.confirm.Location = new System.Drawing.Point(533, 15);
+            this.confirm.BackColor = System.Drawing.Color.Teal;
+            this.confirm.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.confirm.Font = new System.Drawing.Font("Calibri", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.confirm.ForeColor = System.Drawing.Color.White;
+            this.confirm.Location = new System.Drawing.Point(718, 17);
             this.confirm.Name = "confirm";
             this.confirm.Size = new System.Drawing.Size(135, 65);
             this.confirm.TabIndex = 2;
             this.confirm.Text = "Confirmer";
-            this.confirm.UseVisualStyleBackColor = true;
+            this.confirm.UseVisualStyleBackColor = false;
             // 
             // to
             // 
-            this.to.Location = new System.Drawing.Point(312, 33);
+            this.to.Font = new System.Drawing.Font("Calibri", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.to.Location = new System.Drawing.Point(421, 34);
             this.to.Name = "to";
-            this.to.Size = new System.Drawing.Size(200, 22);
+            this.to.Size = new System.Drawing.Size(291, 29);
             this.to.TabIndex = 1;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(270, 40);
+            this.label3.Font = new System.Drawing.Font("Calibri", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(388, 38);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(24, 16);
+            this.label3.Size = new System.Drawing.Size(29, 22);
             this.label3.TabIndex = 0;
-            this.label3.Text = "Du";
+            this.label3.Text = "Au";
             // 
             // from
             // 
-            this.from.Location = new System.Drawing.Point(63, 33);
+            this.from.Font = new System.Drawing.Font("Calibri", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.from.Location = new System.Drawing.Point(57, 35);
             this.from.Name = "from";
-            this.from.Size = new System.Drawing.Size(200, 22);
+            this.from.Size = new System.Drawing.Size(316, 29);
             this.from.TabIndex = 1;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Calibri", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(21, 40);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(24, 16);
+            this.label2.Size = new System.Drawing.Size(30, 22);
             this.label2.TabIndex = 0;
             this.label2.Text = "Du";
             // 

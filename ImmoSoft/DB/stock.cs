@@ -84,7 +84,9 @@ namespace ImmoSoft.DB
                 ", idclient, iddemarcheur" +
                 " from stock join demarcheur on demarcheur.id = stock.iddemarcheur" +
                 " join client on client.id=stock.idclient"+
-                " where stock.etat=@etat and stock.deleted=0";
+                " where stock.etat=@etat and stock.deleted=0 and vente=0 ";
+          
+
             if (siteid!="0")
             {
                 aa+= " and stock.siteid=@siteid";
@@ -95,6 +97,7 @@ namespace ImmoSoft.DB
             {
                 da.SelectCommand.Parameters.Add("@siteid", MySqlDbType.Int32).Value=siteid;
             }
+          
             DataTable ds = new DataTable();
             ds.BeginLoadData();
             da.Fill(ds);
@@ -115,7 +118,7 @@ namespace ImmoSoft.DB
                 " from stock join demarcheur on demarcheur.id = stock.iddemarcheur" +
                 " join client pro on pro.id=stock.idold" +
                 " join client cl on cl.id = stock.idclient"+
-                " where stock.etat=@etat and stock.deleted=0";
+                " where stock.etat=@etat and stock.deleted=0 and idold>0";
             if (siteid!="0")
             {
                 aa+= " and stock.siteid=@siteid";
@@ -151,7 +154,7 @@ namespace ImmoSoft.DB
                 "Montant, stock.Reste,stock.commission,stock.comreste,stock.type_usage, cloture," +
                 " etat from stock join client on client.id = stock.idclient" +
                 " join demarcheur on demarcheur.id = stock.iddemarcheur"+
-                " where stock.deleted=0";
+                " where stock.deleted=0 and vente=1";
 
             if (siteid!="0")
             {
@@ -178,6 +181,7 @@ namespace ImmoSoft.DB
             con.Close();
             return ds;
         }
+        
         public DataTable refreshMutee(string etat, string siteid)
         {
             con.Open();
@@ -270,7 +274,7 @@ namespace ImmoSoft.DB
             {
                 con.Open();
                 cmd = new MySqlCommand("update stock set idclient=@idclient,iddemarcheur=@iddemarcheur, prix=@prix, " +
-                    "montant=@montant, type_usage=@usage, reste=@reste,commission=@commission, etat=@etat where id=@id", con);
+                    "montant=@montant, type_usage=@usage, reste=@reste,commission=@commission, etat=@etat, vente=@vente where id=@id", con);
                 cmd.Parameters.Add("@id", MySqlDbType.Int32).Value=id;
                 cmd.Parameters.Add("@idclient", MySqlDbType.Int32).Value=idclient;
                 cmd.Parameters.Add("@iddemarcheur", MySqlDbType.Int32).Value=iddemarcheur;
@@ -280,6 +284,7 @@ namespace ImmoSoft.DB
                 cmd.Parameters.Add("@commission", MySqlDbType.Decimal).Value=commission;
                 cmd.Parameters.Add("@usage", MySqlDbType.VarChar).Value=usage;
                 cmd.Parameters.Add("@etat", MySqlDbType.VarChar).Value=etat;
+                cmd.Parameters.Add("@vente", MySqlDbType.Int32).Value=1;
                 cmd.ExecuteNonQuery();
                 con.Close();
                 return true;

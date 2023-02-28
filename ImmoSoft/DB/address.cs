@@ -14,14 +14,14 @@ namespace ImmoSoft.DB
         {
 
             //ip="localhost";
-            ip = "192.168.1.5";
+            ip = "192.168.1.102";
             user = "root";
             pass = "";
         }
         public string getAddress()
         {
             //return "datasource=" + address + ";port=3306;username="+user+"; password="+pass+ ";database=ayinde2;";
-            return "datasource=" + ip + ";port=3308;username=" + user + "; password=" + pass + ";database=immosoft;";
+            return "datasource=" + ip + ";port=3306;username=" + user + "; password=" + pass + ";database=immosoft;";
         }
 
     }

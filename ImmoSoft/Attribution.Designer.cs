@@ -31,8 +31,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.confirm = new System.Windows.Forms.Button();
@@ -57,44 +55,13 @@
             // groupBox1
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox1.Controls.Add(this.button3);
-            this.groupBox1.Controls.Add(this.button2);
             this.groupBox1.Controls.Add(this.button1);
             this.groupBox1.Location = new System.Drawing.Point(762, 142);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(284, 220);
+            this.groupBox1.Size = new System.Drawing.Size(284, 108);
             this.groupBox1.TabIndex = 10;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Options";
-            // 
-            // button3
-            // 
-            this.button3.BackColor = System.Drawing.Color.DarkSlateGray;
-            this.button3.FlatAppearance.BorderSize = 0;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.ForeColor = System.Drawing.Color.White;
-            this.button3.Location = new System.Drawing.Point(6, 158);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(272, 45);
-            this.button3.TabIndex = 0;
-            this.button3.Text = "Detail de l\'attribution";
-            this.button3.UseVisualStyleBackColor = false;
-            // 
-            // button2
-            // 
-            this.button2.BackColor = System.Drawing.Color.DarkSlateGray;
-            this.button2.FlatAppearance.BorderSize = 0;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(6, 96);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(272, 45);
-            this.button2.TabIndex = 0;
-            this.button2.Text = "Profil du Proprietaire";
-            this.button2.UseVisualStyleBackColor = false;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button1
             // 
@@ -123,47 +90,55 @@
             this.groupBox2.Size = new System.Drawing.Size(690, 92);
             this.groupBox2.TabIndex = 14;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "groupBox2";
+            this.groupBox2.Text = "Interval de Temps";
             // 
             // confirm
             // 
+            this.confirm.BackColor = System.Drawing.Color.Teal;
+            this.confirm.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.confirm.Font = new System.Drawing.Font("Calibri", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.confirm.ForeColor = System.Drawing.Color.White;
             this.confirm.Location = new System.Drawing.Point(533, 15);
             this.confirm.Name = "confirm";
             this.confirm.Size = new System.Drawing.Size(135, 65);
             this.confirm.TabIndex = 2;
             this.confirm.Text = "Confirmer";
-            this.confirm.UseVisualStyleBackColor = true;
+            this.confirm.UseVisualStyleBackColor = false;
             this.confirm.Click += new System.EventHandler(this.confirm_Click);
             // 
             // to
             // 
+            this.to.Font = new System.Drawing.Font("Calibri", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.to.Location = new System.Drawing.Point(312, 33);
             this.to.Name = "to";
-            this.to.Size = new System.Drawing.Size(200, 22);
+            this.to.Size = new System.Drawing.Size(200, 29);
             this.to.TabIndex = 1;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(270, 40);
+            this.label3.Font = new System.Drawing.Font("Calibri", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(280, 36);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(24, 16);
+            this.label3.Size = new System.Drawing.Size(29, 22);
             this.label3.TabIndex = 0;
-            this.label3.Text = "Du";
+            this.label3.Text = "Au";
             // 
             // from
             // 
-            this.from.Location = new System.Drawing.Point(63, 33);
+            this.from.Font = new System.Drawing.Font("Calibri", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.from.Location = new System.Drawing.Point(47, 33);
             this.from.Name = "from";
-            this.from.Size = new System.Drawing.Size(200, 22);
+            this.from.Size = new System.Drawing.Size(200, 29);
             this.from.TabIndex = 1;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(21, 40);
+            this.label2.Font = new System.Drawing.Font("Calibri", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(11, 36);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(24, 16);
+            this.label2.Size = new System.Drawing.Size(30, 22);
             this.label2.TabIndex = 0;
             this.label2.Text = "Du";
             // 
@@ -186,10 +161,10 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(719, 32);
+            this.label4.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(719, 49);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(41, 22);
+            this.label4.Size = new System.Drawing.Size(41, 24);
             this.label4.TabIndex = 16;
             this.label4.Text = "Site";
             // 
@@ -199,7 +174,7 @@
             this.search.FormattingEnabled = true;
             this.search.Items.AddRange(new object[] {
             "Tous les sites"});
-            this.search.Location = new System.Drawing.Point(774, 27);
+            this.search.Location = new System.Drawing.Point(774, 44);
             this.search.Name = "search";
             this.search.Size = new System.Drawing.Size(272, 30);
             this.search.TabIndex = 15;
@@ -210,9 +185,9 @@
             this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox3.Controls.Add(this.button5);
             this.groupBox3.Controls.Add(this.button6);
-            this.groupBox3.Location = new System.Drawing.Point(762, 368);
+            this.groupBox3.Location = new System.Drawing.Point(762, 268);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(284, 220);
+            this.groupBox3.Size = new System.Drawing.Size(284, 161);
             this.groupBox3.TabIndex = 10;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Options";
@@ -319,8 +294,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox search;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button2;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button6;

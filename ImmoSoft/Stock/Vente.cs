@@ -258,6 +258,20 @@ namespace ImmoSoft
             this.Close();
         }
 
+        private void deleteC_Click(object sender, EventArgs e)
+        {
+            cid="0";
+            if (dgvC.Rows.Count>0)
+                dgvC.Rows.Remove(dgvC.Rows[0]);
+        }
+
+        private void deleteD_Click(object sender, EventArgs e)
+        {
+            did="0";
+            if (dgvD.Rows.Count>0)
+                dgvD.Rows.Remove(dgvD.Rows[0]);
+        }
+
         private void Vente_Load(object sender, EventArgs e)
         {
             

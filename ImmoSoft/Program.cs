@@ -29,6 +29,7 @@ namespace ImmoSoft
                 return;
             }
             Form objMyForm = new Loading();
+            //Form objMyForm = new FillDB();
             objMyForm.ShowDialog();
         }
 
