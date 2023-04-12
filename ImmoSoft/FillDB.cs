@@ -32,13 +32,13 @@ namespace ImmoSoft
             
             //string path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)+@"\ImmoSoft\saabtenga.xlsx";
             
-            string path = @"C:\Users\moust\Downloads\Book1.xlsx";
+            string path = @"C:\Users\moust\Downloads\RESTE Kiri 26HA.xlsx";
             Excel.Application app = new Excel.Application();
             Excel.Workbook book = app.Workbooks.Open(path);
             Excel.Worksheet sheet = (Excel.Worksheet)book.ActiveSheet;
             con.Open();
             string lot=""; string parcelle = ""; string superficie="";
-            for (int i = 2; i<558; i++)
+            for (int i = 1; i<200; i++)
             {
                 if (sheet.Cells[i, "C"].Value2!=null)
                 {
@@ -58,7 +58,7 @@ namespace ImmoSoft
                         cmd = new MySqlCommand("insert into stock (siteid,lot, parcelle,superficie, etat) " +
                             "Values (@siteid,@lot,@prcle,@spf,@etat)", con);
 
-                        cmd.Parameters.Add("@siteid", MySqlDbType.Int32).Value = 3;
+                        cmd.Parameters.Add("@siteid", MySqlDbType.Int32).Value = 1;
                         cmd.Parameters.Add("@lot", MySqlDbType.Int32).Value = lot;
                         cmd.Parameters.Add("@prcle", MySqlDbType.VarChar).Value = parcelle;
                         cmd.Parameters.Add("@spf", MySqlDbType.Decimal).Value = superficie;

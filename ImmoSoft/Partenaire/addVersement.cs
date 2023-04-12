@@ -102,10 +102,11 @@ namespace ImmoSoft
                     string etat = "";
                     string action;
                     bool vendue=false;
-                    if(dgvV.Rows.Count==1)
+                    int count = getVersementCount();
+                    if(count==1)
                         action = "1er Versement";
                     else
-                        action = (dgvV.Rows.Count+1).ToString()+"eme Versement";
+                        action = (count).ToString()+"eme Versement";
 
                     if (decimal.Parse(reste.Text)>0)
                     {
@@ -140,11 +141,12 @@ namespace ImmoSoft
                     string etat;
                     string action;
 
-                    if (dgvV.Rows.Count==1)
+                    int count = getVersementCount();
+                    if (count==1)
                         action = "1er Versement";
                     else
-                        action = (dgvV.Rows.Count+1).ToString()+"eme Versement";
-                    
+                        action = (count).ToString()+"eme Versement";
+
                     if (decimal.Parse(reste.Text)>0)
                     {
                         etat= "En cours de Mutation";
@@ -154,7 +156,8 @@ namespace ImmoSoft
                         etat="Mutée";
                     }
 
-                    if (stock.setVersementPrive(id, (decimal.Parse(prix.Text.Trim())-decimal.Parse(reste.Text)).ToString(), reste.Text, etat))
+                    if (stock.setVersementPrive(id,(decimal.Parse( prix.Text.Trim())-decimal.Parse(reste.Text.Trim())).ToString()
+                        , reste.Text, etat))
                     {
                         hist.add(action, id, dgvP.Rows[0].Cells["idold"].Value.ToString(),
                             dgvP.Rows[0].Cells["idclient"].Value.ToString(),
@@ -181,7 +184,18 @@ namespace ImmoSoft
             else
                 MessageBox.Show("Erreur! Réverifiez les données saisies");
         }
-
+        int getVersementCount()
+        {
+            int count = 1;
+            for(int i=0; i<dgvV.Rows.Count; i++)
+            {
+                if (dgvV.Rows[i].Cells["action"].Value.ToString().ToLower().Contains("assigné"))
+                    break;
+                else if(dgvV.Rows[i].Cells["action"].Value.ToString().ToLower().Contains("versement"))
+                    count++;
+            }
+            return count;
+        }
         private void button2_Click(object sender, EventArgs e)
         {
             this.Close();

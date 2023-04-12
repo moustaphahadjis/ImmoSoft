@@ -182,6 +182,16 @@ namespace ImmoSoft.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Immosoft1 {
+            get {
+                object obj = ResourceManager.GetObject("Immosoft1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap maps_location_11097 {
             get {
                 object obj = ResourceManager.GetObject("maps_location_11097", resourceCulture);

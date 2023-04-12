@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.search = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -50,6 +50,7 @@
             this.dgv1 = new ImmoSoft.DGV();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.button5 = new System.Windows.Forms.Button();
+            this.button9 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.Compteur.SuspendLayout();
@@ -65,7 +66,7 @@
             "Tous les sites"});
             this.search.Location = new System.Drawing.Point(72, 9);
             this.search.Name = "search";
-            this.search.Size = new System.Drawing.Size(697, 30);
+            this.search.Size = new System.Drawing.Size(697, 25);
             this.search.TabIndex = 0;
             this.search.SelectedIndexChanged += new System.EventHandler(this.search_SelectedIndexChanged);
             // 
@@ -75,7 +76,7 @@
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(17, 14);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(41, 22);
+            this.label1.Size = new System.Drawing.Size(33, 18);
             this.label1.TabIndex = 3;
             this.label1.Text = "Site";
             // 
@@ -85,9 +86,9 @@
             this.groupBox1.Controls.Add(this.button3);
             this.groupBox1.Controls.Add(this.button2);
             this.groupBox1.Controls.Add(this.button1);
-            this.groupBox1.Location = new System.Drawing.Point(775, 104);
+            this.groupBox1.Location = new System.Drawing.Point(775, 95);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(284, 192);
+            this.groupBox1.Size = new System.Drawing.Size(284, 177);
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Options";
@@ -99,7 +100,7 @@
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button3.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button3.ForeColor = System.Drawing.Color.White;
-            this.button3.Location = new System.Drawing.Point(6, 135);
+            this.button3.Location = new System.Drawing.Point(6, 123);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(272, 45);
             this.button3.TabIndex = 0;
@@ -114,7 +115,7 @@
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(6, 84);
+            this.button2.Location = new System.Drawing.Point(6, 72);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(272, 45);
             this.button2.TabIndex = 0;
@@ -129,7 +130,7 @@
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(6, 33);
+            this.button1.Location = new System.Drawing.Point(6, 21);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(272, 45);
             this.button1.TabIndex = 0;
@@ -145,9 +146,9 @@
             this.button7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button7.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button7.ForeColor = System.Drawing.Color.White;
-            this.button7.Location = new System.Drawing.Point(787, 573);
+            this.button7.Location = new System.Drawing.Point(6, 72);
             this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(272, 45);
+            this.button7.Size = new System.Drawing.Size(272, 43);
             this.button7.TabIndex = 0;
             this.button7.Text = "Exporter en PDF";
             this.button7.UseVisualStyleBackColor = false;
@@ -159,9 +160,9 @@
             this.groupBox2.Controls.Add(this.button8);
             this.groupBox2.Controls.Add(this.button4);
             this.groupBox2.Controls.Add(this.button6);
-            this.groupBox2.Location = new System.Drawing.Point(781, 302);
+            this.groupBox2.Location = new System.Drawing.Point(781, 273);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(278, 185);
+            this.groupBox2.Size = new System.Drawing.Size(278, 181);
             this.groupBox2.TabIndex = 5;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Options";
@@ -234,7 +235,7 @@
             this.Compteur.Controls.Add(this.nbpar);
             this.Compteur.Controls.Add(this.nblot);
             this.Compteur.Controls.Add(this.label2);
-            this.Compteur.Location = new System.Drawing.Point(787, 624);
+            this.Compteur.Location = new System.Drawing.Point(787, 636);
             this.Compteur.Name = "Compteur";
             this.Compteur.Size = new System.Drawing.Size(272, 109);
             this.Compteur.TabIndex = 10;
@@ -247,7 +248,7 @@
             this.label3.Font = new System.Drawing.Font("Segoe UI Semibold", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(6, 70);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(188, 25);
+            this.label3.Size = new System.Drawing.Size(155, 20);
             this.label3.TabIndex = 10;
             this.label3.Text = "Nombre de Parcelles:";
             // 
@@ -257,7 +258,7 @@
             this.nbpar.Font = new System.Drawing.Font("Segoe UI Semibold", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nbpar.Location = new System.Drawing.Point(218, 70);
             this.nbpar.Name = "nbpar";
-            this.nbpar.Size = new System.Drawing.Size(39, 25);
+            this.nbpar.Size = new System.Drawing.Size(32, 20);
             this.nbpar.TabIndex = 10;
             this.nbpar.Text = "par";
             // 
@@ -267,7 +268,7 @@
             this.nblot.Font = new System.Drawing.Font("Segoe UI Semibold", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nblot.Location = new System.Drawing.Point(163, 27);
             this.nblot.Name = "nblot";
-            this.nblot.Size = new System.Drawing.Size(35, 25);
+            this.nblot.Size = new System.Drawing.Size(27, 20);
             this.nblot.TabIndex = 10;
             this.nblot.Text = "lot";
             // 
@@ -277,7 +278,7 @@
             this.label2.Font = new System.Drawing.Font("Segoe UI Semibold", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(6, 27);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(151, 25);
+            this.label2.Size = new System.Drawing.Size(122, 20);
             this.label2.TabIndex = 10;
             this.label2.Text = "Nombre de Lots:";
             // 
@@ -289,19 +290,19 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgv1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Cambria", 12F);
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Teal;
-            this.dgv1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Cambria", 12F);
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.Teal;
+            this.dgv1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.dgv1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Cambria", 12F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Teal;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgv1.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Cambria", 12F);
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.Teal;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgv1.DefaultCellStyle = dataGridViewCellStyle6;
             this.dgv1.Location = new System.Drawing.Point(16, 46);
             this.dgv1.Name = "dgv1";
             this.dgv1.ReadOnly = true;
@@ -309,19 +310,21 @@
             this.dgv1.RowHeadersWidth = 51;
             this.dgv1.RowTemplate.Height = 24;
             this.dgv1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv1.Size = new System.Drawing.Size(753, 687);
+            this.dgv1.Size = new System.Drawing.Size(753, 706);
             this.dgv1.TabIndex = 8;
             // 
             // groupBox3
             // 
             this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox3.Controls.Add(this.button5);
-            this.groupBox3.Location = new System.Drawing.Point(781, 493);
+            this.groupBox3.Controls.Add(this.button9);
+            this.groupBox3.Controls.Add(this.button7);
+            this.groupBox3.Location = new System.Drawing.Point(781, 453);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(288, 77);
+            this.groupBox3.Size = new System.Drawing.Size(288, 177);
             this.groupBox3.TabIndex = 20;
             this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Fiche d\'identification";
+            this.groupBox3.Text = "Fichiers";
             // 
             // button5
             // 
@@ -338,13 +341,28 @@
             this.button5.UseVisualStyleBackColor = false;
             this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
+            // button9
+            // 
+            this.button9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button9.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.button9.FlatAppearance.BorderSize = 0;
+            this.button9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button9.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button9.ForeColor = System.Drawing.Color.White;
+            this.button9.Location = new System.Drawing.Point(6, 121);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(272, 43);
+            this.button9.TabIndex = 0;
+            this.button9.Text = "Autres Documents";
+            this.button9.UseVisualStyleBackColor = false;
+            this.button9.Click += new System.EventHandler(this.button9_Click);
+            // 
             // Stock
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1071, 745);
+            this.ClientSize = new System.Drawing.Size(1071, 764);
             this.Controls.Add(this.groupBox3);
-            this.Controls.Add(this.button7);
             this.Controls.Add(this.Compteur);
             this.Controls.Add(this.dgv1);
             this.Controls.Add(this.groupBox2);
@@ -388,5 +406,6 @@
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button button9;
     }
 }

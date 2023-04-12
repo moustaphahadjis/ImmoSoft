@@ -127,8 +127,8 @@
   <data name="maps_location_11097" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\maps-location-11097.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="pngegg(7)" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\pngegg(7).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="PVtR1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\PVtR1.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="check_mark_5757" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\check-mark-5757.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -148,11 +148,8 @@
   <data name="home_199" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\home-199.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="PVtR1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\PVtR1.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="handshake_3312" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\handshake-3312.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="history_7615" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\history-7615.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="PVtR" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\PVtR.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -169,6 +166,9 @@
   <data name="Immosoft" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Immosoft.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="T-TechMaker madeby" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\T-TechMaker madeby.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="nom" xml:space="preserve">
     <value />
   </data>
@@ -180,9 +180,6 @@
   </data>
   <data name="search_2911" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\search-2911.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="history_7615" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\history-7615.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="fasocheval" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\fasocheval.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -199,7 +196,13 @@
   <data name="convert_3220" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\convert-3220.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="T-TechMaker madeby" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\T-TechMaker madeby.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="pngegg(7)" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\pngegg(7).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="handshake_3312" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\handshake-3312.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Immosoft1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Immosoft1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

@@ -143,11 +143,12 @@ namespace ImmoSoft
             if (dgv1.Rows.Count>0)
                 if (dgv1.SelectedRows.Count>0)
                 {
-                    if (decimal.Parse(dgv1.SelectedRows[0].Cells["comReste"].Value.ToString())==0)
+                    if (decimal.Parse(dgv1.SelectedRows[0].Cells["comReste"].Value.ToString())!=0)
                     {
                         addCommission com = new addCommission(
                             dgv1.SelectedRows[0].Cells["id"].Value.ToString(), search.Text, "stock");
                         com.ShowDialog();
+                        refresh();
                         /*
                         historique hist = new historique(dgv1.SelectedRows[0].Cells["id"].Value.ToString());
                         hist.ShowDialog();
@@ -225,7 +226,7 @@ namespace ImmoSoft
                             DB.historique hist = new DB.historique();
                             string idclient = dgv1.SelectedRows[0].Cells["idclient"].Value.ToString();
                             stock.update(dgv1.SelectedRows[0].Cells["id"].Value.ToString(),
-                                "0", "0", "0", "0", "0", "Disponible","");
+                                "0", "0", "0", "0", "0", "Disponible","",0);
                             hist.annulerVente("Vente annulée", dgv1.SelectedRows[0].Cells["id"].Value.ToString(),
                                 idclient, "0", "0", "0", "0", "");
                             refresh();

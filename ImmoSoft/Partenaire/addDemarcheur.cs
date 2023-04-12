@@ -42,7 +42,7 @@ namespace ImmoSoft
             matrimonial.Text=row["matrimonial"].ToString();
             string[] date = row["delivrance"].ToString().Split('/');
             delivrance.Value=new DateTime(Int32.Parse(
-                date[2]), Int32.Parse(date[1]), Int32.Parse(date[0]));
+                date[2]), Int32.Parse(date[0]), Int32.Parse(date[1]));
             if (row["image"]!=DBNull.Value)
                 picture.Image=Image.FromStream(new MemoryStream((byte[])row["image"]));
         }
@@ -65,7 +65,7 @@ namespace ImmoSoft
             matrimonial.Text=row["matrimonial"].ToString();
             string[] date = row["delivrance"].ToString().Split('/');
             delivrance.Value=new DateTime(Int32.Parse(
-                date[2]), Int32.Parse(date[1]), Int32.Parse(date[0]));
+                date[2]), Int32.Parse(date[0]), Int32.Parse(date[1]));
             if (row["image"]!=DBNull.Value)
                 picture.Image=Image.FromStream(new MemoryStream((byte[])row["image"]));
 

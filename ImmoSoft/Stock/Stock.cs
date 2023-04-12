@@ -1,15 +1,9 @@
-﻿using System;
+﻿using Microsoft.Office.Interop.Word;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 
 namespace ImmoSoft
 {
@@ -17,7 +11,7 @@ namespace ImmoSoft
     {
         bool choix=false;
         public string id;
-        DataTable sitedt;
+        System.Data.DataTable sitedt;
         string user = "";
         string selectedSite = "0";
         public Stock()
@@ -34,7 +28,7 @@ namespace ImmoSoft
         void refresh()
         {
             DB.stock stock = new DB.stock();
-            DataTable dt = new DataTable();
+            System.Data.DataTable dt = new System.Data.DataTable();
             dt=stock.refreshStock("Disponible", selectedSite);
             
             DataView view = dt.DefaultView;
@@ -217,6 +211,8 @@ namespace ImmoSoft
                         if (go)
                         {
                             DB.stock stock = new DB.stock();
+                            DB.historique hist = new DB.historique();
+                            hist.add("Parcelle supprimée", dgv1.SelectedRows[0].Cells["id"].Value.ToString(), "0", "0", "0", "0", "0", "0", "");
                             stock.delete(dgv1.SelectedRows[0].Cells["id"].Value.ToString());
                             refresh();
                         }
@@ -263,6 +259,17 @@ namespace ImmoSoft
                     Files file = new Files("fiche", dgv1.SelectedRows[0].Cells["id"].Value.ToString(), "stock dispo");
                     file.ShowDialog();
                 }
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            if (dgv1.Rows.Count>0)
+                if (dgv1.SelectedRows.Count>0)
+                    if (dgv1.SelectedRows[0].Cells["id"].Value.ToString()!="0")
+                    {
+                        Files file = new Files("autre", dgv1.SelectedRows[0].Cells["id"].Value.ToString(), "stock autre");
+                        file.ShowDialog();
+                    }
         }
     }
 }

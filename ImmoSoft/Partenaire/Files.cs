@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,19 +21,21 @@ namespace ImmoSoft
         string idchamps;
         bool demarcheur=false;
         string idatt;
+        bool autre=false;
         public Files()
         {
             InitializeComponent();
             refresh(printer.refresh());
             button2.Enabled= false;
             button2.Visible= false;
+            button3.Enabled= false;
+            button3.Visible= false;
         }
             public Files(string Nom, string id, string type)
         {
             InitializeComponent();
             nom = Nom;
             if (type=="stock")
-
             {
                 idstock = id;
                 refresh(printer.refresh(nom, id, null));
@@ -41,6 +44,12 @@ namespace ImmoSoft
             {
                 idstock = id;
                 demarcheur= true;
+                refresh(printer.refresh(nom, id, null));
+            }
+            else if (type=="stock autre")
+            {
+                idstock = id;
+                autre= true;
                 refresh(printer.refresh(nom, id, null));
             }
             else if (type=="champs dispo")
@@ -110,38 +119,61 @@ namespace ImmoSoft
                 {
                     parcelle = ch.refresh(idchamps).Rows[0];
                     if (!demarcheur)
-                        person = cl.refresh(parcelle["idnew"].ToString()).Rows[0];
+                        person = cl.refresh(parcelle["idclient"].ToString()).Rows[0];
                     else
                         person=dem.refresh(parcelle["iddemarcheur"].ToString()).Rows[0];
                 }
 
 
                 DataRow site = si.refresh(parcelle["siteid"].ToString()).Rows[0];
-                if (nom.ToLower().Contains("attestation"))
+                if (!autre)
                 {
-                    Waiting wait = new Waiting(person, site, parcelle, true);
-                    wait.ShowDialog();
-                    refresh(printer.refresh(nom, idstock, idchamps));
+                    if (nom.ToLower().Contains("attestation"))
+                    {
+                        Waiting wait = new Waiting(person, site, parcelle, true);
+                        wait.ShowDialog();
+                        refresh(printer.refresh(nom, idstock, idchamps));
+                    }
+                    else if (nom.ToLower().Contains("attribution"))
+                    {
+                        DataRow attribution = att.refresh(idatt).Rows[0];
+                        person=cl.refresh(attribution["idnew"].ToString()).Rows[0];
+                        Waiting wait = new Waiting(person, site, parcelle, true);
+                        wait.ShowDialog();
+                        refresh(printer.refresh(nom, idstock, idchamps));
+                    }
+                    else if (nom.ToLower().Contains("fiche"))
+                    {
+                        Waiting wait = new Waiting(person, site, parcelle, false);
+                        wait.ShowDialog();
+                        refresh(printer.refresh(nom, idstock, idchamps));
+                    }
+                    else if (nom.ToLower().Contains("acte"))
+                    {
+                        Waiting wait = new Waiting(parcelle, person, site["nom"].ToString());
+                        wait.ShowDialog();
+                        refresh(printer.refresh(nom, idstock, idchamps));
+                    }
                 }
-                else if (nom.ToLower().Contains("attribution"))
+                else
                 {
-                    DataRow attribution = att.refresh(idatt).Rows[0];
-                    person=cl.refresh(attribution["idnew"].ToString()).Rows[0];
-                    Waiting wait = new Waiting(person, site, parcelle, true);
-                    wait.ShowDialog();
-                    refresh(printer.refresh(nom, idstock, idchamps));
-                }
-                else if (nom.ToLower().Contains("fiche"))
-                {
-                    Waiting wait = new Waiting(person, site, parcelle, false);
-                    wait.ShowDialog();
-                    refresh(printer.refresh(nom, idstock, idchamps));
-                }
-                else if (nom.ToLower().Contains("acte"))
-                {
-                    Waiting wait = new Waiting(parcelle, person, site["nom"].ToString());
-                    wait.ShowDialog();
-                    refresh(printer.refresh(nom, idstock, idchamps));
+                    OpenFileDialog file= new OpenFileDialog();
+                    file.Title="Choissisez le fichier";
+                    file.Multiselect=true;
+                    file.Filter="Fichier PDF (*.pdf)|*.pdf| Fichier Word (*.docx)|*.docx|Tout type (*.*)|*.*";
+                    if(file.ShowDialog() == DialogResult.OK)
+                    {
+                        if(file.CheckFileExists)
+                            foreach(var ff in file.FileNames)
+                            {
+                                string[] name = ff.Split('\\');
+                                DB.printer printer = new DB.printer();
+                                string filenum = (printer.getLast("Autre")+1).ToString();
+                                printer.save("autre", filenum, name[name.Length-1],ff, idstock);
+                            }
+                        refresh(printer.refresh(nom, idstock, null));
+                    }
+                    
                 }
             }
             catch (Exception ex)
@@ -164,6 +196,12 @@ namespace ImmoSoft
         private void button3_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+
+        private void groupBox2_Enter(object sender, EventArgs e)
+        {
+
         }
     }
 }

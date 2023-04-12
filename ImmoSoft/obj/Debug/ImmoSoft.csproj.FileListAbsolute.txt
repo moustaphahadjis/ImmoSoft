@@ -71,3 +71,11 @@ C:\Work\Software\ImmoSoft\ImmoSoft\obj\Debug\ImmoSoft.application
 C:\Work\Software\ImmoSoft\ImmoSoft\obj\Debug\ImmoSoft.Cloture.resources
 C:\Work\Software\ImmoSoft\ImmoSoft\obj\Debug\ImmoSoft.commission.resources
 C:\Work\Software\ImmoSoft\ImmoSoft\obj\Debug\ImmoSoft.addCommission.resources
+C:\Work\Software\ImmoSoft\ImmoSoft\bin\Debug\Newtonsoft.Json.dll
+C:\Work\Software\ImmoSoft\ImmoSoft\bin\Debug\System.ComponentModel.Annotations.dll
+C:\Work\Software\ImmoSoft\ImmoSoft\bin\Debug\System.Threading.Tasks.Extensions.dll
+C:\Work\Software\ImmoSoft\ImmoSoft\bin\Debug\Telegram.Bot.dll
+C:\Work\Software\ImmoSoft\ImmoSoft\bin\Debug\Newtonsoft.Json.xml
+C:\Work\Software\ImmoSoft\ImmoSoft\bin\Debug\System.Threading.Tasks.Extensions.xml
+C:\Work\Software\ImmoSoft\ImmoSoft\bin\Debug\Telegram.Bot.pdb
+C:\Work\Software\ImmoSoft\ImmoSoft\bin\Debug\Telegram.Bot.xml

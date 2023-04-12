@@ -174,7 +174,7 @@ namespace ImmoSoft
             int x, y;
             x=mainPanel.Size.Width/2- madeby.Width/2;
 
-            y=mainPanel.Size.Height/4;
+            y=mainPanel.Size.Height/6;
             madeby.Location= new Point(x, y);
         }
 
@@ -183,6 +183,11 @@ namespace ImmoSoft
             Form tmp = new Files();
             changeForm(tmp);
             showTitle(button7);
+        }
+
+        private void mainPanel_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

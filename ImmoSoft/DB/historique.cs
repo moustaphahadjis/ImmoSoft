@@ -42,7 +42,7 @@ namespace ImmoSoft.DB
 
 
             MySqlDataAdapter da = new MySqlDataAdapter(
-                "select action,montant,reste, date from historique where deleted=0 and idstock=@id", con);
+                "select id,action,montant,reste,commission,comreste, date from historique where deleted=0 and idstock=@id order by id desc", con);
             da.SelectCommand.Parameters.Add("@id", MySqlDbType.Int32).Value=idstock;
             DataTable ds = new DataTable();
             ds.BeginLoadData();
@@ -55,17 +55,19 @@ namespace ImmoSoft.DB
         public DataTable refresh(string from, string to,string id)
         {
             con.Open();
-            string com = "select historique.id,stock.lot,stock.parcelle,stock.superficie," +
+            string com = "select site.nom as site,historique.id,stock.lot,stock.parcelle,stock.superficie," +
                 " CONCAT (client.nom,' ', client.prenom) as Client, client.contact," +
                 " CONCAT (demarcheur.nom,' ', demarcheur.prenom) as demarcheur,historique.action," +
                 " historique.prix, historique.montant, historique.reste," +
-                " historique.date," +
-                " CONCAT (user.nom,' ', user.prenom) as Utilisateur from historique" +
-                " join stock on stock.id = historique.id" +
+                " historique.commission, historique.comReste,historique.date," +
+                " CONCAT (user.nom,' ', user.prenom) as Utilisateur from historique " +
+                " join stock on stock.id = historique.idstock" +
                 " join client on client.id = historique.idclient" +
                 " join user on user.id = historique.iduser" +
+                " join site on site.id = stock.siteid" +
                 " join demarcheur on demarcheur.id = historique.iddemarcheur" +
-                " where historique.deleted=0 and historique.date between @from and @to";
+                " where historique.date between @from and @to" +
+                " order by historique.date desc";
             if (id!=null)
                 com+=" and stock.id='"+id+"'";
 

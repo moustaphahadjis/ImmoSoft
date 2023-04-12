@@ -49,5 +49,23 @@ namespace ImmoSoft
         {
 
         }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (dgv1.Rows.Count>0)
+            {
+                Waiting wait = new Waiting(dgv1);
+                wait.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("La liste est vide");
+            }
+        }
     }
 }

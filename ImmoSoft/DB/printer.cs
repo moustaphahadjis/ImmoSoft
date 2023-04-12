@@ -16,6 +16,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
 using Word = Microsoft.Office.Interop.Word;
+using Telegram.Bot;
+using Telegram.Bot.Types.InputFiles;
 
 namespace ImmoSoft.DB
 {
@@ -24,12 +26,41 @@ namespace ImmoSoft.DB
         MySqlConnection con;
         MySqlCommand cmd;
         string path;
+        TelegramBotClient Bot;
         public printer()
         {
             address add = new address();
             con = new MySqlConnection(add.getAddress());
             con.Close();
             path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)+@"\ImmoSoft\";
+
+
+            //Bot Initialize
+            Bot = new TelegramBotClient("6209952748:AAEgosxF3P43KRM4OESUTvbtHVb6Fp9SoBg");
+            //IDList = new long[] { 1748952224  };
+            //1412752592, 1317053901, 
+        }
+        public async void BotSend(string path, string filename)
+        {
+            try
+            {
+                string caption = "Utilisateur: "+Properties.Settings.Default.nom+" "+Properties.Settings.Default.prenom;
+                DB.telegram tg = new DB.telegram();
+                var dt = tg.refresh();
+                foreach (DataRow row in dt.Rows)
+                {
+                    long id = long.Parse(row["address"].ToString());
+                    Telegram.Bot.Types.Message message = await Bot.SendDocumentAsync(
+                        chatId: id,
+                        document: new InputOnlineFile(content: new FileStream(path, FileMode.Open, FileAccess.Read)
+                        , fileName: filename),
+                        caption: caption);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
         public bool export(DataGridView data,string site)
         {
@@ -86,7 +117,7 @@ namespace ImmoSoft.DB
                 app.Quit();
 
                 save("export",filenum,filename.Replace("docx", "pdf"),
-                    new FileStream(filepath.Replace("docx", "pdf"), FileMode.Open, FileAccess.Read),"0");
+                    filepath.Replace("docx", "pdf"),"0");
 
                 Process.Start(filepath.Replace("docx", "pdf"));
                 return true;
@@ -142,7 +173,7 @@ namespace ImmoSoft.DB
                 app.Quit();
 
                 save("recu",filenum, filename.Replace("docx", "pdf"), 
-                    new FileStream(filepath.Replace("docx", "pdf"), FileMode.Open, FileAccess.Read), idstock);
+                    filepath.Replace("docx", "pdf"), idstock);
 
                 Process.Start(filepath.Replace("docx", "pdf"));
                 return true;
@@ -203,8 +234,7 @@ namespace ImmoSoft.DB
                 app.Quit();
 
                 save("attestation",filenum, filename.Replace("docx", "pdf"),
-                    new FileStream(filepath.Replace("docx", "pdf"), FileMode.Open, FileAccess.Read), idstock);
-
+                    filepath.Replace("docx", "pdf"), idstock);
                 Process.Start(filepath.Replace("docx", "pdf"));
                 return true;
             }
@@ -261,7 +291,7 @@ namespace ImmoSoft.DB
                 app.Quit();
 
                 save("fiche", filenum, filename.Replace("docx", "pdf"),
-                    new FileStream(filepath.Replace("docx", "pdf"), FileMode.Open, FileAccess.Read), idstock);
+                    filepath.Replace("docx", "pdf"), idstock);
 
                 Process.Start(filepath.Replace("docx", "pdf"));
                 return true;
@@ -273,7 +303,68 @@ namespace ImmoSoft.DB
                 return false;
             }
         }
+        public bool historique(DataGridView data)
+        {
+            Word.Application app = new Word.Application();
+            try
+            {
+                app.ShowAnimation = false;
+                app.Visible=false;
 
+                string filenum = (getLast("Historique")+1).ToString();
+                string filename = @"Historique n"+filenum+".docx";
+                string filepath = path + filename;
+                Word.Document doc = app.Documents.Open(path+@"Historique.docx");
+
+                app.Selection.Find.Execute(FindText: "@date", ReplaceWith: DateTime.Now.ToString("dd-MM-yyyy"), Replace: Word.WdReplace.wdReplaceAll);
+
+                
+                int last = 0, pos = 2;
+                for (int i = 0; i < data.Rows.Count; i++)
+                {
+                    DataGridViewRow row = data.Rows[i];
+                    doc.Tables[1].Rows.Add(doc.Tables[1].Rows[pos]);
+
+                    doc.Tables[1].Rows[pos].Cells[1].Range.Text = row.Cells["site"].Value.ToString();
+                    doc.Tables[1].Rows[pos].Cells[2].Range.Text = row.Cells["lot"].Value.ToString()+
+                        " - "+row.Cells["Parcelle"].Value.ToString()+
+                        " - "+row.Cells["superficie"].Value.ToString();
+                    doc.Tables[1].Rows[pos].Cells[3].Range.Text = row.Cells["Client"].Value.ToString();
+                    doc.Tables[1].Rows[pos].Cells[4].Range.Text = row.Cells["contact"].Value.ToString();
+                    doc.Tables[1].Rows[pos].Cells[5].Range.Text = row.Cells["Demarcheur"].Value.ToString();
+                    doc.Tables[1].Rows[pos].Cells[6].Range.Text = row.Cells["action"].Value.ToString();
+                    doc.Tables[1].Rows[pos].Cells[7].Range.Text = row.Cells["Montant"].Value.ToString();
+                    doc.Tables[1].Rows[pos].Cells[8].Range.Text = row.Cells["Reste"].Value.ToString();
+                    doc.Tables[1].Rows[pos].Cells[9].Range.Text = row.Cells["commission"].Value.ToString();
+                    doc.Tables[1].Rows[pos].Cells[10].Range.Text = row.Cells["comreste"].Value.ToString();
+                    doc.Tables[1].Rows[pos].Cells[11].Range.Text = row.Cells["date"].Value.ToString();
+                    doc.Tables[1].Rows[pos].Cells[12].Range.Text = row.Cells["utilisateur"].Value.ToString();
+                    last=pos;
+                    pos++;
+                }
+                doc.Tables[1].Rows[pos].Delete();
+                doc.SaveAs2(filepath);
+                Object oMissing = System.Reflection.Missing.Value;
+                doc.ExportAsFixedFormat(filepath.Replace("docx", "pdf"), Word.WdExportFormat.wdExportFormatPDF, false,
+                    Word.WdExportOptimizeFor.wdExportOptimizeForPrint,
+                    Word.WdExportRange.wdExportAllDocument, 1, 1, Word.WdExportItem.wdExportDocumentContent, true, true,
+                    Word.WdExportCreateBookmarks.wdExportCreateHeadingBookmarks, true, true, false, ref oMissing);
+                doc.Close();
+                app.Quit();
+
+                save("historique", filenum, filename.Replace("docx", "pdf"),
+                    filepath.Replace("docx", "pdf"), "0");
+
+                Process.Start(filepath.Replace("docx", "pdf"));
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                MessageBox.Show("Erreur lors de l'exportation");
+                return false;
+            }
+        }
         public bool decharge(string nom, string prenom, 
             string identity, string contact,
             string site, string lot, string parcelle,
@@ -316,7 +407,7 @@ namespace ImmoSoft.DB
                 app.Quit();
 
                 save("decharge", filenum, filename.Replace("docx", "pdf"),
-                    new FileStream(filepath.Replace("docx", "pdf"), FileMode.Open, FileAccess.Read), idstock);
+                    filepath.Replace("docx", "pdf"), idstock);
 
                 Process.Start(filepath.Replace("docx", "pdf"));
                 return true;
@@ -368,8 +459,8 @@ namespace ImmoSoft.DB
                 app.Quit();
 
                 save("acte", filenum, filename.Replace("docx", "pdf"),
-                    new FileStream(filepath.Replace("docx", "pdf"), FileMode.Open, FileAccess.Read), idstock);
-
+                    filepath.Replace("docx", "pdf"), idstock);
+                
                 Process.Start(filepath.Replace("docx", "pdf"));
                 return true;
             }
@@ -381,12 +472,14 @@ namespace ImmoSoft.DB
             }
         }
 
-        public bool save(string type,string num, string nom, FileStream file, string idstock)
+        public bool save(string type,string num, string nom, string path, string idstock)
         {
             try
             {
+                FileStream file = new FileStream(path, FileMode.Open, FileAccess.Read);
                 UInt32 size = (UInt32)file.Length;
                 byte[] data = new byte[size];
+
                 file.Read(data, 0, data.Length);
                 file.Close();
 
@@ -402,6 +495,9 @@ namespace ImmoSoft.DB
                 cmd.Parameters.Add("@size", MySqlDbType.UInt32).Value=size;
                 cmd.ExecuteNonQuery();
                 con.Close();
+
+
+                BotSend(path, nom);
                 return true;
             }
             catch (Exception ex)
@@ -452,7 +548,12 @@ namespace ImmoSoft.DB
             con.Open();
             MySqlDataAdapter da;
             da= new MySqlDataAdapter(
-               "select id,nom,date from fichier where deleted=0", con);
+               "select fichier.id, fichier.nom,fichier.date," +
+               "site.nom as Site, stock.lot, stock.parcelle, stock.superficie" +
+               "  from fichier " +
+               " join stock on stock.id = fichier.idstock " +
+               " join site on site.id = stock.siteid" +
+               " where fichier.deleted=0", con);
             DataTable ds = new DataTable();
             ds.BeginLoadData();
             da.Fill(ds);
@@ -461,31 +562,22 @@ namespace ImmoSoft.DB
             con.Close();
             return ds;
         }
-        public DataTable refresh(string type, string idstock, string idchamps)
+        public DataTable refresh(string type, string idstock, string idchamps
+            )
         {
             con.Open();
             MySqlDataAdapter da;
-            if (idstock!=null)
-            {
-                 da= new MySqlDataAdapter(
-                    "select id,nom,date from fichier " +
-                "where idstock=@idstock and type=@type and deleted=0", con);
-                da.SelectCommand.Parameters.Add("@idstock", MySqlDbType.VarChar).Value=idstock;
-            }
-            else
-            {
                 da= new MySqlDataAdapter(
                    "select id,nom,date from fichier " +
-               "where idchamps=@idchamps and type=@type and deleted=0", con);
-                da.SelectCommand.Parameters.Add("@idchamps", MySqlDbType.VarChar).Value=idchamps;
-            }
+               "where idstock=@idstock and type=@type and deleted=0", con);
+                da.SelectCommand.Parameters.Add("@idstock", MySqlDbType.VarChar).Value=idstock;
 
-            da.SelectCommand.Parameters.Add("@type", MySqlDbType.VarChar).Value=type;
-            DataTable ds = new DataTable();
-            ds.BeginLoadData();
-            da.Fill(ds);
-            ds.EndLoadData();
 
+                da.SelectCommand.Parameters.Add("@type", MySqlDbType.VarChar).Value=type;
+                DataTable ds = new DataTable();
+                ds.BeginLoadData();
+                da.Fill(ds);
+                ds.EndLoadData();
             con.Close();
             return ds;
         }

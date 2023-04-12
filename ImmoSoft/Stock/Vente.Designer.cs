@@ -79,9 +79,11 @@
             this.groupBox1.Controls.Add(this.dgvP);
             this.groupBox1.Controls.Add(this.selectP);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(12, 56);
+            this.groupBox1.Location = new System.Drawing.Point(9, 46);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(976, 122);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Size = new System.Drawing.Size(732, 99);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Details Parcelle";
@@ -93,9 +95,10 @@
             this.selectP.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.selectP.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.selectP.ForeColor = System.Drawing.Color.White;
-            this.selectP.Location = new System.Drawing.Point(6, 40);
+            this.selectP.Location = new System.Drawing.Point(4, 32);
+            this.selectP.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.selectP.Name = "selectP";
-            this.selectP.Size = new System.Drawing.Size(137, 52);
+            this.selectP.Size = new System.Drawing.Size(103, 42);
             this.selectP.TabIndex = 1;
             this.selectP.Text = "Choisir";
             this.selectP.UseVisualStyleBackColor = false;
@@ -107,9 +110,11 @@
             this.groupBox2.Controls.Add(this.deleteC);
             this.groupBox2.Controls.Add(this.selectC);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(12, 184);
+            this.groupBox2.Location = new System.Drawing.Point(9, 150);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(976, 114);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox2.Size = new System.Drawing.Size(732, 93);
             this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Details Client";
@@ -121,9 +126,10 @@
             this.deleteC.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.deleteC.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.deleteC.ForeColor = System.Drawing.Color.White;
-            this.deleteC.Location = new System.Drawing.Point(6, 70);
+            this.deleteC.Location = new System.Drawing.Point(4, 57);
+            this.deleteC.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.deleteC.Name = "deleteC";
-            this.deleteC.Size = new System.Drawing.Size(137, 44);
+            this.deleteC.Size = new System.Drawing.Size(103, 36);
             this.deleteC.TabIndex = 1;
             this.deleteC.Text = "Supprimer";
             this.deleteC.UseVisualStyleBackColor = false;
@@ -136,9 +142,10 @@
             this.selectC.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.selectC.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.selectC.ForeColor = System.Drawing.Color.White;
-            this.selectC.Location = new System.Drawing.Point(6, 23);
+            this.selectC.Location = new System.Drawing.Point(4, 19);
+            this.selectC.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.selectC.Name = "selectC";
-            this.selectC.Size = new System.Drawing.Size(137, 44);
+            this.selectC.Size = new System.Drawing.Size(103, 36);
             this.selectC.TabIndex = 1;
             this.selectC.Text = "Choisir";
             this.selectC.UseVisualStyleBackColor = false;
@@ -149,13 +156,12 @@
             this.groupBox3.Controls.Add(this.dgvD);
             this.groupBox3.Controls.Add(this.deleteD);
             this.groupBox3.Controls.Add(this.selectD);
-            this.groupBox3.Controls.Add(this.commission);
-            this.groupBox3.Controls.Add(this.label8);
-            this.groupBox3.Controls.Add(this.label9);
             this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox3.Location = new System.Drawing.Point(6, 304);
+            this.groupBox3.Location = new System.Drawing.Point(4, 247);
+            this.groupBox3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(982, 160);
+            this.groupBox3.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox3.Size = new System.Drawing.Size(736, 109);
             this.groupBox3.TabIndex = 0;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Details Demarcheur";
@@ -167,9 +173,10 @@
             this.deleteD.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.deleteD.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.deleteD.ForeColor = System.Drawing.Color.White;
-            this.deleteD.Location = new System.Drawing.Point(12, 67);
+            this.deleteD.Location = new System.Drawing.Point(9, 54);
+            this.deleteD.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.deleteD.Name = "deleteD";
-            this.deleteD.Size = new System.Drawing.Size(137, 44);
+            this.deleteD.Size = new System.Drawing.Size(103, 36);
             this.deleteD.TabIndex = 1;
             this.deleteD.Text = "Supprimer";
             this.deleteD.UseVisualStyleBackColor = false;
@@ -182,9 +189,10 @@
             this.selectD.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.selectD.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.selectD.ForeColor = System.Drawing.Color.White;
-            this.selectD.Location = new System.Drawing.Point(10, 20);
+            this.selectD.Location = new System.Drawing.Point(8, 16);
+            this.selectD.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.selectD.Name = "selectD";
-            this.selectD.Size = new System.Drawing.Size(137, 41);
+            this.selectD.Size = new System.Drawing.Size(103, 33);
             this.selectD.TabIndex = 1;
             this.selectD.Text = "Choisir";
             this.selectD.UseVisualStyleBackColor = false;
@@ -193,10 +201,11 @@
             // commission
             // 
             this.commission.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.commission.Location = new System.Drawing.Point(423, 123);
+            this.commission.Location = new System.Drawing.Point(503, 65);
+            this.commission.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.commission.Name = "commission";
             this.commission.ReadOnly = true;
-            this.commission.Size = new System.Drawing.Size(223, 31);
+            this.commission.Size = new System.Drawing.Size(168, 26);
             this.commission.TabIndex = 1;
             this.commission.Text = "0";
             this.commission.TextChanged += new System.EventHandler(this.prix_TextChanged_1);
@@ -205,9 +214,10 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Cambria", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(309, 128);
+            this.label8.Location = new System.Drawing.Point(415, 71);
+            this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(106, 21);
+            this.label8.Size = new System.Drawing.Size(84, 17);
             this.label8.TabIndex = 0;
             this.label8.Text = "Commission";
             // 
@@ -215,28 +225,31 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Cambria", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(652, 126);
+            this.label9.Location = new System.Drawing.Point(675, 67);
+            this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(50, 21);
+            this.label9.Size = new System.Drawing.Size(40, 17);
             this.label9.TabIndex = 0;
             this.label9.Text = "FCFA";
             // 
             // groupBox4
             // 
             this.groupBox4.Controls.Add(this.rest);
-            this.groupBox4.Controls.Add(this.vsmt);
             this.groupBox4.Controls.Add(this.label2);
+            this.groupBox4.Controls.Add(this.commission);
+            this.groupBox4.Controls.Add(this.label8);
             this.groupBox4.Controls.Add(this.label6);
-            this.groupBox4.Controls.Add(this.label5);
-            this.groupBox4.Controls.Add(this.label3);
+            this.groupBox4.Controls.Add(this.label9);
             this.groupBox4.Controls.Add(this.usage);
             this.groupBox4.Controls.Add(this.prix);
             this.groupBox4.Controls.Add(this.label7);
             this.groupBox4.Controls.Add(this.label1);
             this.groupBox4.Controls.Add(this.label4);
-            this.groupBox4.Location = new System.Drawing.Point(12, 466);
+            this.groupBox4.Location = new System.Drawing.Point(9, 359);
+            this.groupBox4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(976, 153);
+            this.groupBox4.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox4.Size = new System.Drawing.Size(732, 105);
             this.groupBox4.TabIndex = 0;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Details Payement";
@@ -245,28 +258,33 @@
             // rest
             // 
             this.rest.Font = new System.Drawing.Font("Cambria", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rest.Location = new System.Drawing.Point(672, 82);
+            this.rest.Location = new System.Drawing.Point(126, 59);
+            this.rest.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.rest.Name = "rest";
             this.rest.ReadOnly = true;
-            this.rest.Size = new System.Drawing.Size(164, 29);
+            this.rest.Size = new System.Drawing.Size(163, 24);
             this.rest.TabIndex = 7;
             // 
             // vsmt
             // 
+            this.vsmt.Enabled = false;
             this.vsmt.Font = new System.Drawing.Font("Cambria", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.vsmt.Location = new System.Drawing.Point(166, 89);
+            this.vsmt.Location = new System.Drawing.Point(120, 522);
+            this.vsmt.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.vsmt.Name = "vsmt";
             this.vsmt.ReadOnly = true;
-            this.vsmt.Size = new System.Drawing.Size(223, 29);
+            this.vsmt.Size = new System.Drawing.Size(168, 24);
             this.vsmt.TabIndex = 8;
+            this.vsmt.Visible = false;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Cambria", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(849, 85);
+            this.label2.Location = new System.Drawing.Point(295, 62);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(50, 21);
+            this.label2.Size = new System.Drawing.Size(40, 17);
             this.label2.TabIndex = 3;
             this.label2.Text = "FCFA";
             // 
@@ -274,31 +292,38 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Cambria", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(540, 89);
+            this.label6.Location = new System.Drawing.Point(22, 65);
+            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(114, 21);
+            this.label6.Size = new System.Drawing.Size(91, 17);
             this.label6.TabIndex = 4;
             this.label6.Text = "Reste à payer";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
+            this.label5.Enabled = false;
             this.label5.Font = new System.Drawing.Font("Cambria", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(16, 95);
+            this.label5.Location = new System.Drawing.Point(8, 527);
+            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(122, 21);
+            this.label5.Size = new System.Drawing.Size(98, 17);
             this.label5.TabIndex = 5;
             this.label5.Text = "Montant versé";
+            this.label5.Visible = false;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
+            this.label3.Enabled = false;
             this.label3.Font = new System.Drawing.Font("Cambria", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(398, 94);
+            this.label3.Location = new System.Drawing.Point(294, 526);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(50, 21);
+            this.label3.Size = new System.Drawing.Size(40, 17);
             this.label3.TabIndex = 6;
             this.label3.Text = "FCFA";
+            this.label3.Visible = false;
             // 
             // usage
             // 
@@ -308,17 +333,19 @@
             "Habitation",
             "Agriculture",
             "Industrie"});
-            this.usage.Location = new System.Drawing.Point(671, 23);
+            this.usage.Location = new System.Drawing.Point(503, 19);
+            this.usage.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.usage.Name = "usage";
-            this.usage.Size = new System.Drawing.Size(227, 29);
+            this.usage.Size = new System.Drawing.Size(171, 24);
             this.usage.TabIndex = 2;
             // 
             // prix
             // 
             this.prix.Font = new System.Drawing.Font("Cambria", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.prix.Location = new System.Drawing.Point(166, 28);
+            this.prix.Location = new System.Drawing.Point(124, 23);
+            this.prix.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.prix.Name = "prix";
-            this.prix.Size = new System.Drawing.Size(223, 29);
+            this.prix.Size = new System.Drawing.Size(168, 24);
             this.prix.TabIndex = 1;
             this.prix.TextChanged += new System.EventHandler(this.prix_TextChanged_1);
             // 
@@ -326,9 +353,10 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Cambria", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(545, 31);
+            this.label7.Location = new System.Drawing.Point(409, 25);
+            this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(112, 21);
+            this.label7.Size = new System.Drawing.Size(90, 17);
             this.label7.TabIndex = 0;
             this.label7.Text = "Type d\'usage";
             // 
@@ -336,9 +364,10 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Cambria", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(393, 31);
+            this.label1.Location = new System.Drawing.Point(295, 25);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(50, 21);
+            this.label1.Size = new System.Drawing.Size(40, 17);
             this.label1.TabIndex = 0;
             this.label1.Text = "FCFA";
             // 
@@ -346,9 +375,10 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Cambria", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(19, 31);
+            this.label4.Location = new System.Drawing.Point(14, 25);
+            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(122, 21);
+            this.label4.Size = new System.Drawing.Size(99, 17);
             this.label4.TabIndex = 0;
             this.label4.Text = "Prix du terrain";
             // 
@@ -359,9 +389,10 @@
             this.confirm.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.confirm.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.confirm.ForeColor = System.Drawing.Color.White;
-            this.confirm.Location = new System.Drawing.Point(322, 629);
+            this.confirm.Location = new System.Drawing.Point(249, 482);
+            this.confirm.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.confirm.Name = "confirm";
-            this.confirm.Size = new System.Drawing.Size(187, 52);
+            this.confirm.Size = new System.Drawing.Size(140, 42);
             this.confirm.TabIndex = 1;
             this.confirm.Text = "Confirmer vente";
             this.confirm.UseVisualStyleBackColor = false;
@@ -374,9 +405,10 @@
             this.cancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cancel.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cancel.ForeColor = System.Drawing.Color.White;
-            this.cancel.Location = new System.Drawing.Point(525, 629);
+            this.cancel.Location = new System.Drawing.Point(401, 482);
+            this.cancel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cancel.Name = "cancel";
-            this.cancel.Size = new System.Drawing.Size(187, 52);
+            this.cancel.Size = new System.Drawing.Size(140, 42);
             this.cancel.TabIndex = 1;
             this.cancel.Text = "Annuler";
             this.cancel.UseVisualStyleBackColor = false;
@@ -388,8 +420,9 @@
             this.panel1.Controls.Add(this.label10);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1000, 47);
+            this.panel1.Size = new System.Drawing.Size(750, 38);
             this.panel1.TabIndex = 11;
             // 
             // label10
@@ -397,9 +430,10 @@
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Segoe UI Semibold", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.ForeColor = System.Drawing.Color.White;
-            this.label10.Location = new System.Drawing.Point(402, 7);
+            this.label10.Location = new System.Drawing.Point(302, 6);
+            this.label10.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(194, 31);
+            this.label10.Size = new System.Drawing.Size(162, 25);
             this.label10.TabIndex = 0;
             this.label10.Text = "Detail de la vente";
             // 
@@ -425,14 +459,15 @@
             dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvD.DefaultCellStyle = dataGridViewCellStyle6;
-            this.dgvD.Location = new System.Drawing.Point(155, 20);
+            this.dgvD.Location = new System.Drawing.Point(116, 16);
+            this.dgvD.Margin = new System.Windows.Forms.Padding(2);
             this.dgvD.Name = "dgvD";
             this.dgvD.ReadOnly = true;
             this.dgvD.RowHeadersVisible = false;
             this.dgvD.RowHeadersWidth = 51;
             this.dgvD.RowTemplate.Height = 24;
             this.dgvD.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvD.Size = new System.Drawing.Size(818, 91);
+            this.dgvD.Size = new System.Drawing.Size(614, 89);
             this.dgvD.TabIndex = 2;
             // 
             // dgvC
@@ -457,14 +492,15 @@
             dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvC.DefaultCellStyle = dataGridViewCellStyle4;
-            this.dgvC.Location = new System.Drawing.Point(149, 21);
+            this.dgvC.Location = new System.Drawing.Point(112, 17);
+            this.dgvC.Margin = new System.Windows.Forms.Padding(2);
             this.dgvC.Name = "dgvC";
             this.dgvC.ReadOnly = true;
             this.dgvC.RowHeadersVisible = false;
             this.dgvC.RowHeadersWidth = 51;
             this.dgvC.RowTemplate.Height = 24;
             this.dgvC.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvC.Size = new System.Drawing.Size(818, 86);
+            this.dgvC.Size = new System.Drawing.Size(614, 70);
             this.dgvC.TabIndex = 2;
             // 
             // dgvP
@@ -489,29 +525,34 @@
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvP.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dgvP.Location = new System.Drawing.Point(149, 21);
+            this.dgvP.Location = new System.Drawing.Point(112, 17);
+            this.dgvP.Margin = new System.Windows.Forms.Padding(2);
             this.dgvP.Name = "dgvP";
             this.dgvP.ReadOnly = true;
             this.dgvP.RowHeadersVisible = false;
             this.dgvP.RowHeadersWidth = 51;
             this.dgvP.RowTemplate.Height = 24;
             this.dgvP.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvP.Size = new System.Drawing.Size(818, 92);
+            this.dgvP.Size = new System.Drawing.Size(614, 75);
             this.dgvP.TabIndex = 2;
             // 
             // Vente
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1000, 692);
+            this.ClientSize = new System.Drawing.Size(750, 545);
             this.Controls.Add(this.panel1);
+            this.Controls.Add(this.vsmt);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.cancel);
             this.Controls.Add(this.confirm);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.label3);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "Vente";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = " ";
@@ -519,7 +560,6 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             this.panel1.ResumeLayout(false);
@@ -528,6 +568,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvC)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvP)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 

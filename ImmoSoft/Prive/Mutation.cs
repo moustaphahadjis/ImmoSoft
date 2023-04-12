@@ -127,7 +127,8 @@ namespace ImmoSoft
                 {
                     etat="Mutée";
                 }
-
+                if (did==null)
+                    did="0";
                 if (stock.mutation(pid,oid, cid, did, prix.Text.Trim(), vsmt.Text.Trim(), rest.Text, usage.Text, etat))
                 {
                     hist.add(action, pid, oid, cid, did, prix.Text.Trim(), vsmt.Text.Trim(), rest.Text, usage.Text);

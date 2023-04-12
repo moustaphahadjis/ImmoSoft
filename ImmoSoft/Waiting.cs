@@ -20,13 +20,21 @@ namespace ImmoSoft
 
         //versement
         string action, prix, versement, reste;
-        bool payment = false, fiche = false, attribution = false, decharge=false, acte=false;
+        bool payment = false, fiche = false, attribution = false, decharge=false, acte=false, historique = false;
         
         //attribution
         DataRow client, site, parcelle;
 
         //decharge
         string montant, sitenom;
+
+        //historique
+        public Waiting(DataGridView dgv)
+        {
+            InitializeComponent();
+            dgv1=dgv;
+            this.historique = true;
+        }
         public Waiting(DataGridView dgv, string name)
         {
             InitializeComponent();
@@ -161,6 +169,11 @@ namespace ImmoSoft
                     parcelle["montant"].ToString(),
                     parcelle["reste"].ToString(),
                     parcelle["id"].ToString());
+                finish= true;
+            }
+            else if (historique)
+            {
+                printer.historique(dgv1);
                 finish= true;
             }
             else

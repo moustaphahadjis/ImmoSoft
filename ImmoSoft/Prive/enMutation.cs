@@ -192,7 +192,7 @@ namespace ImmoSoft
                             string idclient = dgv1.SelectedRows[0].Cells["idclient"].Value.ToString();
                             stock.update(dgv1.SelectedRows[0].Cells["id"].Value.ToString(),
                                 "0", "0", "0", "0", "0", "Disponible", "");
-                            hist.annulerVente("Vente annulée", dgv1.SelectedRows[0].Cells["id"].Value.ToString(),
+                            hist.annulerVente("Mutation annulée", dgv1.SelectedRows[0].Cells["id"].Value.ToString(),
                                 idclient, "0", "0", "0", "0", "");
                             refresh();
                         }

@@ -26,8 +26,7 @@ namespace ImmoSoft
                 dgvP.DataSource = stock.refresh(idstock);
                 iddemarcheur=dgvP.Rows[0].Cells["iddemarcheur"].Value.ToString();
                 comm.Text = dgvP.Rows[0].Cells["commission"].Value.ToString();
-                payable.Text =(decimal.Parse(dgvP.Rows[0].Cells["commission"].Value.ToString())-
-                    decimal.Parse(dgvP.Rows[0].Cells["comReste"].Value.ToString())).ToString();
+                payable.Text =(decimal.Parse(dgvP.Rows[0].Cells["comReste"].Value.ToString())).ToString();
             }
             else
             {
@@ -83,7 +82,7 @@ namespace ImmoSoft
                         dgvP.Rows[0].Cells["iddemarcheur"].Value.ToString(),
                         dgvP.Rows[0].Cells["prix"].Value.ToString(), "0",
                         dgvP.Rows[0].Cells["reste"].Value.ToString(),
-                        dgvP.Rows[0].Cells["commission"].Value.ToString(),
+                        montant.Text,
                         reste.Text,
                         dgvP.Rows[0].Cells["type_usage"].Value.ToString());
                 Waiting wait = new Waiting(dgvP,dgvD,montant.Text,site);
