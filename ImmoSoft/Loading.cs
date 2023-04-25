@@ -12,11 +12,12 @@ namespace ImmoSoft
 {
     public partial class Loading : Form
     {
+        int count = 0;
         public Loading()
         {
             InitializeComponent();
         }
-
+       
         private void Loading_Load(object sender, EventArgs e)
         {
             timer1.Start();
@@ -24,7 +25,7 @@ namespace ImmoSoft
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            if (progressBar.Size.Width>700)
+            if (count>300)
             {
                 timer1.Stop();
                 this.Hide();
@@ -34,7 +35,7 @@ namespace ImmoSoft
             }
             else
             {
-                progressBar.Width+=10;
+                count+=10;
             }
         }
     }

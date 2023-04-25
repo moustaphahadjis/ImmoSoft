@@ -14,6 +14,7 @@ namespace ImmoSoft
     public partial class addVersement : Form
     {
         string id;
+        string sitenom;
         bool mutation;
         DB.common com = new DB.common();
         public addVersement(string ID, bool muter)
@@ -52,6 +53,9 @@ namespace ImmoSoft
                 montant.Text=dgvP.Rows[0].Cells["mreste"].Value.ToString();
                 label1.Text= "Frais";
             }
+
+            DB.site site = new DB.site();
+            sitenom = site.refresh(dgvP.Rows[0].Cells["siteid"].Value.ToString()).Rows[0][1].ToString();
         }
         bool check()
         {
@@ -127,7 +131,7 @@ namespace ImmoSoft
                             dgvP.Rows[0].Cells["type_usage"].Value.ToString());
 
                         
-                            Waiting wait = new Waiting(dgvP,dgvC,action,prix.Text,versement.Text,reste.Text);
+                            Waiting wait = new Waiting(dgvP,dgvC,action,prix.Text,versement.Text,reste.Text,sitenom );
                             wait.ShowDialog();
                         
                         this.Close();
@@ -165,7 +169,7 @@ namespace ImmoSoft
                             prix.Text.Trim(), versement.Text.Trim(), reste.Text,
                             dgvP.Rows[0].Cells["type_usage"].Value.ToString());
 
-                        Waiting wait = new Waiting(dgvP, dgvC, action, prix.Text, versement.Text, reste.Text);
+                        Waiting wait = new Waiting(dgvP, dgvC, action, prix.Text, versement.Text, reste.Text, sitenom);
                         wait.ShowDialog();
                         /*
                         printer.versement("Mutation de terrain",

@@ -40,9 +40,18 @@ namespace ImmoSoft
             nom.Text=row["nom"].ToString();
             profession.Text=row["profession"].ToString();
             matrimonial.Text=row["matrimonial"].ToString();
-            string[] date = row["delivrance"].ToString().Split('/');
-            delivrance.Value=new DateTime(Int32.Parse(
-                date[2]), Int32.Parse(date[0]), Int32.Parse(date[1]));
+            if (!string.IsNullOrEmpty(row["delivrance"].ToString()))
+            {
+                string[] date = row["delivrance"].ToString().Split('/');
+                delivrance.Value=new DateTime(Int32.Parse(
+                    date[2]), Int32.Parse(date[1]), Int32.Parse(date[0]));
+            }
+            if (!string.IsNullOrEmpty(row["naissance"].ToString()))
+            {
+                string[] date_naissance = row["naissance"].ToString().Split('/');
+                naissance.Value=new DateTime(Int32.Parse(
+                    date_naissance[2]), Int32.Parse(date_naissance[1]), Int32.Parse(date_naissance[0]));
+            }
             if (row["image"]!=DBNull.Value)
                 picture.Image=Image.FromStream(new MemoryStream((byte[])row["image"]));
         }
@@ -63,9 +72,18 @@ namespace ImmoSoft
             nom.Text=row["nom"].ToString();
             profession.Text=row["profession"].ToString();
             matrimonial.Text=row["matrimonial"].ToString();
-            string[] date = row["delivrance"].ToString().Split('/');
-            delivrance.Value=new DateTime(Int32.Parse(
-                date[2]), Int32.Parse(date[0]), Int32.Parse(date[1]));
+            if (!string.IsNullOrEmpty(row["delivrance"].ToString()))
+            {
+                string[] date = row["delivrance"].ToString().Split('/');
+                delivrance.Value=new DateTime(Int32.Parse(
+                    date[2]), Int32.Parse(date[1]), Int32.Parse(date[0]));
+            }
+            if (!string.IsNullOrEmpty(row["naissance"].ToString()))
+            {
+                string[] date_naissance = row["naissance"].ToString().Split('/');
+                naissance.Value=new DateTime(Int32.Parse(
+                    date_naissance[2]), Int32.Parse(date_naissance[1]), Int32.Parse(date_naissance[0]));
+            }
             if (row["image"]!=DBNull.Value)
                 picture.Image=Image.FromStream(new MemoryStream((byte[])row["image"]));
 
@@ -108,6 +126,7 @@ namespace ImmoSoft
 
                     if (demarcheur.add(data,nom.Text.TrimStart().TrimEnd().ToUpper(),
                         prenom.Text.TrimStart().TrimEnd().ToUpper(),
+                        naissance.Text,
                         piece.Text,
                         numero.Text.TrimStart().TrimEnd().ToUpper(),
                         delivrance.Text, profession.Text,
@@ -145,6 +164,7 @@ namespace ImmoSoft
 
                     if (demarcheur.update(data,id, nom.Text.TrimStart().TrimEnd().ToUpper(),
                         prenom.Text.TrimStart().TrimEnd().ToUpper(),
+                        naissance.Text,
                         piece.Text,
                         numero.Text.TrimStart().TrimEnd().ToUpper(),
                         delivrance.Text, profession.Text,

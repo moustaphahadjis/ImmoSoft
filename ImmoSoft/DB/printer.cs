@@ -32,13 +32,18 @@ namespace ImmoSoft.DB
             address add = new address();
             con = new MySqlConnection(add.getAddress());
             con.Close();
-            path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)+@"\ImmoSoft\";
+            path = System.IO.Path.GetTempPath();
 
 
             //Bot Initialize
             Bot = new TelegramBotClient("6209952748:AAEgosxF3P43KRM4OESUTvbtHVb6Fp9SoBg");
             //IDList = new long[] { 1748952224  };
             //1412752592, 1317053901, 
+        }
+        string getPath(string nom)
+        {
+            DB.template template = new DB.template();
+            return template.open(nom);
         }
         public async void BotSend(string path, string filename)
         {
@@ -132,7 +137,7 @@ namespace ImmoSoft.DB
         public bool versement(string objet, string nom, string identity, string contact,
             string lot, string parcelle, string superficie,
             string motif, string montant,
-            string prix, string total, string reste, string idstock)
+            string prix, string total, string reste, string idstock, string site)
         {
             Word.Application app = new Word.Application();
             convertir con = new convertir();
@@ -143,9 +148,10 @@ namespace ImmoSoft.DB
                 string filenum = (getLast("Recu")+1).ToString();
                 string filename = @"Recu n"+filenum+".docx";
                 string filepath = path + filename;
-                Word.Document doc = app.Documents.Open(path+@"Versement.docx");
+                Word.Document doc = app.Documents.Open(getPath("versement.docx"));
 
                 app.Selection.Find.Execute(FindText: "@num", ReplaceWith: filenum, Replace: Word.WdReplace.wdReplaceAll);
+                app.Selection.Find.Execute(FindText: "@site", ReplaceWith: site, Replace: Word.WdReplace.wdReplaceAll);
                 app.Selection.Find.Execute(FindText: "@objet", ReplaceWith: objet, Replace: Word.WdReplace.wdReplaceAll);
                 app.Selection.Find.Execute(FindText: "@nom", ReplaceWith: nom, Replace: Word.WdReplace.wdReplaceAll);
                 app.Selection.Find.Execute(FindText: "@identity", ReplaceWith: identity, Replace: Word.WdReplace.wdReplaceAll);
@@ -203,7 +209,7 @@ namespace ImmoSoft.DB
                 string filenum = (getLast("Attestation")+1).ToString();
                 string filename = @"Attestation n"+filenum+".docx";
                 string filepath = path + filename;
-                Word.Document doc = app.Documents.Open(path+@"Attestation.docx");
+                Word.Document doc = app.Documents.Open(getPath("Attestation.docx"));
 
                 app.Selection.Find.Execute(FindText: "@num", ReplaceWith: filenum, Replace: Word.WdReplace.wdReplaceAll);
                 app.Selection.Find.Execute(FindText: "@nom", ReplaceWith: nom, Replace: Word.WdReplace.wdReplaceAll);
@@ -260,7 +266,7 @@ namespace ImmoSoft.DB
                 string filenum = (getLast("Fiche")+1).ToString();
                 string filename = @"Fiche n"+filenum+".docx";
                 string filepath = path + filename;
-                Word.Document doc = app.Documents.Open(path+@"Fiche.docx");
+                Word.Document doc = app.Documents.Open(getPath("fiche.docx"));
 
                 app.Selection.Find.Execute(FindText: "@num", ReplaceWith: filenum, Replace: Word.WdReplace.wdReplaceAll);
                 app.Selection.Find.Execute(FindText: "@nom", ReplaceWith: nom, Replace: Word.WdReplace.wdReplaceAll);
@@ -314,7 +320,7 @@ namespace ImmoSoft.DB
                 string filenum = (getLast("Historique")+1).ToString();
                 string filename = @"Historique n"+filenum+".docx";
                 string filepath = path + filename;
-                Word.Document doc = app.Documents.Open(path+@"Historique.docx");
+                Word.Document doc = app.Documents.Open(getPath("historique.docx"));
 
                 app.Selection.Find.Execute(FindText: "@date", ReplaceWith: DateTime.Now.ToString("dd-MM-yyyy"), Replace: Word.WdReplace.wdReplaceAll);
 
@@ -379,7 +385,7 @@ namespace ImmoSoft.DB
                 string filenum = (getLast("Decharge")+1).ToString();
                 string filename = @"Decharge n"+filenum+".docx";
                 string filepath = path + filename;
-                Word.Document doc = app.Documents.Open(path+@"Decharge.docx");
+                Word.Document doc = app.Documents.Open(getPath("decharge.docx"));
 
                 app.Selection.Find.Execute(FindText: "@num", ReplaceWith: filenum, Replace: Word.WdReplace.wdReplaceAll);
                 app.Selection.Find.Execute(FindText: "@nom", ReplaceWith: nom, Replace: Word.WdReplace.wdReplaceAll);
@@ -433,7 +439,7 @@ namespace ImmoSoft.DB
                 string filenum = (getLast("Acte")+1).ToString();
                 string filename = @"Acte n"+filenum+".docx";
                 string filepath = path + filename;
-                Word.Document doc = app.Documents.Open(path+@"acte.docx");
+                Word.Document doc = app.Documents.Open(getPath("acte.docx"));
 
                 app.Selection.Find.Execute(FindText: "@num", ReplaceWith: filenum, Replace: Word.WdReplace.wdReplaceAll);
                 app.Selection.Find.Execute(FindText: "@nomclient", ReplaceWith: nomclient, Replace: Word.WdReplace.wdReplaceAll);

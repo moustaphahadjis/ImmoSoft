@@ -23,6 +23,7 @@ namespace ImmoSoft
             this.StartPosition = FormStartPosition.CenterScreen;
             delivrance.Format = DateTimePickerFormat.Custom;
             delivrance.CustomFormat = "dd/MM/yyyy";
+            naissance.CustomFormat = "dd/MM/yyyy";
             modify = false;
         }
         public addClient(string ID)
@@ -31,6 +32,7 @@ namespace ImmoSoft
             this.StartPosition = FormStartPosition.CenterScreen;
             delivrance.Format = DateTimePickerFormat.Custom;
             delivrance.CustomFormat = "dd/MM/yyyy";
+            naissance.CustomFormat = "dd/MM/yyyy";
             modify = true;
             id=ID;
             DB.client client = new DB.client();
@@ -43,9 +45,18 @@ namespace ImmoSoft
             addresse.Text=row["addresse"].ToString();
             profession.Text=row["profession"].ToString();
             matrimonial.Text=row["matrimonial"].ToString();
-            string[] date = row["delivrance"].ToString().Split('/');
-            delivrance.Value=new DateTime(Int32.Parse(
-                date[2]), Int32.Parse(date[1]), Int32.Parse(date[0]));
+            if (!string.IsNullOrEmpty(row["delivrance"].ToString()))
+            {
+                string[] date = row["delivrance"].ToString().Split('/');
+                delivrance.Value=new DateTime(Int32.Parse(
+                    date[2]), Int32.Parse(date[1]), Int32.Parse(date[0]));
+            }
+            if (!string.IsNullOrEmpty(row["naissance"].ToString()))
+            {
+                string[] date_naissance = row["naissance"].ToString().Split('/');
+                naissance.Value=new DateTime(Int32.Parse(
+                    date_naissance[2]), Int32.Parse(date_naissance[1]), Int32.Parse(date_naissance[0]));
+            }
             if (row["image"]!=DBNull.Value)
             picture.Image=Image.FromStream(new MemoryStream((byte[])row["image"]));
         }
@@ -55,6 +66,7 @@ namespace ImmoSoft
             this.StartPosition = FormStartPosition.CenterScreen;
             delivrance.Format = DateTimePickerFormat.Custom;
             delivrance.CustomFormat = "dd/MM/yyyy";
+            naissance.CustomFormat = "dd/MM/yyyy";
             modify = true;
             id=ID;
             DB.client client = new DB.client();
@@ -67,9 +79,18 @@ namespace ImmoSoft
             addresse.Text=row["addresse"].ToString();
             profession.Text=row["profession"].ToString();
             matrimonial.Text=row["matrimonial"].ToString();
-            string[] date = row["delivrance"].ToString().Split('/');
-            delivrance.Value=new DateTime(Int32.Parse(
-                date[2]), Int32.Parse(date[1]), Int32.Parse(date[0]));
+            if (!string.IsNullOrEmpty(row["delivrance"].ToString()))
+            {
+                string[] date = row["delivrance"].ToString().Split('/');
+                delivrance.Value=new DateTime(Int32.Parse(
+                    date[2]), Int32.Parse(date[1]), Int32.Parse(date[0]));
+            }
+            if (!string.IsNullOrEmpty(row["naissance"].ToString()))
+            {
+                string[] date_naissance = row["naissance"].ToString().Split('/');
+                naissance.Value=new DateTime(Int32.Parse(
+                    date_naissance[2]), Int32.Parse(date_naissance[1]), Int32.Parse(date_naissance[0]));
+            }
             if (row["image"]!=DBNull.Value)
                 picture.Image=Image.FromStream(new MemoryStream((byte[])row["image"]));
 
@@ -114,6 +135,7 @@ namespace ImmoSoft
 
                     if (client.add(data,nom.Text.TrimStart().TrimEnd().ToUpper(),
                         prenom.Text.TrimStart().TrimEnd().ToUpper(),
+                        naissance.Value.ToString("dd/MM/yyyy"),
                         piece.Text,
                         numero.Text.TrimStart().TrimEnd().ToUpper(),
                         delivrance.Value.ToString("dd/MM/yyyy"),
@@ -153,6 +175,7 @@ namespace ImmoSoft
 
                     if (client.update(data, id, nom.Text.TrimStart().TrimEnd().ToUpper(),
                         prenom.Text.TrimStart().TrimEnd().ToUpper(),
+                        naissance.Value.ToString("dd/MM/yyyy"),
                         piece.Text,
                         numero.Text.TrimStart().TrimEnd().ToUpper(),
                         delivrance.Value.ToString("dd/MM/yyyy"),

@@ -68,5 +68,11 @@ namespace ImmoSoft
                 connect();
             }
         }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+            //DB.template template = new DB.template();
+            //template.save("versement.docx", @"C:\Users\moust\Documents\ImmoSoft\Versement.docx");
+        }
     }
 }

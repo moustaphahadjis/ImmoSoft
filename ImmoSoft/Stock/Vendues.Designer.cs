@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.search = new System.Windows.Forms.ComboBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -51,6 +51,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.button5 = new System.Windows.Forms.Button();
+            this.button6 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv1)).BeginInit();
@@ -66,7 +67,7 @@
             this.label1.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(9, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(41, 25);
+            this.label1.Size = new System.Drawing.Size(34, 20);
             this.label1.TabIndex = 6;
             this.label1.Text = "Site";
             // 
@@ -78,7 +79,7 @@
             "Tous les sites"});
             this.search.Location = new System.Drawing.Point(70, 5);
             this.search.Name = "search";
-            this.search.Size = new System.Drawing.Size(530, 33);
+            this.search.Size = new System.Drawing.Size(530, 27);
             this.search.TabIndex = 5;
             this.search.SelectedIndexChanged += new System.EventHandler(this.search_SelectedIndexChanged);
             // 
@@ -174,19 +175,19 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgv1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Cambria", 12F);
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Teal;
-            this.dgv1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Cambria", 12F);
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.Teal;
+            this.dgv1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dgv1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Cambria", 12F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Teal;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgv1.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Cambria", 12F);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.Teal;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgv1.DefaultCellStyle = dataGridViewCellStyle4;
             this.dgv1.Location = new System.Drawing.Point(12, 44);
             this.dgv1.Name = "dgv1";
             this.dgv1.ReadOnly = true;
@@ -204,7 +205,7 @@
             this.Compteur.Controls.Add(this.nblot);
             this.Compteur.Controls.Add(this.label2);
             this.Compteur.Dock = System.Windows.Forms.DockStyle.Top;
-            this.Compteur.Location = new System.Drawing.Point(0, 395);
+            this.Compteur.Location = new System.Drawing.Point(0, 442);
             this.Compteur.Name = "Compteur";
             this.Compteur.Size = new System.Drawing.Size(290, 109);
             this.Compteur.TabIndex = 12;
@@ -217,7 +218,7 @@
             this.label3.Font = new System.Drawing.Font("Segoe UI Semibold", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(6, 70);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(188, 25);
+            this.label3.Size = new System.Drawing.Size(155, 20);
             this.label3.TabIndex = 10;
             this.label3.Text = "Nombre de Parcelles:";
             // 
@@ -227,7 +228,7 @@
             this.nbpar.Font = new System.Drawing.Font("Segoe UI Semibold", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nbpar.Location = new System.Drawing.Point(220, 70);
             this.nbpar.Name = "nbpar";
-            this.nbpar.Size = new System.Drawing.Size(39, 25);
+            this.nbpar.Size = new System.Drawing.Size(32, 20);
             this.nbpar.TabIndex = 10;
             this.nbpar.Text = "par";
             // 
@@ -237,7 +238,7 @@
             this.nblot.Font = new System.Drawing.Font("Segoe UI Semibold", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nblot.Location = new System.Drawing.Point(163, 27);
             this.nblot.Name = "nblot";
-            this.nblot.Size = new System.Drawing.Size(35, 25);
+            this.nblot.Size = new System.Drawing.Size(27, 20);
             this.nblot.TabIndex = 10;
             this.nblot.Text = "lot";
             // 
@@ -247,7 +248,7 @@
             this.label2.Font = new System.Drawing.Font("Segoe UI Semibold", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(6, 27);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(151, 25);
+            this.label2.Size = new System.Drawing.Size(122, 20);
             this.label2.TabIndex = 10;
             this.label2.Text = "Nombre de Lots:";
             // 
@@ -282,7 +283,7 @@
             this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox1.Location = new System.Drawing.Point(715, 8);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(255, 28);
+            this.textBox1.Size = new System.Drawing.Size(255, 24);
             this.textBox1.TabIndex = 24;
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
@@ -292,7 +293,7 @@
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(606, 12);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(103, 22);
+            this.label4.Size = new System.Drawing.Size(85, 18);
             this.label4.TabIndex = 23;
             this.label4.Text = "Rechercher";
             // 
@@ -301,6 +302,7 @@
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.Controls.Add(this.Compteur);
+            this.panel1.Controls.Add(this.button6);
             this.panel1.Controls.Add(this.groupBox2);
             this.panel1.Controls.Add(this.groupBox3);
             this.panel1.Controls.Add(this.groupBox4);
@@ -336,6 +338,22 @@
             this.button5.Text = "Payer Commission";
             this.button5.UseVisualStyleBackColor = false;
             this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
+            // button6
+            // 
+            this.button6.BackColor = System.Drawing.Color.IndianRed;
+            this.button6.Dock = System.Windows.Forms.DockStyle.Top;
+            this.button6.FlatAppearance.BorderSize = 0;
+            this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button6.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button6.ForeColor = System.Drawing.Color.White;
+            this.button6.Location = new System.Drawing.Point(0, 395);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(290, 47);
+            this.button6.TabIndex = 14;
+            this.button6.Text = "Annuler vente";
+            this.button6.UseVisualStyleBackColor = false;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // Vendues
             // 
@@ -386,5 +404,6 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button button6;
     }
 }

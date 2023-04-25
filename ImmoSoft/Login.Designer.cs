@@ -47,7 +47,7 @@
             this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(139, 105);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(186, 31);
+            this.label1.Size = new System.Drawing.Size(157, 25);
             this.label1.TabIndex = 0;
             this.label1.Text = "Connectez-Vous";
             // 
@@ -56,7 +56,7 @@
             this.username.Font = new System.Drawing.Font("Cambria", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.username.Location = new System.Drawing.Point(95, 201);
             this.username.Name = "username";
-            this.username.Size = new System.Drawing.Size(276, 29);
+            this.username.Size = new System.Drawing.Size(276, 24);
             this.username.TabIndex = 0;
             this.username.KeyDown += new System.Windows.Forms.KeyEventHandler(this.password_KeyDown);
             // 
@@ -65,7 +65,7 @@
             this.password.Font = new System.Drawing.Font("Cambria", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.password.Location = new System.Drawing.Point(95, 304);
             this.password.Name = "password";
-            this.password.Size = new System.Drawing.Size(276, 29);
+            this.password.Size = new System.Drawing.Size(276, 24);
             this.password.TabIndex = 1;
             this.password.UseSystemPasswordChar = true;
             this.password.TextChanged += new System.EventHandler(this.password_TextChanged);
@@ -108,7 +108,7 @@
             this.label2.ForeColor = System.Drawing.Color.White;
             this.label2.Location = new System.Drawing.Point(92, 175);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(142, 23);
+            this.label2.Size = new System.Drawing.Size(119, 19);
             this.label2.TabIndex = 3;
             this.label2.Text = "Nom d\'utilisateur";
             // 
@@ -119,7 +119,7 @@
             this.label3.ForeColor = System.Drawing.Color.White;
             this.label3.Location = new System.Drawing.Point(91, 278);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(113, 23);
+            this.label3.Size = new System.Drawing.Size(92, 19);
             this.label3.TabIndex = 3;
             this.label3.Text = "Mot de passe";
             // 
@@ -133,6 +133,7 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(500, 540);
             this.panel1.TabIndex = 4;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // panel2
             // 

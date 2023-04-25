@@ -50,7 +50,7 @@ namespace ImmoSoft.DB
             con.Close();
             return ds;
         }
-        public bool add(byte[] image,string nom, string prenom, string piece,
+        public bool add(byte[] image,string nom, string prenom,string naissance, string piece,
             string numero, string delivrance, string profession,
             string contact, string addresse, string matrimonial)
         {
@@ -62,11 +62,12 @@ namespace ImmoSoft.DB
                 if (int.Parse(cmd.ExecuteScalar().ToString())==0)
                 {
                     cmd = new MySqlCommand("insert into demarcheur " +
-                        "(image,nom,prenom,piece,numero,contact,addresse,delivrance,profession,matrimonial)" +
-                        " Values (@image,@nom,@prenom,@piece,@numero,@contact,@addresse,@delivrance,@profession,@matrimonial)", con);
+                        "(image,nom,prenom, naissance, piece,numero,contact,addresse,delivrance,profession,matrimonial)" +
+                        " Values (@image,@nom,@prenom,@naissance,@piece,@numero,@contact,@addresse,@delivrance,@profession,@matrimonial)", con);
                 cmd.Parameters.Add("@image", MySqlDbType.MediumBlob).Value = image;
                     cmd.Parameters.Add("@nom", MySqlDbType.VarChar).Value = nom;
                     cmd.Parameters.Add("@prenom", MySqlDbType.VarChar).Value = prenom;
+                    cmd.Parameters.Add("@naissance", MySqlDbType.VarChar).Value = naissance;
                     cmd.Parameters.Add("@piece", MySqlDbType.VarChar).Value = piece;
                     cmd.Parameters.Add("@numero", MySqlDbType.VarChar).Value = numero;
                     cmd.Parameters.Add("@contact", MySqlDbType.VarChar).Value = contact;
@@ -91,7 +92,7 @@ namespace ImmoSoft.DB
                 return false;
             }
         }
-        public bool update(byte[] image,string id, string nom, string prenom, string piece,
+        public bool update(byte[] image,string id, string nom, string prenom, string naissance, string piece,
             string numero, string delivrance, string profession,
             string contact, string addresse, string matrimonial)
         {
@@ -113,11 +114,12 @@ namespace ImmoSoft.DB
                             return false;
                         }
 
-                cmd = new MySqlCommand("update demarcheur  set image=@image, nom=@nom, prenom=@prenom, piece=@piece, " +
+                cmd = new MySqlCommand("update demarcheur  set image=@image, nom=@nom, prenom=@prenom,naissance=@naissance, piece=@piece, " +
                     "numero=@numero, contact=@contact, addresse=@addresse, delivrance=@delivrance," +
                     "profession=@profession, matrimonial=@matrimonial where id=@id", con);
                 cmd.Parameters.Add("@image", MySqlDbType.MediumBlob).Value = image;
                 cmd.Parameters.Add("@nom", MySqlDbType.VarChar).Value = nom;
+                cmd.Parameters.Add("@naissance", MySqlDbType.VarChar).Value = naissance;
                 cmd.Parameters.Add("@prenom", MySqlDbType.VarChar).Value = prenom;
                 cmd.Parameters.Add("@piece", MySqlDbType.VarChar).Value = piece;
                 cmd.Parameters.Add("@numero", MySqlDbType.VarChar).Value = numero;

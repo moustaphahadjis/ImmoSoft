@@ -79,3 +79,13 @@ C:\Work\Software\ImmoSoft\ImmoSoft\bin\Debug\Newtonsoft.Json.xml
 C:\Work\Software\ImmoSoft\ImmoSoft\bin\Debug\System.Threading.Tasks.Extensions.xml
 C:\Work\Software\ImmoSoft\ImmoSoft\bin\Debug\Telegram.Bot.pdb
 C:\Work\Software\ImmoSoft\ImmoSoft\bin\Debug\Telegram.Bot.xml
+C:\Work\Software\ImmoSoft\ImmoSoft\obj\Debug\ImmoSoft.Dashboard.resources
+C:\Work\Software\ImmoSoft\ImmoSoft\bin\Debug\LiveCharts.dll
+C:\Work\Software\ImmoSoft\ImmoSoft\bin\Debug\LiveCharts.WinForms.dll
+C:\Work\Software\ImmoSoft\ImmoSoft\bin\Debug\LiveCharts.Wpf.dll
+C:\Work\Software\ImmoSoft\ImmoSoft\bin\Debug\LiveCharts.pdb
+C:\Work\Software\ImmoSoft\ImmoSoft\bin\Debug\LiveCharts.xml
+C:\Work\Software\ImmoSoft\ImmoSoft\bin\Debug\LiveCharts.WinForms.pdb
+C:\Work\Software\ImmoSoft\ImmoSoft\bin\Debug\LiveCharts.WinForms.xml
+C:\Work\Software\ImmoSoft\ImmoSoft\bin\Debug\LiveCharts.Wpf.pdb
+C:\Work\Software\ImmoSoft\ImmoSoft\bin\Debug\LiveCharts.Wpf.xml

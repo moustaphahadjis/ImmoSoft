@@ -42,7 +42,7 @@ namespace ImmoSoft
             this.name = name;
         }
         public Waiting(DataGridView dgvp, DataGridView dgvc, string action,
-            string prix, string versement, string reste)
+            string prix, string versement, string reste,string site)
         {
             InitializeComponent();
             dgvP=dgvp; dgvC=dgvc;
@@ -50,6 +50,7 @@ namespace ImmoSoft
             this.prix = prix;
             this.versement = versement;
             this.reste = reste;
+            this.sitenom= site;
             payment=true;
         }
         public Waiting(DataGridView dgvp, DataGridView dgvd, string montant,string site)
@@ -112,7 +113,7 @@ namespace ImmoSoft
                              dgvP.Rows[0].Cells["superficie"].Value.ToString(), action,
                              versement, prix,
                              (decimal.Parse(prix)-decimal.Parse(reste)).ToString(),
-                             reste, dgvP.Rows[0].Cells["id"].Value.ToString());
+                             reste, dgvP.Rows[0].Cells["id"].Value.ToString(), sitenom);
                 finish= true;
             }
             else if (attribution)

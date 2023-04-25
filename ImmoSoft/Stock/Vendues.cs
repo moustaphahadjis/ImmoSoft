@@ -209,5 +209,31 @@ namespace ImmoSoft
                     }
                 }
         }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            if (dgv1.Rows.Count>0)
+                if (dgv1.SelectedRows.Count>0)
+                    if (MessageBox.Show("Voulez vous vraiment annuler cette vente", "Annuler",
+                        MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    {
+                        bool go = false;
+                        checkPassword check = new checkPassword(Properties.Settings.Default.id);
+                        check.FormClosed+=(a, s) => { go=check.isPassword; };
+                        check.ShowDialog();
+                        if (go)
+                        {
+                            DB.stock stock = new DB.stock();
+                            DB.historique hist = new DB.historique();
+                            string idclient = dgv1.SelectedRows[0].Cells["idclient"].Value.ToString();
+                            stock.update(dgv1.SelectedRows[0].Cells["id"].Value.ToString(),
+                                "0", "0", "0", "0", "0", "Disponible", "", 0);
+                            hist.annulerVente("Vente annulée", dgv1.SelectedRows[0].Cells["id"].Value.ToString(),
+                                idclient, "0", "0", "0", "0", "");
+                            refresh();
+                        }
+
+                    }
+        }
     }
 }

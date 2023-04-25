@@ -35,8 +35,7 @@ namespace ImmoSoft
             {
                 activeForm.Close();
             }
-            if( mainPanel.Contains(madeby))
-                mainPanel.Controls.Remove(madeby);
+           
             activeForm = newForm;
             activeForm.FormBorderStyle = FormBorderStyle.None;
             activeForm.BackColor = mainPanel.BackColor;
@@ -171,11 +170,8 @@ namespace ImmoSoft
 
         private void mainPanel_SizeChanged(object sender, EventArgs e)
         {
-            int x, y;
-            x=mainPanel.Size.Width/2- madeby.Width/2;
-
-            y=mainPanel.Size.Height/6;
-            madeby.Location= new Point(x, y);
+            Form tmp = new Dashboard();
+            changeForm(tmp);
         }
 
         private void button7_Click_1(object sender, EventArgs e)

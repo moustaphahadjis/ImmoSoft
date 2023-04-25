@@ -15,6 +15,37 @@ namespace ImmoSoft
         public Site()
         {
             InitializeComponent();
+            //parcellesDisponiblesToolStripMenuItem.Click
+            parcellesDisponiblesToolStripMenuItem.Click+=(a,s) => 
+            {
+                Properties.Settings.Default.site=dgv1.SelectedRows[0].Cells["nom"].Value.ToString();
+                Stock stock = new Stock();
+                stock.ShowDialog();
+            };
+            venteEnCoursToolStripMenuItem.Click+=(a, s) =>
+            {
+                Properties.Settings.Default.site=dgv1.SelectedRows[0].Cells["nom"].Value.ToString();
+                enVente stock = new enVente();
+                stock.ShowDialog();
+            };
+            parcellesVenduesToolStripMenuItem.Click+=(a, s) =>
+            {
+                Properties.Settings.Default.site=dgv1.SelectedRows[0].Cells["nom"].Value.ToString();
+                Vendues stock = new Vendues();
+                stock.ShowDialog();
+            };
+            mutationEnCoursToolStripMenuItem.Click+=(a, s) =>
+            {
+                Properties.Settings.Default.site=dgv1.SelectedRows[0].Cells["nom"].Value.ToString();
+                Vendues stock = new Vendues();
+                stock.ShowDialog();
+            };
+            parcellesMutéesToolStripMenuItem.Click+=(a, s) =>
+            {
+                Properties.Settings.Default.site=dgv1.SelectedRows[0].Cells["nom"].Value.ToString();
+                Vendues stock = new Vendues();
+                stock.ShowDialog();
+            };
         }
         void refresh()
         {
@@ -80,6 +111,16 @@ namespace ImmoSoft
                             refresh();
                         }
 
+                    }
+        }
+
+        private void dgv1_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button==MouseButtons.Right)
+                if (dgv1.Rows.Count>0)
+                    if (dgv1.SelectedRows.Count>0)
+                    {
+                        menuStrip.Show(dgv1, new Point(e.X, e.Y));
                     }
         }
     }

@@ -386,7 +386,7 @@
 
         #endregion
 
-        private System.Windows.Forms.ComboBox search;
+        public System.Windows.Forms.ComboBox search;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button button3;
