@@ -35,10 +35,14 @@ namespace ImmoSoft
                     Properties.Settings.Default.admin=dt.Rows[0]["admin"].ToString();
                     Properties.Settings.Default.id=dt.Rows[0]["id"].ToString();
 
-                    Form1 form1 = new Form1();
-                    form1.FormClosed+=(s, a) => { this.Close(); };
-                    this.Hide();
-                    form1.ShowDialog();
+                    try
+                    {
+                        Form1 form1 = new Form1();
+                        form1.FormClosed+=(s, a) => { this.Close(); };
+                        this.Hide();
+                        form1.ShowDialog();
+                    }
+                    catch (Exception ex) { }
                 }
                 else
                     MessageBox.Show("Nom d'utilisateur ou mot de passe incorect");

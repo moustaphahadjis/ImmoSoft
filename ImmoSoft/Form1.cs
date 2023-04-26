@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Drawing2D;
+using System.Drawing.Imaging;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Interop;
 using System.Xml.Linq;
 
 namespace ImmoSoft
@@ -17,6 +20,7 @@ namespace ImmoSoft
         public Form1()
         {
             InitializeComponent();
+            this.DoubleBuffered = true;
             this.FormBorderStyle = FormBorderStyle.Sizable;
             if (Properties.Settings.Default.admin.ToLower()!="admin")
 
@@ -165,7 +169,20 @@ namespace ImmoSoft
 
         private void menuPanel_Paint(object sender, PaintEventArgs e)
         {
-
+            /*
+            using (LinearGradientBrush brush = new LinearGradientBrush(this.ClientRectangle,
+                                                               ColorTranslator.FromHtml("#16808D"),
+                                                               ColorTranslator.FromHtml("#002449"),
+                                                               90F))
+            
+            using (LinearGradientBrush brush = new LinearGradientBrush(this.ClientRectangle,
+                                                               ColorTranslator.FromHtml("#45535E"),
+                                                               ColorTranslator.FromHtml("#002449"),
+                                                               90F))
+            {
+                e.Graphics.FillRectangle(brush, this.ClientRectangle);
+            }
+            */
         }
 
         private void mainPanel_SizeChanged(object sender, EventArgs e)
@@ -184,6 +201,18 @@ namespace ImmoSoft
         private void mainPanel_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+            Form tmp = new Dashboard();
+            changeForm(tmp);
+            showTitle(button10);
+        }
+
+        private void button10_MouseHover(object sender, EventArgs e)
+        {
+            
         }
     }
 }
