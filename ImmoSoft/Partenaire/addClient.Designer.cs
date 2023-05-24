@@ -43,6 +43,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.matrimonial = new System.Windows.Forms.ComboBox();
+            this.naissance = new System.Windows.Forms.DateTimePicker();
             this.delivrance = new System.Windows.Forms.DateTimePicker();
             this.piece = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -50,13 +51,12 @@
             this.numero = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label11 = new System.Windows.Forms.Label();
-            this.naissance = new System.Windows.Forms.DateTimePicker();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picture)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -79,7 +79,7 @@
             // 
             this.nom.Font = new System.Drawing.Font("Cambria", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nom.Location = new System.Drawing.Point(134, 17);
-            this.nom.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.nom.Margin = new System.Windows.Forms.Padding(2);
             this.nom.Name = "nom";
             this.nom.Size = new System.Drawing.Size(177, 24);
             this.nom.TabIndex = 0;
@@ -99,7 +99,7 @@
             // 
             this.prenom.Font = new System.Drawing.Font("Cambria", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.prenom.Location = new System.Drawing.Point(134, 50);
-            this.prenom.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.prenom.Margin = new System.Windows.Forms.Padding(2);
             this.prenom.Name = "prenom";
             this.prenom.Size = new System.Drawing.Size(177, 24);
             this.prenom.TabIndex = 1;
@@ -122,9 +122,9 @@
             this.groupBox1.Controls.Add(this.picture);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(14, 51);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox1.Size = new System.Drawing.Size(243, 385);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
@@ -137,7 +137,7 @@
             this.button5.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button5.ForeColor = System.Drawing.Color.White;
             this.button5.Location = new System.Drawing.Point(140, 314);
-            this.button5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button5.Margin = new System.Windows.Forms.Padding(2);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(87, 33);
             this.button5.TabIndex = 3;
@@ -152,7 +152,7 @@
             this.button4.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button4.ForeColor = System.Drawing.Color.White;
             this.button4.Location = new System.Drawing.Point(16, 314);
-            this.button4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button4.Margin = new System.Windows.Forms.Padding(2);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(87, 33);
             this.button4.TabIndex = 3;
@@ -165,7 +165,7 @@
             this.picture.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(40)))), ((int)(((byte)(45)))));
             this.picture.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.picture.Location = new System.Drawing.Point(16, 20);
-            this.picture.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.picture.Margin = new System.Windows.Forms.Padding(2);
             this.picture.Name = "picture";
             this.picture.Size = new System.Drawing.Size(210, 284);
             this.picture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -188,7 +188,7 @@
             // 
             this.contact.Font = new System.Drawing.Font("Cambria", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.contact.Location = new System.Drawing.Point(134, 90);
-            this.contact.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.contact.Margin = new System.Windows.Forms.Padding(2);
             this.contact.Name = "contact";
             this.contact.Size = new System.Drawing.Size(177, 24);
             this.contact.TabIndex = 2;
@@ -197,7 +197,7 @@
             // 
             this.addresse.Font = new System.Drawing.Font("Cambria", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.addresse.Location = new System.Drawing.Point(134, 130);
-            this.addresse.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.addresse.Margin = new System.Windows.Forms.Padding(2);
             this.addresse.Name = "addresse";
             this.addresse.Size = new System.Drawing.Size(177, 24);
             this.addresse.TabIndex = 3;
@@ -237,9 +237,9 @@
             this.groupBox2.Controls.Add(this.label6);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.Location = new System.Drawing.Point(265, 51);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox2.Size = new System.Drawing.Size(339, 385);
             this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
@@ -255,17 +255,30 @@
             "Marié(e) Religieusement",
             "Divorcé(e)"});
             this.matrimonial.Location = new System.Drawing.Point(150, 347);
-            this.matrimonial.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.matrimonial.Margin = new System.Windows.Forms.Padding(2);
             this.matrimonial.Name = "matrimonial";
             this.matrimonial.Size = new System.Drawing.Size(180, 24);
             this.matrimonial.TabIndex = 8;
+            // 
+            // naissance
+            // 
+            this.naissance.Font = new System.Drawing.Font("Cambria", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.naissance.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.naissance.Location = new System.Drawing.Point(134, 172);
+            this.naissance.Margin = new System.Windows.Forms.Padding(2);
+            this.naissance.MaxDate = new System.DateTime(2030, 12, 31, 0, 0, 0, 0);
+            this.naissance.MinDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
+            this.naissance.Name = "naissance";
+            this.naissance.Size = new System.Drawing.Size(177, 23);
+            this.naissance.TabIndex = 6;
+            this.naissance.ValueChanged += new System.EventHandler(this.delivrance_ValueChanged);
             // 
             // delivrance
             // 
             this.delivrance.Font = new System.Drawing.Font("Cambria", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.delivrance.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.delivrance.Location = new System.Drawing.Point(150, 272);
-            this.delivrance.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.delivrance.Margin = new System.Windows.Forms.Padding(2);
             this.delivrance.MaxDate = new System.DateTime(2030, 12, 31, 0, 0, 0, 0);
             this.delivrance.MinDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
             this.delivrance.Name = "delivrance";
@@ -283,7 +296,7 @@
             "Permis de conduire",
             "Autre"});
             this.piece.Location = new System.Drawing.Point(21, 231);
-            this.piece.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.piece.Margin = new System.Windows.Forms.Padding(2);
             this.piece.Name = "piece";
             this.piece.Size = new System.Drawing.Size(136, 24);
             this.piece.TabIndex = 4;
@@ -305,7 +318,7 @@
             // 
             this.profession.Font = new System.Drawing.Font("Cambria", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.profession.Location = new System.Drawing.Point(150, 309);
-            this.profession.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.profession.Margin = new System.Windows.Forms.Padding(2);
             this.profession.Name = "profession";
             this.profession.Size = new System.Drawing.Size(180, 24);
             this.profession.TabIndex = 7;
@@ -315,7 +328,7 @@
             // 
             this.numero.Font = new System.Drawing.Font("Cambria", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.numero.Location = new System.Drawing.Point(172, 231);
-            this.numero.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.numero.Margin = new System.Windows.Forms.Padding(2);
             this.numero.Name = "numero";
             this.numero.Size = new System.Drawing.Size(158, 24);
             this.numero.TabIndex = 5;
@@ -344,6 +357,18 @@
             this.label9.TabIndex = 0;
             this.label9.Text = "Profession";
             this.label9.Click += new System.EventHandler(this.label9_Click);
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Cambria", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(2, 177);
+            this.label11.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(120, 17);
+            this.label11.TabIndex = 0;
+            this.label11.Text = "Date de Naissance";
+            this.label11.Click += new System.EventHandler(this.label8_Click);
             // 
             // label8
             // 
@@ -377,7 +402,7 @@
             this.button1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.Color.White;
             this.button1.Location = new System.Drawing.Point(167, 451);
-            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(122, 35);
             this.button1.TabIndex = 1;
@@ -393,7 +418,7 @@
             this.button2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button2.ForeColor = System.Drawing.Color.White;
             this.button2.Location = new System.Drawing.Point(306, 451);
-            this.button2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button2.Margin = new System.Windows.Forms.Padding(2);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(122, 35);
             this.button2.TabIndex = 3;
@@ -407,35 +432,10 @@
             this.panel1.Controls.Add(this.label1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(620, 38);
             this.panel1.TabIndex = 4;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Cambria", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(2, 177);
-            this.label11.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(120, 17);
-            this.label11.TabIndex = 0;
-            this.label11.Text = "Date de Naissance";
-            this.label11.Click += new System.EventHandler(this.label8_Click);
-            // 
-            // naissance
-            // 
-            this.naissance.Font = new System.Drawing.Font("Cambria", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.naissance.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.naissance.Location = new System.Drawing.Point(134, 172);
-            this.naissance.Margin = new System.Windows.Forms.Padding(2);
-            this.naissance.MaxDate = new System.DateTime(2030, 12, 31, 0, 0, 0, 0);
-            this.naissance.MinDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
-            this.naissance.Name = "naissance";
-            this.naissance.Size = new System.Drawing.Size(177, 23);
-            this.naissance.TabIndex = 6;
-            this.naissance.ValueChanged += new System.EventHandler(this.delivrance_ValueChanged);
             // 
             // addClient
             // 
@@ -448,7 +448,7 @@
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "addClient";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "addClient";

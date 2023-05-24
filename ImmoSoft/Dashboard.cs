@@ -31,7 +31,7 @@ namespace ImmoSoft
             table.Columns.Add("Mutations");
             table.Columns.Add("Date");
             double vtotal = 0, mtotal = 0, ctotal=0;
-            while (from.Date < DateTime.Now.Date)
+            while (from.Date < DateTime.Now.AddDays(1).Date)
             {
                 var res = getCount(dt, from.Date.ToString().Split(' ')[0]);
                 vtotal+=res.Item1;
@@ -48,7 +48,8 @@ namespace ImmoSoft
             muteNum.Text= mtotal.ToString();
             clotNum.Text= ctotal.ToString();
             dgv1.DataSource = table;
-
+            dgv1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgv1.RowsDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
             try
             {
@@ -56,18 +57,23 @@ namespace ImmoSoft
                 {
                     Values = new ChartValues<double>(ventes),
                     StrokeThickness = 2,
-                    Stroke = new SolidColorBrush(System.Windows.Media.Color.FromRgb(29, 137, 152)),
-                    //Fill = Brushes.Transparent,
-                    PointGeometrySize = 0,
+                    Title="Ventes",
+                    Stroke = new SolidColorBrush(System.Windows.Media.Color.FromRgb(198, 78, 78)),
+                    //Fill = new SolidColorBrush(System.Windows.Media.Color.FromRgb(198, 78, 78)),
+                    
+                    PointGeometrySize = 5,
                 });
                 cartesianChart1.Series.Add(new LineSeries
                 {
                     Values = new ChartValues<double>(mutations),
                     StrokeThickness = 2,
-                    Stroke = new SolidColorBrush(System.Windows.Media.Color.FromRgb(29, 137, 152)),
-                    //Fill = Brushes.Transparent,
-                    PointGeometrySize = 0,
-                });
+                    Title="Mutations",
+                    Stroke = new SolidColorBrush(System.Windows.Media.Color.FromRgb(220, 125, 73)),
+                    //Fill = new SolidColorBrush(System.Windows.Media.Color.FromRgb(220, 125, 73)),
+                    
+                    PointGeometrySize = 5,
+                }); 
+                //cartesianChart1.AxisY.Add()
                
             }
             catch (Exception ex) { }
@@ -106,7 +112,7 @@ namespace ImmoSoft
         {
             using (System.Drawing.Drawing2D.LinearGradientBrush brush =
            new System.Drawing.Drawing2D.LinearGradientBrush(this.ClientRectangle,
-                                                          ColorTranslator.FromHtml("#FE4C4B"),
+                                                          ColorTranslator.FromHtml("#C64E4E"),
                                                           ColorTranslator.FromHtml("#FFFFFF"),
                                                           90F))
                 e.Graphics.FillRectangle(brush, this.ClientRectangle);
@@ -116,7 +122,7 @@ namespace ImmoSoft
         {
             using (System.Drawing.Drawing2D.LinearGradientBrush brush =
           new System.Drawing.Drawing2D.LinearGradientBrush(this.ClientRectangle,
-                                                         ColorTranslator.FromHtml("#3C6D94"),
+                                                         ColorTranslator.FromHtml("#DC7D49"),
                                                          ColorTranslator.FromHtml("#FFFFFF"),
                                                          90F))
                 e.Graphics.FillRectangle(brush, this.ClientRectangle);

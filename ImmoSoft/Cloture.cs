@@ -91,7 +91,7 @@ namespace ImmoSoft
             else
             {
 
-                att.insert(pid, "0", oid, cid, true);
+                att.insert("0", pid, oid, cid, true);
                 stock.cloturer(pid,cid);
                 histc.add("Cloture", pid,oid, cid, did, prix, mnt, rest, usage);
             }

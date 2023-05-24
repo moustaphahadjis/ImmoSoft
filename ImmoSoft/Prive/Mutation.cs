@@ -131,7 +131,7 @@ namespace ImmoSoft
                     did="0";
                 if (stock.mutation(pid,oid, cid, did, prix.Text.Trim(), vsmt.Text.Trim(), rest.Text, usage.Text, etat))
                 {
-                    hist.add(action, pid, oid, cid, did, prix.Text.Trim(), vsmt.Text.Trim(), rest.Text, usage.Text);
+                    hist.add(action, pid, cid, did, prix.Text.Trim(), "0", vsmt.Text.Trim(), rest.Text, usage.Text);
                     /*
                     DB.printer printer = new DB.printer();
                     printer.versement("Mutation",

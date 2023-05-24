@@ -174,15 +174,15 @@ namespace ImmoSoft
                                                                ColorTranslator.FromHtml("#16808D"),
                                                                ColorTranslator.FromHtml("#002449"),
                                                                90F))
-            
+            */
             using (LinearGradientBrush brush = new LinearGradientBrush(this.ClientRectangle,
-                                                               ColorTranslator.FromHtml("#45535E"),
+                                                               ColorTranslator.FromHtml("#1C96B6"), //45535E 3C6D94
                                                                ColorTranslator.FromHtml("#002449"),
                                                                90F))
             {
                 e.Graphics.FillRectangle(brush, this.ClientRectangle);
             }
-            */
+            
         }
 
         private void mainPanel_SizeChanged(object sender, EventArgs e)

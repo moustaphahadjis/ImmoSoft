@@ -16,6 +16,7 @@ namespace ImmoSoft
         public Login()
         {
             InitializeComponent();
+            
         }
 
         private void confirm_Click(object sender, EventArgs e)
@@ -27,6 +28,9 @@ namespace ImmoSoft
             DB.user user = new DB.user();
             //user.insert("nom", "prenom", "admin", "admin", "admin");
             DataTable dt = user.checkUser(username.Text, password.Text);
+
+
+
             if (dt!= null)
                 if (dt.Rows.Count>0)
                 {
@@ -75,8 +79,8 @@ namespace ImmoSoft
 
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
-            //DB.template template = new DB.template();
-            //template.save("versement.docx", @"C:\Users\moust\Documents\ImmoSoft\Versement.docx");
+           // DB.template template = new DB.template();
+            //template.save("fiche.docx", @"C:\Users\moust\Documents\ImmoSoft\Fiche.docx");
         }
     }
 }

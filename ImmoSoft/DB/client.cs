@@ -63,7 +63,7 @@ namespace ImmoSoft.DB
                 {
                     cmd = new MySqlCommand("insert into client " +
                         "(image,nom,prenom,naissance,piece,numero,contact,addresse,delivrance,profession,matrimonial)" +
-                        " Values (@image,@nom,@naissance, @prenom,@piece,@numero,@contact,@addresse,@delivrance,@profession,@matrimonial)", con);
+                        " Values (@image,@nom, @prenom,@naissance,@piece,@numero,@contact,@addresse,@delivrance,@profession,@matrimonial)", con);
                     cmd.Parameters.Add("@image", MySqlDbType.MediumBlob).Value = image;
                     cmd.Parameters.Add("@nom", MySqlDbType.VarChar).Value = nom;
                     cmd.Parameters.Add("@prenom", MySqlDbType.VarChar).Value = prenom;
