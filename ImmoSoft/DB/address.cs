@@ -15,7 +15,7 @@ namespace ImmoSoft.DB
 
             ip="localhost";
             //ip = "192.168.1.102";
-            //ip="192.168.1.5";
+           // ip="192.168.1.5";
             user = "root";
             pass = "";
         }

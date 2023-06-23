@@ -33,11 +33,8 @@ namespace ImmoSoft
 
             if (Properties.Settings.Default.admin.ToLower()=="caissiere")
             {
-                groupBox2.Enabled=false;
-                groupBox3.Enabled=false;
-
-                groupBox2.Visible=false;
-                groupBox3.Visible=false;
+                button5.Enabled=false;
+                button5.Visible=false;
             }
             else if (Properties.Settings.Default.admin.ToLower()=="secretaire")
             {

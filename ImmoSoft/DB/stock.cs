@@ -107,6 +107,56 @@ namespace ImmoSoft.DB
             con.Close();
             return ds;
         }
+        public DataTable refreshClientEnVente(string etat, string clientID)
+        {
+            con.Open();
+            MySqlDataAdapter da;
+            string aa = "select stock.id,site.nom as Site,stock.section,stock.lot,stock.parcelle,stock.superficie, stock.prix, stock.montant," +
+                
+                " CONCAT (demarcheur.nom,' ',demarcheur.prenom) as Demarcheur" +
+                ", stock.idclient, stock.iddemarcheur" +
+                " from stock join demarcheur on demarcheur.id = stock.iddemarcheur" +
+                " join client on client.id=stock.idclient" +
+                " join site on site.id=stock.siteid"+
+                " where stock.etat=@etat and stock.idclient=@clientid and stock.deleted=0 ";
+
+            da = new MySqlDataAdapter(aa, con);
+            da.SelectCommand.Parameters.Add("@etat", MySqlDbType.VarChar).Value=etat;
+            da.SelectCommand.Parameters.Add("@clientid", MySqlDbType.VarChar).Value=clientID;
+
+            DataTable ds = new DataTable();
+            ds.BeginLoadData();
+            da.Fill(ds);
+            ds.EndLoadData();
+
+            con.Close();
+            return ds;
+        }
+        public DataTable refreshClientVendue(string clientID)
+        {
+            con.Open();
+            MySqlDataAdapter da;
+            string aa = "select stock.id,site.nom as site,stock.section,stock.lot,stock.parcelle," +
+                "stock.superficie, stock.prix, stock.montant,stock.type_usage, stock.etat," +
+                " CONCAT (client.nom,' ',client.prenom) as Client," +
+                " CONCAT (demarcheur.nom,' ',demarcheur.prenom) as Demarcheur" +
+                ", stock.idclient, stock.iddemarcheur" +
+                " from stock join demarcheur on demarcheur.id = stock.iddemarcheur" +
+                " join client on client.id=stock.idclient" +
+                " join site on site.id=stock.siteid"+
+                " where stock.idold=@clientid and stock.deleted=0 ";
+
+            da = new MySqlDataAdapter(aa, con);
+            da.SelectCommand.Parameters.Add("@clientid", MySqlDbType.VarChar).Value=clientID;
+
+            DataTable ds = new DataTable();
+            ds.BeginLoadData();
+            da.Fill(ds);
+            ds.EndLoadData();
+
+            con.Close();
+            return ds;
+        }
         public DataTable refreshPrive(string etat, string siteid)
         {
             con.Open();

@@ -70,6 +70,7 @@ namespace ImmoSoft.DB
         public bool export(DataGridView data,string site)
         {
             Word.Application app = new Word.Application();
+            convertir con = new convertir();
             try
             {
                 app.ShowAnimation = false;
@@ -78,7 +79,7 @@ namespace ImmoSoft.DB
                 string filenum = (getLast("Export")+1).ToString();
                 string filename = @"Export n"+filenum+".docx";
                 string filepath = path + filename;
-                Word.Document doc = app.Documents.Open(path+@"Export.docx");
+                Word.Document doc = app.Documents.Open(getPath("Export.docx"));
 
                 app.Selection.Find.Execute(FindText: "@site", ReplaceWith: site, Replace: Word.WdReplace.wdReplaceAll);
                 app.Selection.Find.Execute(FindText: "@date", ReplaceWith: DateTime.Now.ToString("dd-MM-yyyy"), Replace: Word.WdReplace.wdReplaceAll);

@@ -89,3 +89,4 @@ C:\Work\Software\ImmoSoft\ImmoSoft\bin\Debug\LiveCharts.WinForms.pdb
 C:\Work\Software\ImmoSoft\ImmoSoft\bin\Debug\LiveCharts.WinForms.xml
 C:\Work\Software\ImmoSoft\ImmoSoft\bin\Debug\LiveCharts.Wpf.pdb
 C:\Work\Software\ImmoSoft\ImmoSoft\bin\Debug\LiveCharts.Wpf.xml
+C:\Work\Software\ImmoSoft\ImmoSoft\obj\Debug\ImmoSoft.Partenaire.clientStock.resources

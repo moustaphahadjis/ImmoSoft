@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ImmoSoft.Partenaire;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -163,6 +164,26 @@ namespace ImmoSoft
             else
                 MessageBox.Show("Aucun element selectionné");
 
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            if (dgv1.Rows.Count>0)
+                if (dgv1.SelectedRows.Count>0)
+                {
+                    clientStock cs = new clientStock(dgv1.SelectedRows[0].Cells["id"].Value.ToString(),"en cours de vente");
+                    cs.ShowDialog();
+                        }
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            if (dgv1.Rows.Count>0)
+                if (dgv1.SelectedRows.Count>0)
+                {
+                    clientStock cs = new clientStock(dgv1.SelectedRows[0].Cells["id"].Value.ToString(), "vendue");
+                    cs.ShowDialog();
+                }
         }
     }
 }
