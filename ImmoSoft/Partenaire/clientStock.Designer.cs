@@ -36,15 +36,14 @@
             this.nbpar = new System.Windows.Forms.Label();
             this.nblot = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.button6 = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.button3 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.button7 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.dgv1 = new ImmoSoft.DGV();
             this.clientName = new System.Windows.Forms.Label();
+            this.dgv1 = new ImmoSoft.DGV();
             this.panel1.SuspendLayout();
             this.Compteur.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -57,7 +56,6 @@
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.Controls.Add(this.Compteur);
-            this.panel1.Controls.Add(this.button6);
             this.panel1.Controls.Add(this.groupBox2);
             this.panel1.Controls.Add(this.groupBox1);
             this.panel1.Location = new System.Drawing.Point(680, 38);
@@ -73,7 +71,7 @@
             this.Compteur.Controls.Add(this.nblot);
             this.Compteur.Controls.Add(this.label2);
             this.Compteur.Dock = System.Windows.Forms.DockStyle.Top;
-            this.Compteur.Location = new System.Drawing.Point(0, 238);
+            this.Compteur.Location = new System.Drawing.Point(0, 200);
             this.Compteur.Margin = new System.Windows.Forms.Padding(2);
             this.Compteur.Name = "Compteur";
             this.Compteur.Padding = new System.Windows.Forms.Padding(2);
@@ -125,22 +123,6 @@
             this.label2.Size = new System.Drawing.Size(122, 20);
             this.label2.TabIndex = 10;
             this.label2.Text = "Nombre de Lots:";
-            // 
-            // button6
-            // 
-            this.button6.BackColor = System.Drawing.Color.IndianRed;
-            this.button6.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button6.FlatAppearance.BorderSize = 0;
-            this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button6.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button6.ForeColor = System.Drawing.Color.White;
-            this.button6.Location = new System.Drawing.Point(0, 200);
-            this.button6.Margin = new System.Windows.Forms.Padding(2);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(218, 38);
-            this.button6.TabIndex = 14;
-            this.button6.Text = "Annuler vente";
-            this.button6.UseVisualStyleBackColor = false;
             // 
             // groupBox2
             // 
@@ -230,6 +212,15 @@
             this.button1.Text = "Details Client";
             this.button1.UseVisualStyleBackColor = false;
             // 
+            // clientName
+            // 
+            this.clientName.AutoSize = true;
+            this.clientName.Location = new System.Drawing.Point(12, 9);
+            this.clientName.Name = "clientName";
+            this.clientName.Size = new System.Drawing.Size(35, 13);
+            this.clientName.TabIndex = 31;
+            this.clientName.Text = "label1";
+            // 
             // dgv1
             // 
             this.dgv1.AllowUserToAddRows = false;
@@ -262,15 +253,6 @@
             this.dgv1.Size = new System.Drawing.Size(665, 617);
             this.dgv1.TabIndex = 27;
             // 
-            // clientName
-            // 
-            this.clientName.AutoSize = true;
-            this.clientName.Location = new System.Drawing.Point(12, 9);
-            this.clientName.Name = "clientName";
-            this.clientName.Size = new System.Drawing.Size(35, 13);
-            this.clientName.TabIndex = 31;
-            this.clientName.Text = "label1";
-            // 
             // clientStock
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -301,7 +283,6 @@
         private System.Windows.Forms.Label nbpar;
         private System.Windows.Forms.Label nblot;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button button6;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.GroupBox groupBox1;
