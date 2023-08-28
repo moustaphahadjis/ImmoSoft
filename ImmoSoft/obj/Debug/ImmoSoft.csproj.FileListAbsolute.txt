@@ -8,7 +8,6 @@ C:\Work\Software\ImmoSoft\ImmoSoft\bin\Debug\Ubiety.Dns.Core.dll
 C:\Work\Software\ImmoSoft\ImmoSoft\bin\Debug\Renci.SshNet.dll
 C:\Work\Software\ImmoSoft\ImmoSoft\bin\Debug\MySql.Data.xml
 C:\Work\Software\ImmoSoft\ImmoSoft\obj\Debug\ImmoSoft.csproj.AssemblyReference.cache
-C:\Work\Software\ImmoSoft\ImmoSoft\obj\Debug\ImmoSoft.csproj.SuggestedBindingRedirects.cache
 C:\Work\Software\ImmoSoft\ImmoSoft\obj\Debug\ImmoSoft.addStock.resources
 C:\Work\Software\ImmoSoft\ImmoSoft\obj\Debug\ImmoSoft.Properties.Resources.resources
 C:\Work\Software\ImmoSoft\ImmoSoft\obj\Debug\ImmoSoft.Stock.resources
